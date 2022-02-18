@@ -22,39 +22,46 @@ public class Term {
     @NonNull
     private String title;
 
+    @ColumnInfo(name = "start_date")
+    @NonNull
     private LocalDate startDate;
 
+    @ColumnInfo(name = "end_date")
+    @NonNull
     private LocalDate endDate;
 
-    public Term(String title, LocalDate startDate, LocalDate endDate) {
+    public Term(@NonNull String title, @NonNull LocalDate startDate, @NonNull LocalDate endDate) {
         this.title = title;
         this.startDate = startDate;
         this.endDate = endDate;
     }
 
     // getters
+    @NonNull
     public String getTitle() {
         return title;
     }
 
+    @NonNull
     public LocalDate getStartDate() {
         return startDate;
     }
 
+    @NonNull
     public LocalDate getEndDate() {
         return endDate;
     }
 
     // setters
-    public void setTitle(String title) {
+    public void setTitle(@NonNull String title) {
         this.title = title;
     }
 
-    public void setStartDate(LocalDate startDate) {
+    public void setStartDate(@NonNull LocalDate startDate) {
         this.startDate = startDate;
     }
 
-    public void setEndDate(LocalDate endDate) {
+    public void setEndDate(@NonNull LocalDate endDate) {
         this.endDate = endDate;
     }
 
