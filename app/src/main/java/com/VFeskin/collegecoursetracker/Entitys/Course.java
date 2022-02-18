@@ -5,6 +5,9 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+import com.VFeskin.collegecoursetracker.Utility.CourseInstructor;
+import com.VFeskin.collegecoursetracker.Utility.Status;
+
 import java.time.LocalDate;
 
 /**
@@ -28,6 +31,18 @@ public class Course {
     @ColumnInfo(name = "end_date")
     @NonNull
     private LocalDate endDate;
+
+
+    CourseInstructor courseInstructor;
+    Status status;
+
+    private String instructorName;
+
+    public String getInstructorName() {
+        return courseInstructor.getName();
+    }
+
+
 
     public Course(@NonNull String title, @NonNull LocalDate startDate, @NonNull LocalDate endDate) {
         this.title = title;
