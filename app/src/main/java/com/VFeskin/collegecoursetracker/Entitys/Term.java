@@ -5,9 +5,6 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-
 /**
  * The following code defines a Term data entity.
  * Each instance of Term represents a row in a Term table in the app's database.
@@ -24,13 +21,13 @@ public class Term {
 
     @ColumnInfo(name = "start_date")
     @NonNull
-    private LocalDate startDate;
+    private String startDate;
 
     @ColumnInfo(name = "end_date")
     @NonNull
-    private LocalDate endDate;
+    private String endDate;
 
-    public Term(@NonNull String title, @NonNull LocalDate startDate, @NonNull LocalDate endDate) {
+    public Term(@NonNull String title, @NonNull String startDate, @NonNull String endDate) {
         this.title = title;
         this.startDate = startDate;
         this.endDate = endDate;
@@ -43,12 +40,12 @@ public class Term {
     }
 
     @NonNull
-    public LocalDate getStartDate() {
+    public String getStartDate() {
         return startDate;
     }
 
     @NonNull
-    public LocalDate getEndDate() {
+    public String getEndDate() {
         return endDate;
     }
 
@@ -57,11 +54,11 @@ public class Term {
         this.title = title;
     }
 
-    public void setStartDate(@NonNull LocalDate startDate) {
+    public void setStartDate(@NonNull String startDate) {
         this.startDate = startDate;
     }
 
-    public void setEndDate(@NonNull LocalDate endDate) {
+    public void setEndDate(@NonNull String endDate) {
         this.endDate = endDate;
     }
 

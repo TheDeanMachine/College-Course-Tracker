@@ -8,7 +8,6 @@ import androidx.room.PrimaryKey;
 import com.VFeskin.collegecoursetracker.Utility.CourseInstructor;
 import com.VFeskin.collegecoursetracker.Utility.Status;
 
-import java.time.LocalDate;
 
 /**
  * The following code defines a Course data entity.
@@ -26,28 +25,36 @@ public class Course {
 
     @ColumnInfo(name = "start_date")
     @NonNull
-    private LocalDate startDate;
+    private String startDate;
 
     @ColumnInfo(name = "end_date")
     @NonNull
-    private LocalDate endDate;
+    private String endDate;
 
 
-    CourseInstructor courseInstructor;
-    Status status;
-
+    @ColumnInfo(name = "instructor_name")
     private String instructorName;
 
-    public String getInstructorName() {
-        return courseInstructor.getName();
-    }
+    @ColumnInfo(name = "instructor_phone")
+    private String instructorPhone;
+
+    @ColumnInfo(name = "instructor_email")
+    private String instructorEmail;
 
 
+    @ColumnInfo(name = "course_status")
+    private String courseStatus;
 
-    public Course(@NonNull String title, @NonNull LocalDate startDate, @NonNull LocalDate endDate) {
+
+    public Course(@NonNull String title, @NonNull String startDate, @NonNull String endDate,
+                  String instructorName, String instructorPhone, String instructorEmail, String courseStatus) {
         this.title = title;
         this.startDate = startDate;
         this.endDate = endDate;
+        this.instructorName = instructorName;
+        this.instructorPhone = instructorPhone;
+        this.instructorEmail = instructorEmail;
+        this.courseStatus = courseStatus;
     }
 
     // getters
@@ -57,13 +64,29 @@ public class Course {
     }
 
     @NonNull
-    public LocalDate getStartDate() {
+    public String getStartDate() {
         return startDate;
     }
 
     @NonNull
-    public LocalDate getEndDate() {
+    public String getEndDate() {
         return endDate;
+    }
+
+    public String getInstructorName() {
+        return instructorName;
+    }
+
+    public String getInstructorPhone() {
+        return instructorPhone;
+    }
+
+    public String getInstructorEmail() {
+        return instructorEmail;
+    }
+
+    public String getCourseStatus() {
+        return courseStatus;
     }
 
     // setters
@@ -71,15 +94,27 @@ public class Course {
         this.title = title;
     }
 
-    public void setStartDate(@NonNull LocalDate startDate) {
+    public void setStartDate(@NonNull String startDate) {
         this.startDate = startDate;
     }
 
-    public void setEndDate(@NonNull LocalDate endDate) {
+    public void setEndDate(@NonNull String endDate) {
         this.endDate = endDate;
     }
 
+    public void setInstructorName(String instructorName) {
+        this.instructorName = instructorName;
+    }
 
+    public void setInstructorPhone(String instructorPhone) {
+        this.instructorPhone = instructorPhone;
+    }
 
+    public void setInstructorEmail(String instructorEmail) {
+        this.instructorEmail = instructorEmail;
+    }
 
+    public void setCourseStatus(String courseStatus) {
+        this.courseStatus = courseStatus;
+    }
 }
