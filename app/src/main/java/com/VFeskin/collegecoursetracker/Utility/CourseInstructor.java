@@ -2,7 +2,7 @@ package com.VFeskin.collegecoursetracker.Utility;
 
 /**
  * The class creates a course instructor.
- * The class is used in Course Entity's to represent an instructor.
+ * This class is used in Course Entity's to represent an instructor.
  */
 public class CourseInstructor {
 

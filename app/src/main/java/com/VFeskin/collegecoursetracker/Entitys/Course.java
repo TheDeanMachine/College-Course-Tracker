@@ -33,13 +33,26 @@ public class Course {
     private LocalDate endDate;
 
 
+    @ColumnInfo(name = "instructor_name")
+    private String instructorName;
+
+    @ColumnInfo(name = "instructor_phone")
+    private String instructorPhone;
+
+    @ColumnInfo(name = "instructor_email")
+    private String instructorEmail;
+
+
+
     CourseInstructor courseInstructor;
     Status status;
 
-    private String instructorName;
-
     public String getInstructorName() {
         return courseInstructor.getName();
+    }
+
+    public void setInstructorName() {
+        this.instructorName = courseInstructor.getName();
     }
 
 
