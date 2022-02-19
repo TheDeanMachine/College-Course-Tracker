@@ -33,6 +33,7 @@ public class Term {
         this.endDate = endDate;
     }
 
+
     // getters
     @NonNull
     public String getTitle() {
