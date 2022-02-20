@@ -2,12 +2,15 @@ package com.VFeskin.collegecoursetracker.Entitys;
 
 import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
+import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 /**
  * The following code defines a Assessment data entity.
  * Each instance of Assessment represents a row in a Assessment table in the app's database.
  */
+
+@Entity(tableName = "Assessments")
 public class Assessment {
 
     @PrimaryKey(autoGenerate = true)
@@ -29,8 +32,8 @@ public class Assessment {
     @NonNull
     private String endDate;
 
-
-    public Assessment(@NonNull String title, @NonNull String startDate, @NonNull String endDate) {
+    public Assessment(@NonNull String assessmentType, @NonNull String title, @NonNull String startDate, @NonNull String endDate) {
+        this.assessmentType = assessmentType;
         this.title = title;
         this.startDate = startDate;
         this.endDate = endDate;
