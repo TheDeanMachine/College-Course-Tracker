@@ -10,23 +10,36 @@ import com.VFeskin.collegecoursetracker.DAO.TermDAO;
 import com.VFeskin.collegecoursetracker.Entitys.Assessment;
 import com.VFeskin.collegecoursetracker.Entitys.Course;
 import com.VFeskin.collegecoursetracker.Entitys.Term;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
-@Database(entities = { Term.class, Course.class, Assessment.class }, version = 1)
+/**
+ *
+ */
+@Database(entities = { Term.class, Course.class, Assessment.class }, version = 1, exportSchema = false)
 public abstract class CourseTrackerDatabase extends RoomDatabase {
     public abstract TermDAO termDAO();
     public abstract CourseDAO courseDAO();
     public abstract AssessmentDAO assessmentDAO();
 
-    private static CourseTrackerDatabase DATABASE;
+    private static volatile CourseTrackerDatabase INSTANCE;
+
+    private static final int NUMBER_OF_THREADS = 4;
+    static final ExecutorService databaseWriteExecutor =
+            Executors.newFixedThreadPool(NUMBER_OF_THREADS);
 
     // Singleton
-    public static CourseTrackerDatabase getInstance(Context context) {
-        if(DATABASE == null) {
-            DATABASE = Room
-                    .databaseBuilder(context, CourseTrackerDatabase.class, "course_tracker_db")
-                    .build();
+    public static CourseTrackerDatabase getInstance(final Context context) {
+        if(INSTANCE == null) {
+            synchronized (CourseTrackerDatabase.class) {
+                if (INSTANCE == null) {
+                    INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
+                            CourseTrackerDatabase.class, "course_tracker_db")
+                            .build();
+                }
+            }
         }
-        return DATABASE;
+        return INSTANCE;
     }
 
 }

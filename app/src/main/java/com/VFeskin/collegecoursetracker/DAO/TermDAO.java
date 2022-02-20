@@ -1,6 +1,7 @@
 package com.VFeskin.collegecoursetracker.DAO;
 import com.VFeskin.collegecoursetracker.Entitys.Term;
 
+import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
@@ -24,8 +25,8 @@ public interface TermDAO {
     @Delete
     void delete(Term term);
 
-    @Query("SELECT * FROM Terms")
-    List<Term> getAllTerms();
+    @Query("SELECT * FROM Terms ORDER BY start_date ASC")
+    LiveData<List<Term>> getAllTerms();
 }
 
 

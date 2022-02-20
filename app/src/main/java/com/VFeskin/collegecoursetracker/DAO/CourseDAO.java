@@ -1,6 +1,7 @@
 package com.VFeskin.collegecoursetracker.DAO;
 import com.VFeskin.collegecoursetracker.Entitys.Course;
 
+import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
@@ -16,14 +17,14 @@ import java.util.List;
 @Dao
 public interface CourseDAO {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    void insert(Course term);
+    void insert(Course course);
 
     @Update
-    void update(Course term);
+    void update(Course course);
 
     @Delete
-    void delete(Course term);
+    void delete(Course course);
 
-    @Query("SELECT * FROM Courses")
-    List<Course> getAllCourses();
+    @Query("SELECT * FROM Courses ORDER BY start_date ASC")
+    LiveData<List<Course>> getAllCourses();
 }
