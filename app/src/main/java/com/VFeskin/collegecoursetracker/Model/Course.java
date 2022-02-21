@@ -1,12 +1,9 @@
-package com.VFeskin.collegecoursetracker.Entitys;
+package com.VFeskin.collegecoursetracker.Model;
 
 import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
-
-import com.VFeskin.collegecoursetracker.Utility.CourseInstructor;
-import com.VFeskin.collegecoursetracker.Utility.Status;
 
 
 /**

@@ -1,5 +1,5 @@
 package com.VFeskin.collegecoursetracker.DAO;
-import com.VFeskin.collegecoursetracker.Entitys.Assessment;
+import com.VFeskin.collegecoursetracker.Model.Assessment;
 
 import androidx.lifecycle.LiveData;
 import androidx.room.Dao;

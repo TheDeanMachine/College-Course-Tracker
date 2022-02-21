@@ -1,4 +1,4 @@
-package com.VFeskin.collegecoursetracker.Entitys;
+package com.VFeskin.collegecoursetracker.Model;
 
 import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;

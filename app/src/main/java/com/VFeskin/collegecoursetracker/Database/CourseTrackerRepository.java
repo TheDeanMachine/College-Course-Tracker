@@ -3,7 +3,7 @@ package com.VFeskin.collegecoursetracker.Database;
 import android.app.Application;
 import androidx.lifecycle.LiveData;
 import com.VFeskin.collegecoursetracker.DAO.TermDAO;
-import com.VFeskin.collegecoursetracker.Entitys.Term;
+import com.VFeskin.collegecoursetracker.Model.Term;
 import java.util.List;
 
 
@@ -14,8 +14,7 @@ public class CourseTrackerRepository {
 
     CourseTrackerRepository(Application application) {
         CourseTrackerDatabase db = CourseTrackerDatabase.getInstance(application);
-        termDAO = db.termDAO();
-        allTerms = termDAO.getAllTerms();
+        allTerms = db.termDAO().getAllTerms();
     }
 
     // Room executes all queries on a separate thread.
@@ -29,6 +28,18 @@ public class CourseTrackerRepository {
     void insertTerm(Term term) {
         CourseTrackerDatabase.databaseWriteExecutor.execute(() -> {
             termDAO.insert(term);
+        });
+    }
+
+    void updateTerm(Term term) {
+        CourseTrackerDatabase.databaseWriteExecutor.execute(() -> {
+            termDAO.update(term);
+        });
+    }
+
+    void deleteTerm(Term term) {
+        CourseTrackerDatabase.databaseWriteExecutor.execute(() -> {
+            termDAO.delete(term);
         });
     }
 

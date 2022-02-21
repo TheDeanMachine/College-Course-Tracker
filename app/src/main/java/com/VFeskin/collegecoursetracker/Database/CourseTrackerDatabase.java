@@ -7,9 +7,9 @@ import androidx.room.RoomDatabase;
 import com.VFeskin.collegecoursetracker.DAO.AssessmentDAO;
 import com.VFeskin.collegecoursetracker.DAO.CourseDAO;
 import com.VFeskin.collegecoursetracker.DAO.TermDAO;
-import com.VFeskin.collegecoursetracker.Entitys.Assessment;
-import com.VFeskin.collegecoursetracker.Entitys.Course;
-import com.VFeskin.collegecoursetracker.Entitys.Term;
+import com.VFeskin.collegecoursetracker.Model.Assessment;
+import com.VFeskin.collegecoursetracker.Model.Course;
+import com.VFeskin.collegecoursetracker.Model.Term;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
