@@ -40,6 +40,10 @@ public class Assessment {
     }
 
     // getters
+    public int getId() {
+        return id;
+    }
+
     @NonNull
     public String getTitle() {
         return title;
@@ -61,6 +65,10 @@ public class Assessment {
     }
 
     // setters
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public void setTitle(@NonNull String title) {
         this.title = title;
     }
