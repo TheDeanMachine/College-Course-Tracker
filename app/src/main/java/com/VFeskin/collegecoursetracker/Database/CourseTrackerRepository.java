@@ -14,7 +14,8 @@ public class CourseTrackerRepository {
 
     public CourseTrackerRepository(Application application) {
         CourseTrackerDatabase db = CourseTrackerDatabase.getInstance(application);
-        allTerms = db.termDAO().getAllTerms();
+        termDAO = db.termDAO(); // very important to initialize
+        allTerms = termDAO.getAllTerms();
     }
 
     // Room executes all queries on a separate thread.
