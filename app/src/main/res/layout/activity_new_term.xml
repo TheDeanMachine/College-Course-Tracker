@@ -6,4 +6,50 @@
     android:layout_height="match_parent"
     tools:context=".Controller.NewTerm">
 
+    <EditText
+        android:id="@+id/editTextTermTitle"
+        style="@style/form_style"
+        android:hint="Term title"
+        android:minHeight="48dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/editTextStartDate"
+        style="@style/form_style"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Start date"
+        android:inputType="textPersonName"
+        android:minHeight="48dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextTermTitle" />
+
+    <EditText
+        android:id="@+id/editTextEndDate"
+        style="@style/form_style"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="End date"
+        android:inputType="textPersonName"
+        android:minHeight="48dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextStartDate" />
+
+    <Button
+        android:id="@+id/createTermButton"
+        style="@style/form_style"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:onClick="onClickCreateTerm"
+        android:text="Create Term"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextEndDate" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
