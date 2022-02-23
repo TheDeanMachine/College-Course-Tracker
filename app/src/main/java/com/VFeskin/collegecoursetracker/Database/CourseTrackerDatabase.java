@@ -4,12 +4,16 @@ import android.content.Context;
 import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
+import androidx.room.TypeConverters;
+
 import com.VFeskin.collegecoursetracker.DAO.AssessmentDAO;
 import com.VFeskin.collegecoursetracker.DAO.CourseDAO;
 import com.VFeskin.collegecoursetracker.DAO.TermDAO;
 import com.VFeskin.collegecoursetracker.Model.Assessment;
 import com.VFeskin.collegecoursetracker.Model.Course;
 import com.VFeskin.collegecoursetracker.Model.Term;
+import com.VFeskin.collegecoursetracker.Utility.DateConverter;
+
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -17,6 +21,7 @@ import java.util.concurrent.Executors;
  *
  */
 @Database(entities = { Term.class, Course.class, Assessment.class }, version = 1, exportSchema = false)
+@TypeConverters({DateConverter.class})
 public abstract class CourseTrackerDatabase extends RoomDatabase {
     public abstract TermDAO termDAO();
     public abstract CourseDAO courseDAO();

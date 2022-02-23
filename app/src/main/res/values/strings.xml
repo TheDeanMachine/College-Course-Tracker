@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">College Course Tracker</string>
     <string name="emptyInput">Please fill out all the fields</string>
+    <string name="add_button">add Button</string>
 
 
 </resources>
