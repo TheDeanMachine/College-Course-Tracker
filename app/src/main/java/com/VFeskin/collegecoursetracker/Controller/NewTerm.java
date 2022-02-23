@@ -26,7 +26,7 @@ public class NewTerm extends AppCompatActivity {
     private Button createTerm;
 
 
-    // viewM model reference, gives access to CRUD operations
+    // viewM model reference, gives access to all terms
     private TermViewModel termViewModel;
 
     // date related fields
@@ -57,7 +57,7 @@ public class NewTerm extends AppCompatActivity {
                 .create(TermViewModel.class);
 
 
-        // shows the date picker
+        // shows the date picker onClick
         dateTextField.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -71,7 +71,7 @@ public class NewTerm extends AppCompatActivity {
         });
 
 
-        // gets the values from date picker
+        // gets the values from date picker onDataSet
         dateDialog = new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker view, int year, int month, int day) {
@@ -88,11 +88,11 @@ public class NewTerm extends AppCompatActivity {
         createTerm.setOnClickListener(view -> {
             String title = termTitle.getText().toString();
             String start = startDate.getText().toString();
-            String end = endDate.getText().toString();
+//            String end = endDate.getText().toString();
 
 
 
-            Term term = new Term(title, start, end);
+            Term term = new Term(title, start, dateToSet );
 
             TermViewModel.insert(term);
 

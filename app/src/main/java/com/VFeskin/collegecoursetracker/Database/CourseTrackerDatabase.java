@@ -20,7 +20,7 @@ import java.util.concurrent.Executors;
 /**
  *
  */
-@Database(entities = { Term.class, Course.class, Assessment.class }, version = 1, exportSchema = false)
+@Database(entities = { Term.class, Course.class, Assessment.class }, version = 2, exportSchema = false)
 @TypeConverters({DateConverter.class})
 public abstract class CourseTrackerDatabase extends RoomDatabase {
     public abstract TermDAO termDAO();
