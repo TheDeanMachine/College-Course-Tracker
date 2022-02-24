@@ -1,6 +1,8 @@
 package com.VFeskin.collegecoursetracker.Database;
 
 import android.app.Application;
+
+import androidx.appcompat.widget.AlertDialogLayout;
 import androidx.lifecycle.LiveData;
 
 import com.VFeskin.collegecoursetracker.DAO.AssessmentDAO;
@@ -41,7 +43,7 @@ public class CourseTrackerRepository {
         allAssessments = assessmentDAO.getAllAssessments();
     }
 
-    /// TERMS ///
+    /// TERM CRUD///
     public LiveData<List<Term>> getAllTerms() {
         return allTerms;
     }
@@ -65,5 +67,51 @@ public class CourseTrackerRepository {
     }
 
 
+    /// COURSE CRUD///
+    public LiveData<List<Course>> getAllCourses() {
+        return allCourses;
+    }
+
+    public void insertCourse(Course course) {
+        CourseTrackerDatabase.databaseWriteExecutor.execute(() -> {
+            courseDAO.insert(course);
+        });
+    }
+
+    public void updateCourse(Course course) {
+        CourseTrackerDatabase.databaseWriteExecutor.execute(() -> {
+            courseDAO.update(course);
+        });
+    }
+
+    public void deleteCourse(Course course) {
+        CourseTrackerDatabase.databaseWriteExecutor.execute(() -> {
+            courseDAO.delete(course);
+        });
+    }
+
+
+    /// ASSESSMENT CRUD ///
+    public LiveData<List<Assessment>> getAllAssessment() {
+        return allAssessments;
+    }
+
+    public void insertAssessments(Assessment assessment) {
+        CourseTrackerDatabase.databaseWriteExecutor.execute(() -> {
+            assessmentDAO.insert(assessment);
+        });
+    }
+
+    public void updateAssessments(Assessment assessment) {
+        CourseTrackerDatabase.databaseWriteExecutor.execute(() -> {
+            assessmentDAO.update(assessment);
+        });
+    }
+
+    public void deleteAssessments(Assessment assessment) {
+        CourseTrackerDatabase.databaseWriteExecutor.execute(() -> {
+            assessmentDAO.delete(assessment);
+        });
+    }
 
 }
