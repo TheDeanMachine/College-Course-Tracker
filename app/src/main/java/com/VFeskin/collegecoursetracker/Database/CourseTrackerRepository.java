@@ -2,30 +2,50 @@ package com.VFeskin.collegecoursetracker.Database;
 
 import android.app.Application;
 import androidx.lifecycle.LiveData;
+
+import com.VFeskin.collegecoursetracker.DAO.AssessmentDAO;
+import com.VFeskin.collegecoursetracker.DAO.CourseDAO;
 import com.VFeskin.collegecoursetracker.DAO.TermDAO;
+import com.VFeskin.collegecoursetracker.Model.Assessment;
+import com.VFeskin.collegecoursetracker.Model.Course;
 import com.VFeskin.collegecoursetracker.Model.Term;
 import java.util.List;
 
-
+/**
+ * Repository class for Room database.
+ * The Repository manages queries and allows you to use multiple sources.
+ */
 public class CourseTrackerRepository {
 
+    // DAO references
     private TermDAO termDAO;
+    private CourseDAO courseDAO;
+    private AssessmentDAO assessmentDAO;
+
+    // Observed LiveData will notify the observer when the data has changed.
     private LiveData<List<Term>> allTerms;
+    private LiveData<List<Course>> allCourses;
+    private LiveData<List<Assessment>> allAssessments;
+
 
     public CourseTrackerRepository(Application application) {
         CourseTrackerDatabase db = CourseTrackerDatabase.getInstance(application);
-        termDAO = db.termDAO(); // very important to initialize
+        // create the implicit dao subclass implementations
+        termDAO = db.termDAO();
+        courseDAO = db.courseDAO();
+        assessmentDAO = db.assessmentDAO();
+
+        // get all
         allTerms = termDAO.getAllTerms();
+        allCourses = courseDAO.getAllCourses();
+        allAssessments = assessmentDAO.getAllAssessments();
     }
 
-    // Room executes all queries on a separate thread.
-    // Observed LiveData will notify the observer when the data has changed.
+    /// TERMS ///
     public LiveData<List<Term>> getAllTerms() {
         return allTerms;
     }
 
-    // You must call this on a non-UI thread or app will throw an exception.
-    // Room ensures that you're not doing any long running operations on the main thread, blocking the UI.
     public void insertTerm(Term term) {
         CourseTrackerDatabase.databaseWriteExecutor.execute(() -> {
             termDAO.insert(term);
@@ -43,6 +63,7 @@ public class CourseTrackerRepository {
             termDAO.delete(term);
         });
     }
+
 
 
 }

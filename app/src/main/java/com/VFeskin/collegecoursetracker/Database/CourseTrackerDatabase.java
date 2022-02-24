@@ -20,7 +20,9 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 /**
- * Room Database
+ * Room Database.
+ * Room executes all queries on a separate thread and ensures that
+ * you're not doing any long running operations on the main thread, blocking the UI.
  */
 @Database(entities = { Term.class, Course.class, Assessment.class }, version = 3, exportSchema = false)
 @TypeConverters({DateConverter.class})
