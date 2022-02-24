@@ -17,7 +17,8 @@ import java.util.Date;
 
 /**
  * This class is used for adding a new term.
- * Creates a form that the user fills out, and adds a Term object into DB.
+ * Displays a form that the user can fill out, uses the information entered
+ * to create a new term object/entity and add it into the database.
  */
 public class NewTerm extends AppCompatActivity {
 
@@ -92,6 +93,7 @@ public class NewTerm extends AppCompatActivity {
 
         // creates the term
         createTermButton.setOnClickListener(view -> {
+            //TODO : input validation
             String title = termTitleTxt.getText().toString();
             TermViewModel.insert(new Term(title, startDate, endDate));
         });

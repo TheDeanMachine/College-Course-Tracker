@@ -3,14 +3,22 @@ package com.VFeskin.collegecoursetracker.Model;
 import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
+import androidx.room.ForeignKey;
 import androidx.room.PrimaryKey;
+
+import com.VFeskin.collegecoursetracker.Utility.Status;
+
+import java.util.Date;
 
 
 /**
  * The following code defines a Course data entity.
  * Each instance of Course represents a row in a Course table in the app's database.
  */
-@Entity(tableName = "Courses")
+@Entity(tableName = "Courses", foreignKeys = @ForeignKey(entity = Term.class,
+        parentColumns = "id",
+        childColumns = "term_id",
+        onDelete = ForeignKey.CASCADE))
 public class Course {
 
     @PrimaryKey(autoGenerate = true)
@@ -22,12 +30,11 @@ public class Course {
 
     @ColumnInfo(name = "start_date")
     @NonNull
-    private String startDate;
+    private Date startDate;
 
     @ColumnInfo(name = "end_date")
     @NonNull
-    private String endDate;
-
+    private Date endDate;
 
     @ColumnInfo(name = "instructor_name")
     private String instructorName;
@@ -38,13 +45,16 @@ public class Course {
     @ColumnInfo(name = "instructor_email")
     private String instructorEmail;
 
-
     @ColumnInfo(name = "course_status")
-    private String courseStatus;
+    private Status courseStatus;
+
+    @ColumnInfo(name = "term_id")
+    private int termId; //FK
 
 
-    public Course(@NonNull String title, @NonNull String startDate, @NonNull String endDate,
-                  String instructorName, String instructorPhone, String instructorEmail, String courseStatus) {
+    public Course(@NonNull String title, @NonNull Date startDate, @NonNull Date endDate,
+                  String instructorName, String instructorPhone, String instructorEmail,
+                  Status courseStatus, int termId) {
         this.title = title;
         this.startDate = startDate;
         this.endDate = endDate;
@@ -52,6 +62,7 @@ public class Course {
         this.instructorPhone = instructorPhone;
         this.instructorEmail = instructorEmail;
         this.courseStatus = courseStatus;
+        this.termId = termId;
     }
 
     // getters
@@ -65,12 +76,12 @@ public class Course {
     }
 
     @NonNull
-    public String getStartDate() {
+    public Date getStartDate() {
         return startDate;
     }
 
     @NonNull
-    public String getEndDate() {
+    public Date getEndDate() {
         return endDate;
     }
 
@@ -86,8 +97,12 @@ public class Course {
         return instructorEmail;
     }
 
-    public String getCourseStatus() {
+    public Status getCourseStatus() {
         return courseStatus;
+    }
+
+    public int getTermId() {
+        return termId;
     }
 
     // setters
@@ -99,11 +114,11 @@ public class Course {
         this.title = title;
     }
 
-    public void setStartDate(@NonNull String startDate) {
+    public void setStartDate(@NonNull Date startDate) {
         this.startDate = startDate;
     }
 
-    public void setEndDate(@NonNull String endDate) {
+    public void setEndDate(@NonNull Date endDate) {
         this.endDate = endDate;
     }
 
@@ -119,7 +134,11 @@ public class Course {
         this.instructorEmail = instructorEmail;
     }
 
-    public void setCourseStatus(String courseStatus) {
+    public void setCourseStatus(Status courseStatus) {
         this.courseStatus = courseStatus;
+    }
+
+    public void setTermId(int termId) {
+        this.termId = termId;
     }
 }

@@ -29,12 +29,12 @@ public class Term {
     @NonNull
     private Date endDate;
 
+
     public Term(@NonNull String title, @NonNull Date startDate, @NonNull Date endDate) {
         this.title = title;
         this.startDate = startDate;
         this.endDate = endDate;
     }
-
 
     // getters
     public int getId() {
@@ -56,7 +56,6 @@ public class Term {
         return endDate;
     }
 
-
     // setters
     public void setId(int id) {
         this.id = id;
@@ -73,6 +72,5 @@ public class Term {
     public void setEndDate(@NonNull Date endDate) {
         this.endDate = endDate;
     }
-
 
 }
