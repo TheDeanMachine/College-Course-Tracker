@@ -11,6 +11,7 @@ import android.widget.EditText;
 import com.VFeskin.collegecoursetracker.Model.Term;
 import com.VFeskin.collegecoursetracker.Model.TermViewModel;
 import com.VFeskin.collegecoursetracker.R;
+import java.text.DateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -73,7 +74,8 @@ public class NewTerm extends AppCompatActivity {
             public void onDateSet(DatePicker view, int year, int month, int day) {
                 calendar.set(year, month, day);
                 startDate = calendar.getTime();
-                startDateTxt.setText(startDate.toString());
+                // format the output the screen
+                startDateTxt.setText(DateFormat.getDateInstance(DateFormat.MEDIUM).format(startDate));
             }
         };
 
@@ -83,7 +85,8 @@ public class NewTerm extends AppCompatActivity {
             public void onDateSet(DatePicker view, int year, int month, int day) {
                 calendar.set(year, month, day);
                 endDate = calendar.getTime();
-                endDateTxt.setText(endDate.toString());
+                // format the output the screen
+                endDateTxt.setText(DateFormat.getDateInstance(DateFormat.MEDIUM).format(endDate));
             }
         };
 
