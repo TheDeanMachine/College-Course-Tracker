@@ -43,6 +43,8 @@ public class CourseTrackerRepository {
         allAssessments = assessmentDAO.getAllAssessments();
     }
 
+    ////// Must call the following on a non-UI thread or it will throw an exception ////////
+
     /// TERM CRUD///
     public LiveData<List<Term>> getAllTerms() {
         return allTerms;

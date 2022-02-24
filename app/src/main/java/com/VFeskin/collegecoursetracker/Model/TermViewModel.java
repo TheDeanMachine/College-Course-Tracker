@@ -7,7 +7,11 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import java.util.List;
 
-
+/**
+ * This class is the ViewModel for Term.
+ * The ViewModel's role is to provide data to the UI and survive configuration changes.
+ * A ViewModel acts as a communication center between the Repository and the UI.
+ */
 public class TermViewModel extends AndroidViewModel {
 
     public static CourseTrackerRepository repository;
@@ -19,6 +23,7 @@ public class TermViewModel extends AndroidViewModel {
         allTerms = repository.getAllTerms();
     }
 
+    // CRUD
     public LiveData<List<Term>> getAllTerms() {
         return allTerms;
     }
