@@ -23,13 +23,13 @@ public class Term {
 
     @ColumnInfo(name = "start_date")
     @NonNull
-    private String startDate;
+    private Date startDate;
 
     @ColumnInfo(name = "end_date")
     @NonNull
     private Date endDate;
 
-    public Term(@NonNull String title, @NonNull String startDate, @NonNull Date endDate) {
+    public Term(@NonNull String title, @NonNull Date startDate, @NonNull Date endDate) {
         this.title = title;
         this.startDate = startDate;
         this.endDate = endDate;
@@ -47,7 +47,7 @@ public class Term {
     }
 
     @NonNull
-    public String getStartDate() {
+    public Date getStartDate() {
         return startDate;
     }
 
@@ -66,7 +66,7 @@ public class Term {
         this.title = title;
     }
 
-    public void setStartDate(@NonNull String startDate) {
+    public void setStartDate(@NonNull Date startDate) {
         this.startDate = startDate;
     }
 

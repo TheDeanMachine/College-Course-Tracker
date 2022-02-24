@@ -2,6 +2,10 @@
     <string name="app_name">College Course Tracker</string>
     <string name="emptyInput">Please fill out all the fields</string>
     <string name="add_button">add Button</string>
+    <string name="term_title">Term title</string>
+    <string name="start_date">Start date</string>
+    <string name="end_date">End date</string>
+    <string name="create_term">Create Term</string>
 
 
 </resources>
