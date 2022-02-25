@@ -24,7 +24,7 @@ import java.util.concurrent.Executors;
  * Room executes all queries on a separate thread and ensures that
  * you're not doing any long running operations on the main thread, blocking the UI.
  */
-@Database(entities = { Term.class, Course.class, Assessment.class }, version = 3, exportSchema = false)
+@Database(entities = { Term.class, Course.class, Assessment.class }, version = 4, exportSchema = false)
 @TypeConverters({DateConverter.class})
 public abstract class CourseTrackerDatabase extends RoomDatabase {
     public abstract TermDAO termDAO();
