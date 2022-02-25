@@ -5,7 +5,19 @@
     <string name="term_title">Term title</string>
     <string name="start_date">Start date</string>
     <string name="end_date">End date</string>
-    <string name="create_term">Create Term</string>
+    <string name="create_term">CREATE TERM</string>
+    <string name="course_name">Course name</string>
+    <string name="instructor_name">Instructor name</string>
+    <string name="instructor_phone">Instructor phone</string>
+    <string name="instructor_email">Instructor email</string>
+    <string name="create_course">CREATE COURSE</string>
 
 
+    <string-array name="course_status">
+        <item>Select status</item>
+        <item>In progress</item>
+        <item>Completed</item>
+        <item>Dropped</item>
+        <item>Plan to take</item>
+    </string-array>
 </resources>
