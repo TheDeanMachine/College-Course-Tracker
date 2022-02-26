@@ -50,8 +50,8 @@
         style="@style/spinner_style"
         android:layout_width="375dp"
         android:layout_height="48dp"
-        android:layout_marginTop="16dp"
-        android:entries="@array/course_status"
+        android:layout_marginTop="24dp"
+
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextCourseEndDate"
@@ -97,7 +97,7 @@
         app:layout_constraintTop_toBottomOf="@+id/editTextInstructorPhone" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/createCourseButton"
         style="@style/form_style"
         android:layout_width="0dp"
         android:layout_height="wrap_content"

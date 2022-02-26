@@ -13,11 +13,11 @@
     <string name="create_course">CREATE COURSE</string>
 
 
-    <string-array name="course_status">
-        <item>Select status</item>
-        <item>In progress</item>
-        <item>Completed</item>
-        <item>Dropped</item>
-        <item>Plan to take</item>
-    </string-array>
+<!--    <string-array name="course_status">-->
+<!--        <item>Select status</item>-->
+<!--        <item>In progress</item>-->
+<!--        <item>Completed</item>-->
+<!--        <item>Dropped</item>-->
+<!--        <item>Plan to take</item>-->
+<!--    </string-array>-->
 </resources>
