@@ -1,10 +1,11 @@
 package com.VFeskin.collegecoursetracker.Utility;
 
 public enum Status {
+//    HINT_TEXT("Select course status"),
     IN_PROGRESS("In Progress"),
     COMPLETED("Completed"),
     DROPPED("Dropped"),
-    PLAN_TO_TAKE("Plan to take");
+    PLAN_TO_TAKE("Plan To Take");
 
     private String displayString;
 

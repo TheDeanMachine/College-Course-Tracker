@@ -5,6 +5,8 @@ import com.VFeskin.collegecoursetracker.Model.CourseViewModel;
 import com.VFeskin.collegecoursetracker.R;
 import com.VFeskin.collegecoursetracker.Utility.Status;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
+
 import android.app.DatePickerDialog;
 import android.os.Bundle;
 import android.view.View;
@@ -41,6 +43,8 @@ public class NewCourse extends AppCompatActivity {
     private Date startDate;
     private Date endDate;
 
+    // view model reference, gives access to all courses
+    private CourseViewModel courseViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,13 +57,18 @@ public class NewCourse extends AppCompatActivity {
         endDateTxt = findViewById(R.id.editTextCourseEndDate);
         courseStatusSpinner = findViewById(R.id.spinner);
 
-        courseStatusSpinner.setAdapter(new ArrayAdapter<Status>(this,
+        courseStatusSpinner.setAdapter(new ArrayAdapter<>(this,
                 android.R.layout.simple_spinner_item, Status.values()));
 
         instructorNameTxt = findViewById(R.id.editTextInstructorName);
         instructorPhoneTxt = findViewById(R.id.editTextInstructorPhone);
         instructorEmailTxt = findViewById(R.id.editTextInstructorEmailAddress);
         createCourseButton = findViewById(R.id.createCourseButton);
+
+        // creates an instance of view model to use
+        courseViewModel = new ViewModelProvider.AndroidViewModelFactory(NewCourse.this
+                .getApplication())
+                .create(CourseViewModel.class);
 
         // shows the date picker, onClick
         startDateTxt.setOnClickListener(view -> new DatePickerDialog(NewCourse.this, dateDialog,
@@ -97,15 +106,16 @@ public class NewCourse extends AppCompatActivity {
             }
         };
 
-
         createCourseButton.setOnClickListener(view -> {
 
+            //TODO : input validation
             String title = courseTitleTxt.getText().toString();
             Status status = (Status) courseStatusSpinner.getSelectedItem();
             String name = instructorNameTxt.getText().toString();
             String phone = instructorPhoneTxt.getText().toString();
             String email = instructorEmailTxt.getText().toString();
 
+            //TODO : get PK from term to use as FK for Course
             CourseViewModel.insert(new Course(title, startDate, endDate, name, phone, email, status, 1));
         });
 
