@@ -6,7 +6,6 @@ import com.VFeskin.collegecoursetracker.R;
 import com.VFeskin.collegecoursetracker.Utility.Status;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
-
 import android.app.DatePickerDialog;
 import android.os.Bundle;
 import android.view.View;
@@ -20,9 +19,9 @@ import java.util.Calendar;
 import java.util.Date;
 
 /**
- * This class is used for adding a new term.
+ * This class is used for adding a new course.
  * Displays a form that the user can fill out, uses the information entered
- * to create a new term object/entity and add it into the database.
+ * to create a new course object/entity and adding it into the database.
  */
 public class NewCourse extends AppCompatActivity {
 
@@ -57,6 +56,7 @@ public class NewCourse extends AppCompatActivity {
         endDateTxt = findViewById(R.id.editTextCourseEndDate);
         courseStatusSpinner = findViewById(R.id.spinner);
 
+        // create an array with Enum values for the spinner to hold
         courseStatusSpinner.setAdapter(new ArrayAdapter<>(this,
                 android.R.layout.simple_spinner_item, Status.values()));
 
@@ -106,11 +106,12 @@ public class NewCourse extends AppCompatActivity {
             }
         };
 
+        // collect input and create new course
         createCourseButton.setOnClickListener(view -> {
 
             //TODO : input validation
             String title = courseTitleTxt.getText().toString();
-            Status status = (Status) courseStatusSpinner.getSelectedItem();
+            Status status = (Status) courseStatusSpinner.getSelectedItem(); // Is it worth using ENUM over String?
             String name = instructorNameTxt.getText().toString();
             String phone = instructorPhoneTxt.getText().toString();
             String email = instructorEmailTxt.getText().toString();

@@ -12,6 +12,8 @@
     <string name="instructor_email">Instructor email</string>
     <string name="create_course">CREATE COURSE</string>
     <string name="select">Select course status</string>
+    <string name="assessment_title">Assessment title</string>
+    <string name="create_assessment">CREATE ASSESSMENT</string>
 
 
     <string-array name="course_status">
@@ -20,5 +22,11 @@
         <item>Completed</item>
         <item>Dropped</item>
         <item>Plan to take</item>
+    </string-array>
+
+    <string-array name="test_type">
+        <item>Select test type</item>
+        <item>Performance</item>
+        <item>Objective</item>
     </string-array>
 </resources>
