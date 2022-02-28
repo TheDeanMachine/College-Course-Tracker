@@ -14,10 +14,14 @@ import java.util.List;
 
 public class TermList extends AppCompatActivity {
 
-    private RecyclerView recyclerView;
-    private TermViewAdapter termViewAdapter;
+    // data
     private LiveData<List<Term>> termList;
 
+    // recycle view
+    private RecyclerView recyclerView;
+    private TermViewAdapter termViewAdapter;
+
+    // term view
     TermViewModel termViewModel;
 
     @Override
@@ -25,24 +29,20 @@ public class TermList extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_term_list);
 
+        // configure up recycle view
         recyclerView = findViewById(R.id.recycler_view_term);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-
-
 
         // creates an instance of view model to use
         termViewModel = new ViewModelProvider.AndroidViewModelFactory(TermList.this
                 .getApplication())
                 .create(TermViewModel.class);
 
-        termList = termViewModel.getAllTerms();
-
         // observer
         termViewModel.getAllTerms().observe(this, terms -> {
-
-            termViewAdapter = new TermViewAdapter(termList);
-
+            // set recycle view with terms
+            termViewAdapter = new TermViewAdapter(terms);
             recyclerView.setAdapter(termViewAdapter);
         });
 
