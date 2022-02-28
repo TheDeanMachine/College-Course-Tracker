@@ -11,12 +11,8 @@
         android:theme="@style/Theme.CollegeCourseTracker" >
         <activity
             android:name=".Controller.TermList"
-            android:exported="true" >
-        <intent-filter>
-                        <action android:name="android.intent.action.MAIN" />
-                        <category android:name="android.intent.category.LAUNCHER" />
-                    </intent-filter>
-        </activity>
+            android:exported="true" />
+
         <activity
             android:name=".Controller.NewAssessment"
             android:exported="true" >
@@ -31,10 +27,10 @@
         <activity
             android:name=".HomeScreen"
             android:exported="true">
-<!--        <intent-filter>-->
-<!--            <action android:name="android.intent.action.MAIN" />-->
-<!--            <category android:name="android.intent.category.LAUNCHER" />-->
-<!--        </intent-filter>-->
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
         </activity>
 
     </application>

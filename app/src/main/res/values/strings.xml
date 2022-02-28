@@ -14,6 +14,7 @@
     <string name="select">Select course status</string>
     <string name="assessment_title">Assessment title</string>
     <string name="create_assessment">CREATE ASSESSMENT</string>
+    <string name="get_started">Get Started</string>
 
 
     <string-array name="course_status">

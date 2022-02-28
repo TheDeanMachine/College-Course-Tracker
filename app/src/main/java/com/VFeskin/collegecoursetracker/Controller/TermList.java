@@ -9,7 +9,12 @@ import com.VFeskin.collegecoursetracker.Adapter.TermViewAdapter;
 import com.VFeskin.collegecoursetracker.Model.Term;
 import com.VFeskin.collegecoursetracker.Model.TermViewModel;
 import com.VFeskin.collegecoursetracker.R;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+
 import java.util.List;
 
 public class TermList extends AppCompatActivity {
@@ -24,10 +29,16 @@ public class TermList extends AppCompatActivity {
     // term view
     TermViewModel termViewModel;
 
+    // FAB
+    FloatingActionButton fab;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_term_list);
+
+        fab = findViewById(R.id.add_new_term);
 
         // configure up recycle view
         recyclerView = findViewById(R.id.recycler_view_term);
@@ -48,9 +59,15 @@ public class TermList extends AppCompatActivity {
 
 
 
+        fab.setOnClickListener(view -> {
+            openNewTerm();
+        });
+
+    }
 
 
-
-
+    public void openNewTerm() {
+        Intent intent = new Intent(this, NewTerm.class);
+        startActivity(intent);
     }
 }
