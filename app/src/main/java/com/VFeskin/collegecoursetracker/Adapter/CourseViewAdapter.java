@@ -4,13 +4,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.VFeskin.collegecoursetracker.Model.Course;
 import com.VFeskin.collegecoursetracker.R;
-
 import java.util.List;
 
 /**
@@ -20,6 +17,10 @@ import java.util.List;
 public class CourseViewAdapter extends RecyclerView.Adapter<CourseViewAdapter.ViewHolder> {
 
     private List<Course> courseList;
+
+    public CourseViewAdapter(List<Course> courseList) {
+        this.courseList = courseList;
+    }
 
     /*
      * RecyclerView calls this method whenever it needs to create a new ViewHolder.

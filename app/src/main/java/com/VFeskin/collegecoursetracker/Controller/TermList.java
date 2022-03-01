@@ -15,6 +15,11 @@ import android.os.Bundle;
 import android.view.View;
 import java.util.List;
 
+/**
+ * Controller class for term RecyclerView.
+ * This class populates the RecyclerView with term cards,
+ * which contain information on terms.
+ */
 public class TermList extends AppCompatActivity {
 
     // data
@@ -24,10 +29,10 @@ public class TermList extends AppCompatActivity {
     private RecyclerView recyclerView;
     private TermViewAdapter termViewAdapter;
 
-    // term view
+    // term view model
     TermViewModel termViewModel;
 
-    // FAB
+    // add new term
     FloatingActionButton fab;
 
 
@@ -35,10 +40,9 @@ public class TermList extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_term_list);
-
         fab = findViewById(R.id.add_new_term);
 
-        // configure up recycle view
+        // configure recycle view
         recyclerView = findViewById(R.id.recycler_view_term);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -55,17 +59,16 @@ public class TermList extends AppCompatActivity {
             recyclerView.setAdapter(termViewAdapter);
         });
 
-
-
+        // add new term
         fab.setOnClickListener(view -> {
             openNewTerm();
         });
-
     }
-
 
     public void openNewTerm() {
         Intent intent = new Intent(this, NewTerm.class);
         startActivity(intent);
     }
+
+
 }
