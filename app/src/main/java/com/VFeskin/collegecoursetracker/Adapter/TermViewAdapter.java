@@ -45,7 +45,7 @@ public class TermViewAdapter extends RecyclerView.Adapter<TermViewAdapter.ViewHo
      */
     @Override
     public void onBindViewHolder(@NonNull TermViewAdapter.ViewHolder holder, int position) {
-        // get term  at position
+        // get term at position in the list
         Term term = termList.get(position);
         // set the card view with its data
         holder.title.setText(term.getTitle());
@@ -63,7 +63,7 @@ public class TermViewAdapter extends RecyclerView.Adapter<TermViewAdapter.ViewHo
         return termList.size();
     }
 
-    // Provide a reference to the type of view
+    // Provide a reference to the type of view items
     public class ViewHolder extends RecyclerView.ViewHolder {
         // XML attributes
         public TextView title;
