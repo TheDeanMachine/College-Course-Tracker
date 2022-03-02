@@ -19,9 +19,11 @@ import java.util.List;
 public class TermViewAdapter extends RecyclerView.Adapter<TermViewAdapter.ViewHolder> {
 
     private List<Term> termList;
+    private OnTermClickListener termClickListener;
 
-    public TermViewAdapter(List<Term> termList) {
+    public TermViewAdapter(List<Term> termList, OnTermClickListener termClickListener) {
         this.termList = termList;
+        this.termClickListener = termClickListener;
     }
 
     /*
@@ -36,7 +38,7 @@ public class TermViewAdapter extends RecyclerView.Adapter<TermViewAdapter.ViewHo
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.term_card, parent, false);
 
-        return new ViewHolder(view);
+        return new ViewHolder(view, termClickListener);
     }
 
     /*
@@ -64,17 +66,34 @@ public class TermViewAdapter extends RecyclerView.Adapter<TermViewAdapter.ViewHo
     }
 
     // Provide a reference to the type of view items
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         // XML attributes
         public TextView title;
         public TextView start;
         public TextView end;
 
-        public ViewHolder(@NonNull View itemView) {
+        // something ...
+        OnTermClickListener onTermClickListener;
+
+        public ViewHolder(@NonNull View itemView, OnTermClickListener listener) {
             super(itemView);
             title = itemView.findViewById(R.id.textViewTermTitle);
             start = itemView.findViewById(R.id.textViewTermStartDate);
             end = itemView.findViewById(R.id.textViewTermEndDate);
+            // associate card view with a click listener
+            itemView.setOnClickListener(this);
+            this.onTermClickListener = listener;
+        }
+
+        @Override
+        public void onClick(View view) {
+            onTermClickListener.onTermClick(getAdapterPosition());
         }
     }
+
+
+    public interface OnTermClickListener {
+        void onTermClick(int position);
+    }
+
 }

@@ -12,6 +12,7 @@ import com.VFeskin.collegecoursetracker.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import java.util.List;
 
@@ -20,7 +21,7 @@ import java.util.List;
  * This class populates the RecyclerView with term cards,
  * which contain information on terms.
  */
-public class TermList extends AppCompatActivity {
+public class TermList extends AppCompatActivity implements TermViewAdapter.OnTermClickListener {
 
     // data
     private LiveData<List<Term>> termList;
@@ -55,7 +56,7 @@ public class TermList extends AppCompatActivity {
         // observer
         termViewModel.getAllTerms().observe(this, terms -> {
             // set recycle view with terms
-            termViewAdapter = new TermViewAdapter(terms);
+            termViewAdapter = new TermViewAdapter(terms, this);
             recyclerView.setAdapter(termViewAdapter);
         });
 
@@ -71,4 +72,8 @@ public class TermList extends AppCompatActivity {
     }
 
 
+    @Override
+    public void onTermClick(int position) {
+        Log.d("TAG", "onContact clicked" + position);
+    }
 }
