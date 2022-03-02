@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CollegeCourseTracker">
         <activity
+            android:name=".Controller.AssessmentList"
+            android:exported="false" />
+        <activity
             android:name=".Controller.CourseList"
             android:exported="false" />
         <activity
@@ -17,10 +20,10 @@
             android:exported="true" />
         <activity
             android:name=".Controller.NewAssessment"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".Controller.NewCourse"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".Controller.NewTerm"
             android:exported="true" />
