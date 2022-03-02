@@ -31,7 +31,7 @@ public class CourseList extends AppCompatActivity {
     // course view model
     CourseViewModel courseViewModel;
 
-    // add new course
+    // add button
     FloatingActionButton fab;
 
 

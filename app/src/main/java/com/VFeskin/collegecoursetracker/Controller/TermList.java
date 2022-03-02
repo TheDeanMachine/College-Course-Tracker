@@ -32,7 +32,7 @@ public class TermList extends AppCompatActivity {
     // term view model
     TermViewModel termViewModel;
 
-    // add new term
+    // add button
     FloatingActionButton fab;
 
 
