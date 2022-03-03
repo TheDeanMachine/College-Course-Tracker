@@ -19,7 +19,7 @@ import java.util.List;
  * This class populates the RecyclerView with assessment cards,
  * which contain information on assessments.
  */
-public class AssessmentList extends AppCompatActivity {
+public class AssessmentList extends AppCompatActivity implements AssessmentViewAdapter.OnAssessmentClickListener {
 
     // data
     private LiveData<List<Assessment>> assessmentList;
@@ -54,7 +54,7 @@ public class AssessmentList extends AppCompatActivity {
         // observer
         assessmentViewModel.getAllAssessment().observe(this, assessments -> {
             // set recycle view with assessments
-            assessmentViewAdapter = new AssessmentViewAdapter(assessments);
+            assessmentViewAdapter = new AssessmentViewAdapter(assessments, this);
             recyclerView.setAdapter(assessmentViewAdapter);
         });
 
@@ -69,4 +69,9 @@ public class AssessmentList extends AppCompatActivity {
         startActivity(intent);
     }
 
+    @Override
+    public void onAssessmentClick(int position) {
+//        Intent intent = new Intent(this, DetailedAssessment);
+//        startActivity(intent);
+    }
 }

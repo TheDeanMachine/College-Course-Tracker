@@ -17,9 +17,11 @@ import java.util.List;
 public class AssessmentViewAdapter extends RecyclerView.Adapter<AssessmentViewAdapter.ViewHolder> {
 
     private List<Assessment> assessmentList;
+    private OnAssessmentClickListener onAssessmentClickListener;
 
-    public AssessmentViewAdapter(List<Assessment> assessmentList) {
+    public AssessmentViewAdapter(List<Assessment> assessmentList, OnAssessmentClickListener onAssessmentClickListener) {
         this.assessmentList = assessmentList;
+        this.onAssessmentClickListener = onAssessmentClickListener;
     }
 
     /*
@@ -34,7 +36,8 @@ public class AssessmentViewAdapter extends RecyclerView.Adapter<AssessmentViewAd
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.assessment_card, parent, false);
 
-        return new ViewHolder(view);
+        // return a view with an attached listener
+        return new ViewHolder(view, onAssessmentClickListener);
     }
 
     /*
@@ -62,20 +65,37 @@ public class AssessmentViewAdapter extends RecyclerView.Adapter<AssessmentViewAd
         return assessmentList.size();
     }
 
-    // Provide a reference to the type of view items
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    // Provides a reference to the type of view items
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         // XML attributes
         public TextView testType;
         public TextView title;
         public TextView start;
         public TextView end;
 
-        public ViewHolder(@NonNull View itemView) {
+        // listener reference
+        OnAssessmentClickListener onAssessmentClickListener;
+
+        public ViewHolder(@NonNull View itemView, OnAssessmentClickListener listener) {
             super(itemView);
             testType = itemView.findViewById(R.id.textViewAssessmentType);
             title = itemView.findViewById(R.id.textViewAssessmentTitle);
             start = itemView.findViewById(R.id.textViewAssessmentStartDate);
             end = itemView.findViewById(R.id.textViewAssessmentEndDate);
+
+            // associate card view with a click listener
+            onAssessmentClickListener = listener;
+            itemView.setOnClickListener(this);
         }
+
+        // get position of the card in recycle view
+        @Override
+        public void onClick(View view) {
+            onAssessmentClickListener.onAssessmentClick(getAdapterPosition());
+        }
+    }
+
+    public interface OnAssessmentClickListener {
+        void onAssessmentClick(int position);
     }
 }

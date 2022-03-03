@@ -31,10 +31,10 @@ public class TermList extends AppCompatActivity implements TermViewAdapter.OnTer
     private TermViewAdapter termViewAdapter;
 
     // term view model
-    TermViewModel termViewModel;
+    private TermViewModel termViewModel;
 
     // add button
-    FloatingActionButton fab;
+    private FloatingActionButton fab;
 
 
     @Override
