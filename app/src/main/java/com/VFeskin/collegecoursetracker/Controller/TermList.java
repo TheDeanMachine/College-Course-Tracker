@@ -71,9 +71,9 @@ public class TermList extends AppCompatActivity implements TermViewAdapter.OnTer
         startActivity(intent);
     }
 
-
     @Override
     public void onTermClick(int position) {
-        Log.d("TAG", "onContact clicked" + position);
+        Intent intent = new Intent(this, DetailedTerm.class);
+        startActivity(intent);
     }
 }

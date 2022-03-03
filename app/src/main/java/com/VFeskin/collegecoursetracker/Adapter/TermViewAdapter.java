@@ -5,7 +5,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
-import androidx.lifecycle.LiveData;
 import androidx.recyclerview.widget.RecyclerView;
 import com.VFeskin.collegecoursetracker.Model.Term;
 import com.VFeskin.collegecoursetracker.R;
@@ -19,11 +18,11 @@ import java.util.List;
 public class TermViewAdapter extends RecyclerView.Adapter<TermViewAdapter.ViewHolder> {
 
     private List<Term> termList;
-    private OnTermClickListener termClickListener;
+    private OnTermClickListener onTermClickListener;
 
-    public TermViewAdapter(List<Term> termList, OnTermClickListener termClickListener) {
+    public TermViewAdapter(List<Term> termList, OnTermClickListener onTermClickListener) {
         this.termList = termList;
-        this.termClickListener = termClickListener;
+        this.onTermClickListener = onTermClickListener;
     }
 
     /*
@@ -38,7 +37,8 @@ public class TermViewAdapter extends RecyclerView.Adapter<TermViewAdapter.ViewHo
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.term_card, parent, false);
 
-        return new ViewHolder(view, termClickListener);
+        // return view with attached listener
+        return new ViewHolder(view, onTermClickListener);
     }
 
     /*
@@ -72,7 +72,6 @@ public class TermViewAdapter extends RecyclerView.Adapter<TermViewAdapter.ViewHo
         public TextView start;
         public TextView end;
 
-        // something ...
         OnTermClickListener onTermClickListener;
 
         public ViewHolder(@NonNull View itemView, OnTermClickListener listener) {
@@ -80,17 +79,18 @@ public class TermViewAdapter extends RecyclerView.Adapter<TermViewAdapter.ViewHo
             title = itemView.findViewById(R.id.textViewTermTitle);
             start = itemView.findViewById(R.id.textViewTermStartDate);
             end = itemView.findViewById(R.id.textViewTermEndDate);
+
             // associate card view with a click listener
+            onTermClickListener = listener;
             itemView.setOnClickListener(this);
-            this.onTermClickListener = listener;
         }
 
+        // get position of the card in recycle view
         @Override
         public void onClick(View view) {
             onTermClickListener.onTermClick(getAdapterPosition());
         }
     }
-
 
     public interface OnTermClickListener {
         void onTermClick(int position);
