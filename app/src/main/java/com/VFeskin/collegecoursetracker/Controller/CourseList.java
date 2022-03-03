@@ -19,7 +19,7 @@ import java.util.List;
  * This class populates the RecyclerView with course cards,
  * which contain information on courses.
  */
-public class CourseList extends AppCompatActivity {
+public class CourseList extends AppCompatActivity implements CourseViewAdapter.OnCourseClickListener {
 
     // data
     private LiveData<List<Course>> courseList;
@@ -54,7 +54,7 @@ public class CourseList extends AppCompatActivity {
         // observer
         courseViewModel.getAllCourses().observe(this, courses -> {
             // set recycle view with courses
-            courseViewAdapter = new CourseViewAdapter(courses);
+            courseViewAdapter = new CourseViewAdapter(courses, this);
             recyclerView.setAdapter(courseViewAdapter);
         });
 
@@ -69,5 +69,9 @@ public class CourseList extends AppCompatActivity {
         startActivity(intent);
     }
 
-
+    @Override
+    public void onCourseClick(int position) {
+//        Intent intent = new Intent(this, DetailedCourse);
+//        startActivity(intent);
+    }
 }

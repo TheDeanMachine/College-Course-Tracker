@@ -17,9 +17,11 @@ import java.util.List;
 public class CourseViewAdapter extends RecyclerView.Adapter<CourseViewAdapter.ViewHolder> {
 
     private List<Course> courseList;
+    private OnCourseClickListener onCourseClickListener;
 
-    public CourseViewAdapter(List<Course> courseList) {
+    public CourseViewAdapter(List<Course> courseList, OnCourseClickListener onCourseClickListener) {
         this.courseList = courseList;
+        this.onCourseClickListener = onCourseClickListener;
     }
 
     /*
@@ -34,7 +36,8 @@ public class CourseViewAdapter extends RecyclerView.Adapter<CourseViewAdapter.Vi
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.course_card, parent, false);
 
-        return new ViewHolder(view);
+        // return a view with an attached listener
+        return new ViewHolder(view, onCourseClickListener);
     }
 
     /*
@@ -65,8 +68,8 @@ public class CourseViewAdapter extends RecyclerView.Adapter<CourseViewAdapter.Vi
         return courseList.size();
     }
 
-    // Provide a reference to the type of view items
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    // Provides a reference to the type of view items
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         // XML attributes
         public TextView title;
         public TextView start;
@@ -76,7 +79,10 @@ public class CourseViewAdapter extends RecyclerView.Adapter<CourseViewAdapter.Vi
         public TextView phone;
         public TextView email;
 
-        public ViewHolder(@NonNull View itemView) {
+        // listener reference
+        OnCourseClickListener onCourseClickListener;
+
+        public ViewHolder(@NonNull View itemView, OnCourseClickListener listener) {
             super(itemView);
             title = itemView.findViewById(R.id.textViewCourseTitle);
             start = itemView.findViewById(R.id.textViewCourseStartDate);
@@ -85,6 +91,20 @@ public class CourseViewAdapter extends RecyclerView.Adapter<CourseViewAdapter.Vi
             name = itemView.findViewById(R.id.textViewCourseInstructorName);
             phone = itemView.findViewById(R.id.textViewCourseInstructorPhone);
             email = itemView.findViewById(R.id.textViewCourseInstructorEmail);
+
+            // associate card view with a click listener
+            onCourseClickListener = listener;
+            itemView.setOnClickListener(this);
         }
+
+        // get position of the card in recycle view
+        @Override
+        public void onClick(View view) {
+            onCourseClickListener.onCourseClick(getAdapterPosition());
+        }
+    }
+
+    public interface OnCourseClickListener {
+        void onCourseClick(int position);
     }
 }

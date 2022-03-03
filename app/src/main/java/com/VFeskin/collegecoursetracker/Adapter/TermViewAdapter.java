@@ -37,7 +37,7 @@ public class TermViewAdapter extends RecyclerView.Adapter<TermViewAdapter.ViewHo
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.term_card, parent, false);
 
-        // return view with attached listener
+        // return a view with an attached listener
         return new ViewHolder(view, onTermClickListener);
     }
 
@@ -65,13 +65,14 @@ public class TermViewAdapter extends RecyclerView.Adapter<TermViewAdapter.ViewHo
         return termList.size();
     }
 
-    // Provide a reference to the type of view items
+    // Provides a reference to the type of view items
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         // XML attributes
         public TextView title;
         public TextView start;
         public TextView end;
 
+        // listener reference
         OnTermClickListener onTermClickListener;
 
         public ViewHolder(@NonNull View itemView, OnTermClickListener listener) {
