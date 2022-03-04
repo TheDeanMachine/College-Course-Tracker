@@ -53,6 +53,7 @@ public class TermViewAdapter extends RecyclerView.Adapter<TermViewAdapter.ViewHo
         holder.title.setText(term.getTitle());
         holder.start.setText(term.getStartDate().toString());
         holder.end.setText(term.getEndDate().toString());
+        int id = term.getId(); // <-- the PK
 
     }
 

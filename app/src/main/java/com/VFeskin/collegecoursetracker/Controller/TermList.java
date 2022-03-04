@@ -15,6 +15,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Controller class for term RecyclerView.
@@ -74,6 +75,12 @@ public class TermList extends AppCompatActivity implements TermViewAdapter.OnTer
     @Override
     public void onTermClick(int position) {
         Intent intent = new Intent(this, DetailedTerm.class);
+        // pass data to the detail view
+            // pass the PK id and call get by id, or just pass each value over?
+
+        Term term = Objects.requireNonNull(termViewModel.allTerms.getValue()).get(position);
+        intent.putExtra("title", term.getTitle());
+
         startActivity(intent);
     }
 }
