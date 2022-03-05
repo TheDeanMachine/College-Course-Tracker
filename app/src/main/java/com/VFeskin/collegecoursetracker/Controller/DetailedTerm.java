@@ -10,6 +10,7 @@ import com.VFeskin.collegecoursetracker.Adapter.CourseViewAdapter;
 import com.VFeskin.collegecoursetracker.Model.Course;
 import com.VFeskin.collegecoursetracker.Model.CourseViewModel;
 import com.VFeskin.collegecoursetracker.R;
+import com.VFeskin.collegecoursetracker.Utility.DateConverter;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import android.content.Intent;
@@ -18,6 +19,7 @@ import android.util.Log;
 import android.widget.TextView;
 
 import java.text.DateFormat;
+import java.util.Date;
 import java.util.List;
 
 public class DetailedTerm extends AppCompatActivity implements CourseViewAdapter.OnCourseClickListener {
@@ -41,6 +43,10 @@ public class DetailedTerm extends AppCompatActivity implements CourseViewAdapter
     // add button
     private FloatingActionButton fab;
 
+    private Date startDate;
+    private Date endDate;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,9 +58,16 @@ public class DetailedTerm extends AppCompatActivity implements CourseViewAdapter
 
         // get values from term card and set text
         id = getIntent().getIntExtra("id", 0);
+
         title.setText(getIntent().getStringExtra("title"));
-        start.setText(getIntent().getStringExtra("start"));
+
+        startDate = DateConverter.fromTimestamp(getIntent().getLongExtra("start", 0));
+
+        start.setText(DateFormat.getDateInstance(DateFormat.MEDIUM).format(startDate));
+
+
         end.setText(getIntent().getStringExtra("end"));
+
 
 
         // configure recycle view

@@ -9,6 +9,7 @@ import com.VFeskin.collegecoursetracker.Adapter.TermViewAdapter;
 import com.VFeskin.collegecoursetracker.Model.Term;
 import com.VFeskin.collegecoursetracker.Model.TermViewModel;
 import com.VFeskin.collegecoursetracker.R;
+import com.VFeskin.collegecoursetracker.Utility.DateConverter;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import android.content.Intent;
 import android.os.Bundle;
@@ -79,7 +80,7 @@ public class TermList extends AppCompatActivity implements TermViewAdapter.OnTer
         Term term = Objects.requireNonNull(termViewModel.allTerms.getValue()).get(position);
         intent.putExtra("id", term.getId());
         intent.putExtra("title", term.getTitle());
-        intent.putExtra("start", term.getStartDate().toString());
+        intent.putExtra("start", DateConverter.ToTimestamp(term.getStartDate()));
         intent.putExtra("end", term.getEndDate().toString());
 
         startActivity(intent);
