@@ -82,17 +82,6 @@ public class TermList extends AppCompatActivity implements TermViewAdapter.OnTer
         intent.putExtra("start", term.getStartDate().toString());
         intent.putExtra("end", term.getEndDate().toString());
 
-        Log.d("TAG", "Term values -----------------------------------\n"
-                + term.getId() + " "
-                + term.getTitle() + " "
-                + term.getStartDate() + " "
-                + term.getEndDate() + " "
-
-                + intent.getExtras().get("id") + " "
-                + intent.getExtras().get("title") + " "
-                + intent.getExtras().get("start") + " "
-                + intent.getExtras().get("end"));
-
         startActivity(intent);
     }
 }
