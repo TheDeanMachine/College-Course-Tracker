@@ -45,6 +45,9 @@ public class NewCourse extends AppCompatActivity {
     // view model reference, gives access to all courses
     private CourseViewModel courseViewModel;
 
+    // term PK
+    private int id;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -115,9 +118,9 @@ public class NewCourse extends AppCompatActivity {
             String name = instructorNameTxt.getText().toString();
             String phone = instructorPhoneTxt.getText().toString();
             String email = instructorEmailTxt.getText().toString();
+            id = getIntent().getIntExtra("ID", 0);
 
-            //TODO : get PK from term to use as FK for Course
-            CourseViewModel.insert(new Course(title, startDate, endDate, name, phone, email, status, 1));
+            CourseViewModel.insert(new Course(title, startDate, endDate, name, phone, email, status, id));
         });
 
     }

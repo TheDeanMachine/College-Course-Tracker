@@ -57,18 +57,22 @@ public class DetailedTerm extends AppCompatActivity implements CourseViewAdapter
         end = findViewById(R.id.textViewDetailEndDate);
 
         // get values from term card and set text
-        id = getIntent().getIntExtra("id", 0);
-
-        title.setText(getIntent().getStringExtra("title"));
-
-        startDate = DateConverter.fromTimestamp(getIntent().getLongExtra("start", 0));
-
+        Bundle extra = getIntent().getExtras();
+        id = extra.getInt("ID");
+        title.setText(extra.getString("TITLE"));
+        startDate = DateConverter.fromTimestamp(extra.getLong("START"));
         start.setText(DateFormat.getDateInstance(DateFormat.MEDIUM).format(startDate));
+        endDate = DateConverter.fromTimestamp(extra.getLong("END"));
+        end.setText(DateFormat.getDateInstance(DateFormat.MEDIUM).format(endDate));
 
 
-        end.setText(getIntent().getStringExtra("end"));
-
-
+        // get values from term card and set text
+//        id = getIntent().getIntExtra("ID", 0);
+//        title.setText(getIntent().getStringExtra("TITLE"));
+//        startDate = DateConverter.fromTimestamp(getIntent().getLongExtra("START", 0));
+//        start.setText(DateFormat.getDateInstance(DateFormat.MEDIUM).format(startDate));
+//        endDate = DateConverter.fromTimestamp(getIntent().getLongExtra("END", 0));
+//        end.setText(DateFormat.getDateInstance(DateFormat.MEDIUM).format(endDate));
 
         // configure recycle view
         recyclerView = findViewById(R.id.detail_term_recycler_view);
@@ -99,6 +103,7 @@ public class DetailedTerm extends AppCompatActivity implements CourseViewAdapter
 
     public void openNewCourse() {
         Intent intent = new Intent(this, NewCourse.class);
+        intent.putExtra("ID", id);
         startActivity(intent);
     }
 
