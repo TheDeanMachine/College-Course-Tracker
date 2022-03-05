@@ -14,19 +14,21 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.TextView;
 
+import java.text.DateFormat;
 import java.util.List;
 
 public class DetailedTerm extends AppCompatActivity implements CourseViewAdapter.OnCourseClickListener {
 
     // XML attributes
-    public TextView title;
-    public TextView start;
-    public TextView end;
-
+    private TextView title;
+    private TextView start;
+    private TextView end;
 
     // data
+    private int id;
     private LiveData<List<Course>> courseList;
 
     // recycle view
@@ -43,17 +45,17 @@ public class DetailedTerm extends AppCompatActivity implements CourseViewAdapter
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detailed_term);
-
-
-
-        title = findViewById(R.id.textViewDetailTitle);
-
-        title.setText(getIntent().getStringExtra("title"));
-
-
-
-
         fab = findViewById(R.id.detail_add_new_course);
+        title = findViewById(R.id.textViewDetailTitle);
+        start = findViewById(R.id.textViewDetailStartDate);
+        end = findViewById(R.id.textViewDetailEndDate);
+
+        // get values from term card and set text
+        id = getIntent().getIntExtra("id", 0);
+        title.setText(getIntent().getStringExtra("title"));
+        start.setText(getIntent().getStringExtra("start"));
+        end.setText(getIntent().getStringExtra("end"));
+
 
         // configure recycle view
         recyclerView = findViewById(R.id.detail_term_recycler_view);
@@ -79,6 +81,8 @@ public class DetailedTerm extends AppCompatActivity implements CourseViewAdapter
             openNewCourse();
         });
     }
+
+
 
     public void openNewCourse() {
         Intent intent = new Intent(this, NewCourse.class);

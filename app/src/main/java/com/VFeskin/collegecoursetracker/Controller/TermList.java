@@ -76,10 +76,22 @@ public class TermList extends AppCompatActivity implements TermViewAdapter.OnTer
     public void onTermClick(int position) {
         Intent intent = new Intent(this, DetailedTerm.class);
         // pass data to the detail view
-            // pass the PK id and call get by id, or just pass each value over?
-
         Term term = Objects.requireNonNull(termViewModel.allTerms.getValue()).get(position);
+        intent.putExtra("id", term.getId());
         intent.putExtra("title", term.getTitle());
+        intent.putExtra("start", term.getStartDate().toString());
+        intent.putExtra("end", term.getEndDate().toString());
+
+        Log.d("TAG", "Term values -----------------------------------\n"
+                + term.getId() + " "
+                + term.getTitle() + " "
+                + term.getStartDate() + " "
+                + term.getEndDate() + " "
+
+                + intent.getExtras().get("id") + " "
+                + intent.getExtras().get("title") + " "
+                + intent.getExtras().get("start") + " "
+                + intent.getExtras().get("end"));
 
         startActivity(intent);
     }
