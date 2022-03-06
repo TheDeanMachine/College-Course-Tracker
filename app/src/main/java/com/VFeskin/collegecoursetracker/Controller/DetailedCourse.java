@@ -86,6 +86,8 @@ public class DetailedCourse extends AppCompatActivity implements AssessmentViewA
                 .getApplication())
                 .create(AssessmentViewModel.class);
 
+        //TODO : change to get courses based on course id
+
         // observer
         assessmentViewModel.getAllAssessment().observe(this, assessments -> {
             // set recycle view with assessments

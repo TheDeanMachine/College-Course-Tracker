@@ -9,10 +9,12 @@ import com.VFeskin.collegecoursetracker.Adapter.AssessmentViewAdapter;
 import com.VFeskin.collegecoursetracker.Model.Assessment;
 import com.VFeskin.collegecoursetracker.Model.AssessmentViewModel;
 import com.VFeskin.collegecoursetracker.R;
+import com.VFeskin.collegecoursetracker.Utility.DateConverter;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import android.content.Intent;
 import android.os.Bundle;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Controller class for Assessment RecyclerView.
@@ -31,15 +33,15 @@ public class AssessmentList extends AppCompatActivity implements AssessmentViewA
     // assessment view model
     private AssessmentViewModel assessmentViewModel;
 
-    // add button
-    private FloatingActionButton fab;
+//    // add button
+//    private FloatingActionButton fab;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_assessment_list);
-        fab = findViewById(R.id.add_new_Assessment);
+//        fab = findViewById(R.id.add_new_Assessment);
 
         // configure recycle view
         recyclerView = findViewById(R.id.recycler_Assessment_view);
@@ -57,21 +59,28 @@ public class AssessmentList extends AppCompatActivity implements AssessmentViewA
             assessmentViewAdapter = new AssessmentViewAdapter(assessments, this);
             recyclerView.setAdapter(assessmentViewAdapter);
         });
-
-        // add new assessment
-        fab.setOnClickListener(view -> {
-            openNewAssessment();
-        });
+//
+//        // add new assessment
+//        fab.setOnClickListener(view -> {
+//            openNewAssessment();
+//        });
     }
 
-    private void openNewAssessment() {
-        Intent intent = new Intent(this, NewAssessment.class);
-        startActivity(intent);
-    }
+//    private void openNewAssessment() {
+//        Intent intent = new Intent(this, NewAssessment.class);
+//        startActivity(intent);
+//    }
 
     @Override
     public void onAssessmentClick(int position) {
-//        Intent intent = new Intent(this, DetailedAssessment);
-//        startActivity(intent);
+        Intent intent = new Intent(this, DetailedAssessment.class);
+        // pass data to the detail view
+        Assessment assessment = Objects.requireNonNull(assessmentViewModel.allAssessments.getValue()).get(position);
+        intent.putExtra("ID", assessment.getId());
+        intent.putExtra("TITLE", assessment.getTitle());
+        intent.putExtra("TEST", assessment.getAssessmentType());
+        intent.putExtra("START", DateConverter.ToTimestamp(assessment.getStartDate()));
+        intent.putExtra("END", DateConverter.ToTimestamp(assessment.getEndDate()));
+        startActivity(intent);
     }
 }

@@ -3,11 +3,14 @@ package com.VFeskin.collegecoursetracker.Controller;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.Toast;
+
 import com.VFeskin.collegecoursetracker.Model.Term;
 import com.VFeskin.collegecoursetracker.Model.TermViewModel;
 import com.VFeskin.collegecoursetracker.R;
@@ -93,11 +96,31 @@ public class NewTerm extends AppCompatActivity {
 
         // creates the term
         createTermButton.setOnClickListener(view -> {
-            //TODO : input validation
+
             String title = termTitleTxt.getText().toString();
+
+
+//            String name = null;
+//            try {
+//                name = customerNameText.getText();
+//                if(name == null || customerNameText.getText().isBlank()){
+//                    throw new Exception();
+//                }
+//            } catch (Exception e) {
+//                Toast
+//                return;
+//            }
+
+
             TermViewModel.insert(new Term(title, startDate, endDate));
+
+            backToScreen();
         });
 
     }
 
+    public void backToScreen() {
+        Intent intent = new Intent(this, TermList.class);
+        startActivity(intent);
+    }
 }

@@ -31,17 +31,17 @@ public class CourseList extends AppCompatActivity implements CourseViewAdapter.O
     private CourseViewAdapter courseViewAdapter;
 
     // course view model
-    CourseViewModel courseViewModel;
+    private CourseViewModel courseViewModel;
 
     // add button
-    FloatingActionButton fab;
+//    private FloatingActionButton fab;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_course_list);
-        fab = findViewById(R.id.add_new_course);
+//        fab = findViewById(R.id.add_new_course);
 
         // configure recycle view
         recyclerView = findViewById(R.id.recycler_course_view);
@@ -60,16 +60,16 @@ public class CourseList extends AppCompatActivity implements CourseViewAdapter.O
             recyclerView.setAdapter(courseViewAdapter);
         });
 
-        // add new course
-        fab.setOnClickListener(view -> {
-            openNewCourse();
-        });
+//        // add new course
+//        fab.setOnClickListener(view -> {
+//            openNewCourse();
+//        });
     }
 
-    public void openNewCourse() {
-        Intent intent = new Intent(this, NewCourse.class);
-        startActivity(intent);
-    }
+//    public void openNewCourse() {
+//        Intent intent = new Intent(this, NewCourse.class);
+//        startActivity(intent);
+//    }
 
     @Override
     public void onCourseClick(int position) {
