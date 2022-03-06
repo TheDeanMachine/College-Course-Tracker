@@ -52,10 +52,10 @@ public class CourseViewAdapter extends RecyclerView.Adapter<CourseViewAdapter.Vi
         holder.title.setText(course.getTitle());
         holder.start.setText(course.getStartDate().toString());
         holder.end.setText(course.getEndDate().toString());
-        holder.status.setText(course.getCourseStatus().toString());
-        holder.name.setText(course.getInstructorName());
-        holder.phone.setText(course.getInstructorPhone());
-        holder.email.setText(course.getInstructorEmail());
+//        holder.status.setText(course.getCourseStatus().toString());
+//        holder.name.setText(course.getInstructorName());
+//        holder.phone.setText(course.getInstructorPhone());
+//        holder.email.setText(course.getInstructorEmail());
 
     }
 
@@ -87,10 +87,10 @@ public class CourseViewAdapter extends RecyclerView.Adapter<CourseViewAdapter.Vi
             title = itemView.findViewById(R.id.textViewCourseTitle);
             start = itemView.findViewById(R.id.textViewCourseStartDate);
             end = itemView.findViewById(R.id.textViewCourseEndDate);
-            status = itemView.findViewById(R.id.textViewCourseStatus);
-            name = itemView.findViewById(R.id.textViewCourseInstructorName);
-            phone = itemView.findViewById(R.id.textViewCourseInstructorPhone);
-            email = itemView.findViewById(R.id.textViewCourseInstructorEmail);
+//            status = itemView.findViewById(R.id.textViewCourseStatus);
+//            name = itemView.findViewById(R.id.textViewCourseInstructorName);
+//            phone = itemView.findViewById(R.id.textViewCourseInstructorPhone);
+//            email = itemView.findViewById(R.id.textViewCourseInstructorEmail);
 
             // associate card view with a click listener
             onCourseClickListener = listener;

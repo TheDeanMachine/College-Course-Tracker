@@ -21,6 +21,7 @@ import android.widget.TextView;
 import java.text.DateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 
 public class DetailedTerm extends AppCompatActivity implements CourseViewAdapter.OnCourseClickListener {
 
@@ -31,6 +32,8 @@ public class DetailedTerm extends AppCompatActivity implements CourseViewAdapter
 
     // data
     private int id;
+    private Date startDate;
+    private Date endDate;
     private LiveData<List<Course>> courseList;
 
     // recycle view
@@ -42,9 +45,6 @@ public class DetailedTerm extends AppCompatActivity implements CourseViewAdapter
 
     // add button
     private FloatingActionButton fab;
-
-    private Date startDate;
-    private Date endDate;
 
 
     @Override
@@ -110,6 +110,18 @@ public class DetailedTerm extends AppCompatActivity implements CourseViewAdapter
 
     @Override
     public void onCourseClick(int position) {
+        Intent intent = new Intent(this, DetailedCourse.class);
+        // pass data to the detail view
+        Course course = Objects.requireNonNull(courseViewModel.allCourses.getValue()).get(position);
+        intent.putExtra("ID", course.getId());
+        intent.putExtra("TITLE", course.getTitle());
+        intent.putExtra("START", DateConverter.ToTimestamp(course.getStartDate()));
+        intent.putExtra("END", DateConverter.ToTimestamp(course.getEndDate()));
+        intent.putExtra("STATUS", course.getCourseStatus());
+        intent.putExtra("NAME", course.getInstructorName());
+        intent.putExtra("PHONE", course.getInstructorPhone());
+        intent.putExtra("EMAIL", course.getInstructorEmail());
 
+        startActivity(intent);
     }
 }
