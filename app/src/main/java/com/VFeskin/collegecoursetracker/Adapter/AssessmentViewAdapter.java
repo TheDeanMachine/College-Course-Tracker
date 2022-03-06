@@ -49,10 +49,10 @@ public class AssessmentViewAdapter extends RecyclerView.Adapter<AssessmentViewAd
         // get assessment at position in list
         Assessment assessment = assessmentList.get(position);
         // set the card view with its data
-        holder.testType.setText(assessment.getAssessmentType());
+//        holder.testType.setText(assessment.getAssessmentType());
         holder.title.setText(assessment.getTitle());
         holder.start.setText(assessment.getStartDate().toString());
-        holder.end.setText(assessment.getEndDate().toString());
+//        holder.end.setText(assessment.getEndDate().toString());
 
     }
 
@@ -78,10 +78,10 @@ public class AssessmentViewAdapter extends RecyclerView.Adapter<AssessmentViewAd
 
         public ViewHolder(@NonNull View itemView, OnAssessmentClickListener listener) {
             super(itemView);
-            testType = itemView.findViewById(R.id.textViewAssessmentType);
+//            testType = itemView.findViewById(R.id.textViewAssessmentType);
             title = itemView.findViewById(R.id.textViewAssessmentTitle);
             start = itemView.findViewById(R.id.textViewAssessmentStartDate);
-            end = itemView.findViewById(R.id.textViewAssessmentEndDate);
+//            end = itemView.findViewById(R.id.textViewAssessmentEndDate);
 
             // associate card view with a click listener
             onAssessmentClickListener = listener;

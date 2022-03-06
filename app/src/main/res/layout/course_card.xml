@@ -7,7 +7,7 @@
 
     <androidx.cardview.widget.CardView
         style="@style/card_style"
-        android:layout_height="275dp"
+        android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -41,33 +41,33 @@
                 android:padding="10dp"
                 android:text="TextView" />
 
-<!--            <TextView-->
-<!--                android:id="@+id/textViewCourseStatus"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:padding="10dp"-->
-<!--                android:text="TextView" />-->
+            <!--            <TextView-->
+            <!--                android:id="@+id/textViewCourseStatus"-->
+            <!--                android:layout_width="match_parent"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:padding="10dp"-->
+            <!--                android:text="TextView" />-->
 
-<!--            <TextView-->
-<!--                android:id="@+id/textViewCourseInstructorName"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:padding="10dp"-->
-<!--                android:text="TextView" />-->
+            <!--            <TextView-->
+            <!--                android:id="@+id/textViewCourseInstructorName"-->
+            <!--                android:layout_width="match_parent"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:padding="10dp"-->
+            <!--                android:text="TextView" />-->
 
-<!--            <TextView-->
-<!--                android:id="@+id/textViewCourseInstructorPhone"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:padding="10dp"-->
-<!--                android:text="TextView" />-->
+            <!--            <TextView-->
+            <!--                android:id="@+id/textViewCourseInstructorPhone"-->
+            <!--                android:layout_width="match_parent"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:padding="10dp"-->
+            <!--                android:text="TextView" />-->
 
-<!--            <TextView-->
-<!--                android:id="@+id/textViewCourseInstructorEmail"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:padding="10dp"-->
-<!--                android:text="TextView" />-->
+            <!--            <TextView-->
+            <!--                android:id="@+id/textViewCourseInstructorEmail"-->
+            <!--                android:layout_width="match_parent"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:padding="10dp"-->
+            <!--                android:text="TextView" />-->
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 

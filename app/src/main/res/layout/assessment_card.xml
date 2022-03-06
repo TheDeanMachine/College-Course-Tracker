@@ -8,7 +8,7 @@
     <androidx.cardview.widget.CardView
         style="@style/card_style"
         android:layout_width="395dp"
-        android:layout_height="157dp"
+        android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -20,19 +20,20 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/textViewAssessmentType"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="10dp"
-                android:text="TextView" />
+            <!--            <TextView-->
+            <!--                android:id="@+id/textViewAssessmentType"-->
+            <!--                android:layout_width="match_parent"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:padding="10dp"-->
+            <!--                android:text="TextView" />-->
 
             <TextView
                 android:id="@+id/textViewAssessmentTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="10dp"
-                android:text="TextView" />
+                android:text="TextView"
+                />
 
             <TextView
                 android:id="@+id/textViewAssessmentStartDate"
@@ -41,12 +42,12 @@
                 android:padding="10dp"
                 android:text="TextView" />
 
-            <TextView
-                android:id="@+id/textViewAssessmentEndDate"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="10dp"
-                android:text="TextView" />
+            <!--            <TextView-->
+            <!--                android:id="@+id/textViewAssessmentEndDate"-->
+            <!--                android:layout_width="match_parent"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:padding="10dp"-->
+            <!--                android:text="TextView" />-->
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
