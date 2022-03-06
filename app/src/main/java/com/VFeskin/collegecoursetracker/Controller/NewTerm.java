@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModelProvider;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -14,6 +15,9 @@ import android.widget.Toast;
 import com.VFeskin.collegecoursetracker.Model.Term;
 import com.VFeskin.collegecoursetracker.Model.TermViewModel;
 import com.VFeskin.collegecoursetracker.R;
+import com.google.android.material.snackbar.Snackbar;
+import com.google.android.material.textfield.TextInputLayout;
+
 import java.text.DateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -73,47 +77,50 @@ public class NewTerm extends AppCompatActivity {
                 .show());
 
         // gets the values from date picker, onDataSet
-        dateDialog = new DatePickerDialog.OnDateSetListener() {
-            @Override
-            public void onDateSet(DatePicker view, int year, int month, int day) {
-                calendar.set(year, month, day);
-                startDate = calendar.getTime();
-                // format the output the screen
-                startDateTxt.setText(DateFormat.getDateInstance(DateFormat.MEDIUM).format(startDate));
-            }
+        dateDialog = (view, year, month, day) -> {
+            calendar.set(year, month, day);
+            startDate = calendar.getTime();
+            // format the output the screen
+            startDateTxt.setText(DateFormat.getDateInstance(DateFormat.MEDIUM).format(startDate));
         };
 
         // gets the values from date picker, onDataSet
-        dateDialog2 = new DatePickerDialog.OnDateSetListener() {
-            @Override
-            public void onDateSet(DatePicker view, int year, int month, int day) {
-                calendar.set(year, month, day);
-                endDate = calendar.getTime();
-                // format the output the screen
-                endDateTxt.setText(DateFormat.getDateInstance(DateFormat.MEDIUM).format(endDate));
-            }
+        dateDialog2 = (view, year, month, day) -> {
+            calendar.set(year, month, day);
+            endDate = calendar.getTime();
+            // format the output the screen
+            endDateTxt.setText(DateFormat.getDateInstance(DateFormat.MEDIUM).format(endDate));
         };
+
 
         // creates the term
         createTermButton.setOnClickListener(view -> {
+            // Input validation
+            String title = null;
+            try {
+                title = termTitleTxt.getText().toString();
+                if(title == null || termTitleTxt.getText().toString().length() == 0) {
+                    throw new Exception();
+                }
+            } catch (Exception e) {
+                termTitleTxt.setError("Title is required!");
+                Snackbar.make(view, "Please enter a title", Snackbar.LENGTH_SHORT).show();
+                return;
+            }
 
-            String title = termTitleTxt.getText().toString();
+            if (startDate == null || startDateTxt.getText().toString().length() == 0) {
+                startDateTxt.setError("Start date is required!");
+                Snackbar.make(view, "Please enter a date", Snackbar.LENGTH_SHORT).show();
+                return;
+            }
 
-
-//            String name = null;
-//            try {
-//                name = customerNameText.getText();
-//                if(name == null || customerNameText.getText().isBlank()){
-//                    throw new Exception();
-//                }
-//            } catch (Exception e) {
-//                Toast
-//                return;
-//            }
-
+            if (endDate == null || endDateTxt.getText().toString().length() == 0) {
+                endDateTxt.setError("End date is required!");
+                Snackbar.make(view, "Please enter a date", Snackbar.LENGTH_SHORT).show();
+                return;
+            }
 
             TermViewModel.insert(new Term(title, startDate, endDate));
-
             backToScreen();
         });
 
