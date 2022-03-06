@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.VFeskin.collegecoursetracker.Adapter.AssessmentViewAdapter;
 import com.VFeskin.collegecoursetracker.Model.Assessment;
 import com.VFeskin.collegecoursetracker.Model.AssessmentViewModel;
+import com.VFeskin.collegecoursetracker.Model.Course;
 import com.VFeskin.collegecoursetracker.R;
 import com.VFeskin.collegecoursetracker.Utility.DateConverter;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -18,6 +19,7 @@ import android.widget.TextView;
 import java.text.DateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 
 
 public class DetailedCourse extends AppCompatActivity implements AssessmentViewAdapter.OnAssessmentClickListener {
@@ -69,7 +71,7 @@ public class DetailedCourse extends AppCompatActivity implements AssessmentViewA
         start.setText(DateFormat.getDateInstance(DateFormat.MEDIUM).format(startDate));
         endDate = DateConverter.fromTimestamp(extra.getLong("END"));
         end.setText(DateFormat.getDateInstance(DateFormat.MEDIUM).format(endDate));
-        status.setText(extra.getString("STATUS"));
+//        status.setText(extra.getString("STATUS"));
         name.setText(extra.getString("NAME"));
         phone.setText(extra.getString("PHONE"));
         email.setText(extra.getString("EMAIL"));
@@ -105,7 +107,15 @@ public class DetailedCourse extends AppCompatActivity implements AssessmentViewA
 
     @Override
     public void onAssessmentClick(int position) {
+        Intent intent = new Intent(this, DetailedAssessment.class);
+        // pass data to the detail view
+        Assessment assessment = Objects.requireNonNull(assessmentViewModel.allAssessments.getValue()).get(position);
+        intent.putExtra("ID", assessment.getId());
+        intent.putExtra("TITLE", assessment.getTitle());
+        intent.putExtra("TEST", assessment.getAssessmentType());
+        intent.putExtra("START", DateConverter.ToTimestamp(assessment.getStartDate()));
+        intent.putExtra("END", DateConverter.ToTimestamp(assessment.getEndDate()));
 
-
+        startActivity(intent);
     }
 }

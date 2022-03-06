@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CollegeCourseTracker">
         <activity
+            android:name=".Controller.DetailedAssessment"
+            android:exported="false" />
+        <activity
             android:name=".Controller.DetailedCourse"
             android:exported="false" />
         <activity
