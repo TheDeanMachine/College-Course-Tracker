@@ -43,6 +43,9 @@ public class NewAssessment extends AppCompatActivity {
     // view model reference, gives access to all assessments
     private AssessmentViewModel assessmentViewModel;
 
+    // course PK
+    private int id;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -102,9 +105,9 @@ public class NewAssessment extends AppCompatActivity {
 
             String title = assessmentTitleTxt.getText().toString();
             String test = (String) testTypeSpinner.getSelectedItem();
+            id = getIntent().getIntExtra("ID", 0);
 
-            // TODO : get PK
-            AssessmentViewModel.insert(new Assessment(test, title, startDate, endDate, 1));
+            AssessmentViewModel.insert(new Assessment(test, title, startDate, endDate, id));
         });
 
     }

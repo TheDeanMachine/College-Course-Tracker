@@ -38,6 +38,7 @@ public class DetailedCourse extends AppCompatActivity implements AssessmentViewA
     private Date startDate;
     private Date endDate;
     private LiveData<List<Assessment>> assessmentList;
+    private LiveData<List<Assessment>> assessmentsByCourseId;
 
     // recycle view
     private RecyclerView recyclerView;
@@ -87,7 +88,8 @@ public class DetailedCourse extends AppCompatActivity implements AssessmentViewA
                 .create(AssessmentViewModel.class);
 
         // observer
-        assessmentViewModel.allAssessments.observe(this, assessments -> {
+        assessmentsByCourseId = assessmentViewModel.getByCourseId(id);
+        assessmentsByCourseId.observe(this, assessments -> {
             // set recycle view with assessments
             assessmentViewAdapter = new AssessmentViewAdapter(assessments, this);
             recyclerView.setAdapter(assessmentViewAdapter);
@@ -101,20 +103,21 @@ public class DetailedCourse extends AppCompatActivity implements AssessmentViewA
 
     private void openNewAssessment() {
         Intent intent = new Intent(this, NewAssessment.class);
+        intent.putExtra("ID", id);
         startActivity(intent);
     }
 
     @Override
     public void onAssessmentClick(int position) {
         Intent intent = new Intent(this, DetailedAssessment.class);
+
         // pass data to the detail view
-        Assessment assessment = Objects.requireNonNull(assessmentViewModel.allAssessments.getValue()).get(position);
+        Assessment assessment = Objects.requireNonNull(assessmentsByCourseId.getValue()).get(position);
         intent.putExtra("ID", assessment.getId());
         intent.putExtra("TITLE", assessment.getTitle());
         intent.putExtra("TEST", assessment.getAssessmentType());
         intent.putExtra("START", DateConverter.ToTimestamp(assessment.getStartDate()));
         intent.putExtra("END", DateConverter.ToTimestamp(assessment.getEndDate()));
-
         startActivity(intent);
     }
 }
