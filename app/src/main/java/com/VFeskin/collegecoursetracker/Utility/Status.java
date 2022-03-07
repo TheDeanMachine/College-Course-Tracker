@@ -1,5 +1,6 @@
 package com.VFeskin.collegecoursetracker.Utility;
 
+// Deprecated class, was used for course status
 public enum Status {
 //    HINT_TEXT("Select course status"),
     IN_PROGRESS("In Progress"),

@@ -59,9 +59,9 @@ public class NewCourse extends AppCompatActivity {
         endDateTxt = findViewById(R.id.editTextCourseEndDate);
         courseStatusSpinner = findViewById(R.id.spinner);
 
-        // create an array with Enum values for the spinner to hold
-        courseStatusSpinner.setAdapter(new ArrayAdapter<>(this,
-                android.R.layout.simple_spinner_item, Status.values()));
+//        // create an array with Enum values for the spinner to hold
+//        courseStatusSpinner.setAdapter(new ArrayAdapter<>(this,
+//                android.R.layout.simple_spinner_item, Status.values()));
 
         instructorNameTxt = findViewById(R.id.editTextInstructorName);
         instructorPhoneTxt = findViewById(R.id.editTextInstructorPhone);
@@ -115,7 +115,7 @@ public class NewCourse extends AppCompatActivity {
             //TODO : input validation
             String title = courseTitleTxt.getText().toString();
             //TODO : change back to using string not UNUM
-            Status status = (Status) courseStatusSpinner.getSelectedItem();
+            String status = courseStatusSpinner.getSelectedItem().toString();
             String name = instructorNameTxt.getText().toString();
             String phone = instructorPhoneTxt.getText().toString();
             String email = instructorEmailTxt.getText().toString();

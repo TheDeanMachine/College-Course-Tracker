@@ -6,8 +6,6 @@ import androidx.room.Entity;
 import androidx.room.ForeignKey;
 import androidx.room.PrimaryKey;
 
-import com.VFeskin.collegecoursetracker.Utility.Status;
-
 import java.util.Date;
 
 
@@ -46,7 +44,7 @@ public class Course {
     private String instructorEmail;
 
     @ColumnInfo(name = "course_status")
-    private Status courseStatus;
+    private String courseStatus;
 
     @ColumnInfo(name = "term_id")
     private int termId; //FK
@@ -54,7 +52,7 @@ public class Course {
 
     public Course(@NonNull String title, @NonNull Date startDate, @NonNull Date endDate,
                   String instructorName, String instructorPhone, String instructorEmail,
-                  Status courseStatus, int termId) {
+                  String courseStatus, int termId) {
         this.title = title;
         this.startDate = startDate;
         this.endDate = endDate;
@@ -97,7 +95,7 @@ public class Course {
         return instructorEmail;
     }
 
-    public Status getCourseStatus() {
+    public String getCourseStatus() {
         return courseStatus;
     }
 
@@ -134,7 +132,7 @@ public class Course {
         this.instructorEmail = instructorEmail;
     }
 
-    public void setCourseStatus(Status courseStatus) {
+    public void setCourseStatus(String courseStatus) {
         this.courseStatus = courseStatus;
     }
 
