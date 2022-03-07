@@ -27,4 +27,8 @@ public interface AssessmentDAO {
 
     @Query("SELECT * FROM Assessments ORDER BY start_date ASC")
     LiveData<List<Assessment>> getAllAssessments();
+
+    @Query("SELECT * FROM Assessments WHERE course_id = :id ORDER BY start_date ASC")
+    LiveData<List<Assessment>> getByCourseId(int id);
+
 }

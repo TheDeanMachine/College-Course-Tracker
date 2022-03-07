@@ -114,7 +114,8 @@ public class NewCourse extends AppCompatActivity {
 
             //TODO : input validation
             String title = courseTitleTxt.getText().toString();
-            Status status = (Status) courseStatusSpinner.getSelectedItem(); // Is it worth using ENUM over String?
+            //TODO : change back to using string not UNUM
+            Status status = (Status) courseStatusSpinner.getSelectedItem();
             String name = instructorNameTxt.getText().toString();
             String phone = instructorPhoneTxt.getText().toString();
             String email = instructorEmailTxt.getText().toString();

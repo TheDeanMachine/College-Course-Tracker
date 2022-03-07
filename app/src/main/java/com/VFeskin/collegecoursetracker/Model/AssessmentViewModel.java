@@ -1,13 +1,10 @@
 package com.VFeskin.collegecoursetracker.Model;
 
 import android.app.Application;
-
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
-
 import com.VFeskin.collegecoursetracker.Database.CourseTrackerRepository;
-
 import java.util.List;
 
 /**
@@ -29,6 +26,10 @@ public class AssessmentViewModel extends AndroidViewModel {
     // CRUD
     public LiveData<List<Assessment>> getAllAssessment() {
         return allAssessments;
+    }
+
+    public LiveData<List<Assessment>> getByCourseId(int id) {
+        return repository.getByCourseId(id);
     }
 
     public static void insert(Assessment assessment) {

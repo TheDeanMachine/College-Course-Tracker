@@ -86,7 +86,7 @@ public class DetailedCourse extends AppCompatActivity implements AssessmentViewA
                 .getApplication())
                 .create(AssessmentViewModel.class);
 
-        //TODO : change to get courses based on course id
+        //TODO : change to get ASSESSMENTS based on  id
 
         // observer
         assessmentViewModel.getAllAssessment().observe(this, assessments -> {

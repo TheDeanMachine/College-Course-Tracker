@@ -74,6 +74,10 @@ public class CourseTrackerRepository {
         return allCourses;
     }
 
+    public LiveData<List<Course>> getByTermId(int id) {
+        return courseDAO.getByTermId(id);
+    }
+
     public void insertCourse(Course course) {
         CourseTrackerDatabase.databaseWriteExecutor.execute(() -> {
             courseDAO.insert(course);
@@ -96,6 +100,10 @@ public class CourseTrackerRepository {
     /// ASSESSMENT CRUD ///
     public LiveData<List<Assessment>> getAllAssessment() {
         return allAssessments;
+    }
+
+    public LiveData<List<Assessment>> getByCourseId(int id) {
+       return assessmentDAO.getByCourseId(id);
     }
 
     public void insertAssessments(Assessment assessment) {

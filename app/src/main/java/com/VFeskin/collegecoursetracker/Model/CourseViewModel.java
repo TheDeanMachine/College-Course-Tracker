@@ -28,6 +28,10 @@ public class CourseViewModel extends AndroidViewModel {
         return allCourses;
     }
 
+    public LiveData<List<Course>> getByTermId(int id) {
+        return repository.getByTermId(id);
+    }
+
     public static void insert(Course course) {
         repository.insertCourse(course);
     }
