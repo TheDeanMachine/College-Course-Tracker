@@ -6,66 +6,65 @@
     android:layout_height="match_parent"
     tools:context=".Controller.NewAssessment">
 
-    <EditText
-        android:id="@+id/editTextAssessmentTitle"
-        style="@style/form_style"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="@string/assessment_title"
-        android:inputType="textPersonName"
-        android:minHeight="48dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"  >
 
-    <EditText
-        android:id="@+id/editTextAssessmentStartDate"
-        style="@style/form_style"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="@string/start_date"
-        android:inputType="date"
-        android:minHeight="48dp"
-        android:focusable="false"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextAssessmentTitle" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
 
-    <EditText
-        android:id="@+id/editTextAssessmentEndDate"
-        style="@style/form_style"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="@string/end_date"
-        android:inputType="date"
-        android:minHeight="48dp"
-        android:focusable="false"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextAssessmentStartDate" />
+            <EditText
+                android:id="@+id/editTextAssessmentTitle"
+                style="@style/form_style"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="@string/assessment_title"
+                android:inputType="textPersonName"
+                android:minHeight="48dp" />
 
-    <Spinner
-        android:id="@+id/testSpinner"
-        android:layout_width="375dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="24dp"
-        android:entries="@array/test_type"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextAssessmentEndDate"
-        tools:ignore="SpeakableTextPresentCheck" />
+            <EditText
+                android:id="@+id/editTextAssessmentStartDate"
+                style="@style/form_style"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:focusable="false"
+                android:hint="@string/start_date"
+                android:inputType="date"
+                android:minHeight="48dp" />
 
-    <Button
-        android:id="@+id/createAssessmentButton"
-        style="@style/form_style"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="@string/create_assessment"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/testSpinner" />
+            <EditText
+                android:id="@+id/editTextAssessmentEndDate"
+                style="@style/form_style"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:focusable="false"
+                android:hint="@string/end_date"
+                android:inputType="date"
+                android:minHeight="48dp" />
+
+            <Spinner
+                android:id="@+id/testSpinner"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginRight="16dp"
+                android:entries="@array/test_type"
+                tools:ignore="SpeakableTextPresentCheck" />
+
+            <Button
+                android:id="@+id/createAssessmentButton"
+                style="@style/form_style"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/create_assessment" />
+        </LinearLayout>
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

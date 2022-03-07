@@ -81,6 +81,7 @@ public class NewTerm extends AppCompatActivity {
             calendar.set(year, month, day);
             startDate = calendar.getTime();
             // format the output the screen
+            startDateTxt.setError(null); // clears set error
             startDateTxt.setText(DateFormat.getDateInstance(DateFormat.MEDIUM).format(startDate));
         };
 
@@ -89,6 +90,7 @@ public class NewTerm extends AppCompatActivity {
             calendar.set(year, month, day);
             endDate = calendar.getTime();
             // format the output the screen
+            endDateTxt.setError(null); // clears set error
             endDateTxt.setText(DateFormat.getDateInstance(DateFormat.MEDIUM).format(endDate));
         };
 
@@ -99,7 +101,7 @@ public class NewTerm extends AppCompatActivity {
             String title = null;
             try {
                 title = termTitleTxt.getText().toString();
-                if(title == null || termTitleTxt.getText().toString().length() == 0) {
+                if(title == null || title.isEmpty()) {
                     throw new Exception();
                 }
             } catch (Exception e) {
@@ -108,13 +110,14 @@ public class NewTerm extends AppCompatActivity {
                 return;
             }
 
-            if (startDate == null || startDateTxt.getText().toString().length() == 0) {
+            if (startDate == null || startDateTxt.getText().toString().isEmpty()) {
                 startDateTxt.setError("Start date is required!");
+//                Toast.makeText(this, "Please enter a date", Toast.LENGTH_SHORT).show();
                 Snackbar.make(view, "Please enter a date", Snackbar.LENGTH_SHORT).show();
                 return;
             }
 
-            if (endDate == null || endDateTxt.getText().toString().length() == 0) {
+            if (endDate == null || endDateTxt.getText().toString().isEmpty()) {
                 endDateTxt.setError("End date is required!");
                 Snackbar.make(view, "Please enter a date", Snackbar.LENGTH_SHORT).show();
                 return;

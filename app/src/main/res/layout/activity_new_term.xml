@@ -7,52 +7,57 @@
     android:layout_height="match_parent"
     tools:context=".Controller.NewTerm">
 
-    <EditText
-        android:id="@+id/editTextTermTitle"
-        style="@style/form_style"
-        android:hint="@string/term_title"
-        android:minHeight="48dp"
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:fillViewport="true" >
 
-    <EditText
-        android:id="@+id/editTextStartDate"
-        style="@style/form_style"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="@string/start_date"
-        android:inputType="date"
-        android:minHeight="48dp"
-        android:focusable="false"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTermTitle" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-    <EditText
-        android:id="@+id/editTextEndDate"
-        style="@style/form_style"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="@string/end_date"
-        android:inputType="date"
-        android:minHeight="48dp"
-        android:focusable="false"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextStartDate" />
+            <EditText
+                android:id="@+id/editTextTermTitle"
+                style="@style/form_style"
+                android:layout_width="match_parent"
+                android:hint="@string/term_title"
+                android:minHeight="48dp" />
 
-    <Button
-        android:id="@+id/createTermButton"
-        style="@style/form_style"
-        android:layout_width="0dp"
-        android:layout_height="48dp"
-        android:text="@string/create_term"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextEndDate" />
+            <EditText
+                android:id="@+id/editTextStartDate"
+                style="@style/form_style"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:focusable="false"
+                android:hint="@string/start_date"
+                android:inputType="date"
+                android:minHeight="48dp" />
+
+            <EditText
+                android:id="@+id/editTextEndDate"
+                style="@style/form_style"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:focusable="false"
+                android:hint="@string/end_date"
+                android:inputType="date"
+                android:minHeight="48dp" />
+
+            <Button
+                android:id="@+id/createTermButton"
+                style="@style/form_style"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:text="@string/create_term" />
+        </LinearLayout>
+    </ScrollView>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

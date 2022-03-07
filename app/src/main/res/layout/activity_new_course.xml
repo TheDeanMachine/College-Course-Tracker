@@ -6,107 +6,101 @@
     android:layout_height="match_parent"
     tools:context=".Controller.NewCourse">
 
-    <EditText
-        android:id="@+id/editTextCourseTitle"
-        style="@style/form_style"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="@string/course_name"
-        android:inputType="textPersonName"
-        android:minHeight="48dp"
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:fillViewport="true" >
 
-    <EditText
-        android:id="@+id/editTextCourseStartDate"
-        style="@style/form_style"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="@string/start_date"
-        android:inputType="date"
-        android:minHeight="48dp"
-        android:focusable="false"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextCourseTitle" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
 
-    <EditText
-        android:id="@+id/editTextCourseEndDate"
-        style="@style/form_style"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="@string/end_date"
-        android:inputType="date"
-        android:minHeight="48dp"
-        android:focusable="false"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextCourseStartDate" />
+            <EditText
+                android:id="@+id/editTextCourseTitle"
+                style="@style/form_style"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="@string/course_name"
+                android:inputType="textPersonName"
+                android:minHeight="48dp" />
 
-    <Spinner
-        android:id="@+id/spinner"
-        android:layout_width="375dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="24dp"
-        android:entries="@array/course_status"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextCourseEndDate"
-        tools:ignore="SpeakableTextPresentCheck" />
+            <EditText
+                android:id="@+id/editTextCourseStartDate"
+                style="@style/form_style"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:focusable="false"
+                android:hint="@string/start_date"
+                android:inputType="date"
+                android:minHeight="48dp" />
 
-    <EditText
-        android:id="@+id/editTextInstructorName"
-        style="@style/form_style"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="@string/instructor_name"
-        android:inputType="textPersonName"
-        android:minHeight="48dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinner" />
+            <EditText
+                android:id="@+id/editTextCourseEndDate"
+                style="@style/form_style"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:focusable="false"
+                android:hint="@string/end_date"
+                android:inputType="date"
+                android:minHeight="48dp" />
 
-    <EditText
-        android:id="@+id/editTextInstructorPhone"
-        style="@style/form_style"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="@string/instructor_phone"
-        android:inputType="phone"
-        android:minHeight="48dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextInstructorName" />
+            <EditText
+                android:id="@+id/editTextInstructorName"
+                style="@style/form_style"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="@string/instructor_name"
+                android:inputType="textPersonName"
+                android:minHeight="48dp" />
 
-    <EditText
-        android:id="@+id/editTextInstructorEmailAddress"
-        style="@style/form_style"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="@string/instructor_email"
-        android:inputType="textEmailAddress"
-        android:minHeight="48dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextInstructorPhone" />
+            <EditText
+                android:id="@+id/editTextInstructorPhone"
+                style="@style/form_style"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="@string/instructor_phone"
+                android:inputType="phone"
+                android:minHeight="48dp" />
 
-    <Button
-        android:id="@+id/createCourseButton"
-        style="@style/form_style"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="@string/create_course"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextInstructorEmailAddress" />
+            <EditText
+                android:id="@+id/editTextInstructorEmailAddress"
+                style="@style/form_style"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="@string/instructor_email"
+                android:inputType="textEmailAddress"
+                android:minHeight="48dp" />
 
+            <Spinner
+                android:id="@+id/spinner"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginRight="16dp"
+                android:entries="@array/course_status"
+                tools:ignore="SpeakableTextPresentCheck" />
+
+            <Button
+                android:id="@+id/createCourseButton"
+                style="@style/form_style"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/create_course" />
+        </LinearLayout>
+    </ScrollView>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
