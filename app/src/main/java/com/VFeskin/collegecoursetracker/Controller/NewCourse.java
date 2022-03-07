@@ -114,7 +114,6 @@ public class NewCourse extends AppCompatActivity {
 
             //TODO : input validation
             String title = courseTitleTxt.getText().toString();
-            //TODO : change back to using string not UNUM
             String status = courseStatusSpinner.getSelectedItem().toString();
             String name = instructorNameTxt.getText().toString();
             String phone = instructorPhoneTxt.getText().toString();

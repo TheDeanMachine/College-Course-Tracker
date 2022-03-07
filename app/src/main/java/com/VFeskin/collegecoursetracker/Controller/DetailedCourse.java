@@ -71,7 +71,7 @@ public class DetailedCourse extends AppCompatActivity implements AssessmentViewA
         start.setText(DateFormat.getDateInstance(DateFormat.MEDIUM).format(startDate));
         endDate = DateConverter.fromTimestamp(extra.getLong("END"));
         end.setText(DateFormat.getDateInstance(DateFormat.MEDIUM).format(endDate));
-//        status.setText(extra.getString("STATUS"));
+        status.setText(extra.getString("STATUS"));
         name.setText(extra.getString("NAME"));
         phone.setText(extra.getString("PHONE"));
         email.setText(extra.getString("EMAIL"));
@@ -86,10 +86,8 @@ public class DetailedCourse extends AppCompatActivity implements AssessmentViewA
                 .getApplication())
                 .create(AssessmentViewModel.class);
 
-        //TODO : change to get ASSESSMENTS based on  id
-
         // observer
-        assessmentViewModel.getAllAssessment().observe(this, assessments -> {
+        assessmentViewModel.allAssessments.observe(this, assessments -> {
             // set recycle view with assessments
             assessmentViewAdapter = new AssessmentViewAdapter(assessments, this);
             recyclerView.setAdapter(assessmentViewAdapter);
@@ -105,7 +103,6 @@ public class DetailedCourse extends AppCompatActivity implements AssessmentViewA
         Intent intent = new Intent(this, NewAssessment.class);
         startActivity(intent);
     }
-
 
     @Override
     public void onAssessmentClick(int position) {
