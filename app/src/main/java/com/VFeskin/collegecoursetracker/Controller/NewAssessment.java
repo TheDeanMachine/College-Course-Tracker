@@ -108,9 +108,9 @@ public class NewAssessment extends AppCompatActivity {
             id = getIntent().getIntExtra("ID", 0);
 
             AssessmentViewModel.insert(new Assessment(test, title, startDate, endDate, id));
+            finish();
         });
 
     }
-
 
 }

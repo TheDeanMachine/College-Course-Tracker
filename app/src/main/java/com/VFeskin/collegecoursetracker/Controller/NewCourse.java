@@ -187,12 +187,9 @@ public class NewCourse extends AppCompatActivity {
             id = getIntent().getIntExtra("ID", 0);
 
             CourseViewModel.insert(new Course(title, startDate, endDate, name, phone, email, status, id));
-//            backToScreen();
+            finish();
         });
+
     }
 
-//    public void backToScreen() {
-//        Intent intent = new Intent(this, TermList.class);///?????
-//        startActivity(intent);
-//    }
 }

@@ -124,13 +124,9 @@ public class NewTerm extends AppCompatActivity {
             }
 
             TermViewModel.insert(new Term(title, startDate, endDate));
-            backToScreen();
+            finish();
         });
 
     }
 
-    public void backToScreen() {
-        Intent intent = new Intent(this, TermList.class);
-        startActivity(intent);
-    }
 }
