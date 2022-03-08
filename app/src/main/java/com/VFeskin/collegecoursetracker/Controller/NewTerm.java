@@ -42,8 +42,8 @@ public class NewTerm extends AppCompatActivity {
     private Date startDate;
     private Date endDate;
 
-    // view model reference, gives access to all terms
-    private TermViewModel termViewModel;
+//    // view model reference, gives access to all terms
+//    private TermViewModel termViewModel;
 
 
     @Override
@@ -57,10 +57,10 @@ public class NewTerm extends AppCompatActivity {
         endDateTxt = findViewById(R.id.editTextEndDate);
         createTermButton = findViewById(R.id.createTermButton);
 
-        // creates an instance of view model to use
-        termViewModel = new ViewModelProvider.AndroidViewModelFactory(NewTerm.this
-                .getApplication())
-                .create(TermViewModel.class);
+//        // creates an instance of view model to use
+//        termViewModel = new ViewModelProvider.AndroidViewModelFactory(NewTerm.this
+//                .getApplication())
+//                .create(TermViewModel.class);
 
         // shows the date picker, onClick
         startDateTxt.setOnClickListener(view -> new DatePickerDialog(NewTerm.this, dateDialog,

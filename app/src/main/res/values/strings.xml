@@ -26,7 +26,7 @@
     </string-array>
 
     <string-array name="test_type">
-        <item>Select test type</item>
+        <item>Select assessment type</item>
         <item>Performance</item>
         <item>Objective</item>
     </string-array>

@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModelProvider;
 import com.VFeskin.collegecoursetracker.Model.Assessment;
 import com.VFeskin.collegecoursetracker.Model.AssessmentViewModel;
 import com.VFeskin.collegecoursetracker.R;
+import com.google.android.material.snackbar.Snackbar;
 
 import android.app.DatePickerDialog;
 import android.os.Bundle;
@@ -40,8 +41,8 @@ public class NewAssessment extends AppCompatActivity {
     private Date startDate;
     private Date endDate;
 
-    // view model reference, gives access to all assessments
-    private AssessmentViewModel assessmentViewModel;
+//    // view model reference, gives access to all assessments
+//    private AssessmentViewModel assessmentViewModel;
 
     // course PK
     private int id;
@@ -58,10 +59,10 @@ public class NewAssessment extends AppCompatActivity {
         testTypeSpinner = findViewById(R.id.testSpinner);
         createAssessmentButton = findViewById(R.id.createAssessmentButton);
 
-        // creates an instance of view model to use
-        assessmentViewModel = new ViewModelProvider.AndroidViewModelFactory(NewAssessment.this
-                .getApplication())
-                .create(AssessmentViewModel.class);
+//        // creates an instance of view model to use
+//        assessmentViewModel = new ViewModelProvider.AndroidViewModelFactory(NewAssessment.this
+//                .getApplication())
+//                .create(AssessmentViewModel.class);
 
         // shows the date picker, onClick
         startDateTxt.setOnClickListener(view -> new DatePickerDialog(NewAssessment.this, dateDialog,
@@ -78,33 +79,62 @@ public class NewAssessment extends AppCompatActivity {
                 .show());
 
         // gets the values from date picker, onDataSet
-        dateDialog = new DatePickerDialog.OnDateSetListener() {
-            @Override
-            public void onDateSet(DatePicker view, int year, int month, int day) {
-                calendar.set(year, month, day);
-                startDate = calendar.getTime();
-                // format the output the screen
-                startDateTxt.setText(DateFormat.getDateInstance(DateFormat.MEDIUM).format(startDate));
-            }
+        dateDialog = (view, year, month, day) -> {
+            calendar.set(year, month, day);
+            startDate = calendar.getTime();
+            // format the output the screen
+            startDateTxt.setError(null); // clears set error
+            startDateTxt.setText(DateFormat.getDateInstance(DateFormat.MEDIUM).format(startDate));
         };
 
         // gets the values from date picker, onDataSet
-        dateDialog2 = new DatePickerDialog.OnDateSetListener() {
-            @Override
-            public void onDateSet(DatePicker view, int year, int month, int day) {
-                calendar.set(year, month, day);
-                endDate = calendar.getTime();
-                // format the output the screen
-                endDateTxt.setText(DateFormat.getDateInstance(DateFormat.MEDIUM).format(endDate));
-            }
+        dateDialog2 = (view, year, month, day) -> {
+            calendar.set(year, month, day);
+            endDate = calendar.getTime();
+            // format the output the screen
+            endDateTxt.setError(null); // clears set error
+            endDateTxt.setText(DateFormat.getDateInstance(DateFormat.MEDIUM).format(endDate));
         };
 
         // collect input and create new assessment
         createAssessmentButton.setOnClickListener(view -> {
-            //TODO : input validation
 
-            String title = assessmentTitleTxt.getText().toString();
-            String test = (String) testTypeSpinner.getSelectedItem();
+            // Input validation
+            String title = null;
+            try {
+                title = assessmentTitleTxt.getText().toString();
+                if(title == null || title.isEmpty()) {
+                    throw new Exception();
+                }
+            } catch (Exception e) {
+                assessmentTitleTxt.setError("Title is required!");
+                Snackbar.make(view, "Please enter a title", Snackbar.LENGTH_SHORT).show();
+                return;
+            }
+
+            if (startDate == null || startDateTxt.getText().toString().isEmpty()) {
+                startDateTxt.setError("Start date is required!");
+                Snackbar.make(view, "Please enter a date", Snackbar.LENGTH_SHORT).show();
+                return;
+            }
+
+            if (endDate == null || endDateTxt.getText().toString().isEmpty()) {
+                endDateTxt.setError("End date is required!");
+                Snackbar.make(view, "Please enter a date", Snackbar.LENGTH_SHORT).show();
+                return;
+            }
+
+            String test = null;
+            try {
+                test = testTypeSpinner.getSelectedItem().toString();
+                if (test == null || testTypeSpinner.getSelectedItem().equals("Select assessment type")) {
+                    throw new Exception();
+                }
+            } catch (Exception e) {
+                Snackbar.make(view, "Please select assessment type", Snackbar.LENGTH_SHORT).show();
+                return;
+            }
+
             id = getIntent().getIntExtra("ID", 0);
 
             AssessmentViewModel.insert(new Assessment(test, title, startDate, endDate, id));

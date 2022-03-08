@@ -5,7 +5,6 @@ import com.VFeskin.collegecoursetracker.Model.CourseViewModel;
 import com.VFeskin.collegecoursetracker.R;
 import com.VFeskin.collegecoursetracker.Utility.Status;
 import com.google.android.material.snackbar.Snackbar;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 import android.app.DatePickerDialog;
@@ -45,8 +44,8 @@ public class NewCourse extends AppCompatActivity {
     private Date startDate;
     private Date endDate;
 
-    // view model reference, gives access to all courses
-    private CourseViewModel courseViewModel;
+//    // view model reference, gives access to all courses
+//    private CourseViewModel courseViewModel;
 
     // term PK
     private int id;
@@ -73,9 +72,9 @@ public class NewCourse extends AppCompatActivity {
         createCourseButton = findViewById(R.id.createCourseButton);
 
         // creates an instance of view model to use
-        courseViewModel = new ViewModelProvider.AndroidViewModelFactory(NewCourse.this
-                .getApplication())
-                .create(CourseViewModel.class);
+//        courseViewModel = new ViewModelProvider.AndroidViewModelFactory(NewCourse.this
+//                .getApplication())
+//                .create(CourseViewModel.class);
 
         // shows the date picker, onClick
         startDateTxt.setOnClickListener(view -> new DatePickerDialog(NewCourse.this, dateDialog,
