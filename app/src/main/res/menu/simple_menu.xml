@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto" >
+
+    <item
+        android:id="@+id/AllTerms"
+        android:title="@string/all_terms"
+        app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/AllCourses"
+        android:title="@string/all_courses"
+        app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/AllAssessments"
+        android:title="@string/all_assessments"
+        app:showAsAction="never"/>
+
+</menu>

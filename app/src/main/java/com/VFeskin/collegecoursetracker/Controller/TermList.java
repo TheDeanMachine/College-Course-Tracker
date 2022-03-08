@@ -14,6 +14,8 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import java.util.List;
 import java.util.Objects;
@@ -85,4 +87,36 @@ public class TermList extends AppCompatActivity implements TermViewAdapter.OnTer
 
         startActivity(intent);
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.simple_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Determine which app bar item was chosen
+        switch (item.getItemId()) {
+            case R.id.AllCourses:
+                viewAllCourses();
+                return true;
+            case R.id.AllAssessments:
+                viewAllAssessments();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    public void viewAllCourses() {
+        Intent intent = new Intent(this, CourseList.class);
+        startActivity(intent);
+    }
+
+    public void viewAllAssessments() {
+        Intent intent = new Intent(this, AssessmentList.class);
+        startActivity(intent);
+    }
+
 }

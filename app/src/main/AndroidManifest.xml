@@ -10,9 +10,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CollegeCourseTracker">
         <activity
+            android:name=".Controller.EditTerm"
+            android:exported="false" />
+        <activity
             android:name=".Controller.DetailedAssessment"
             android:exported="false"
-            android:label="Assessment Details"/>
+            android:label="Assessment Details" />
         <activity
             android:name=".Controller.DetailedCourse"
             android:exported="false"
@@ -32,7 +35,7 @@
         <activity
             android:name=".Controller.TermList"
             android:exported="true"
-            android:label="List of Terms"/>
+            android:label="List of Terms" />
         <activity
             android:name=".Controller.NewAssessment"
             android:exported="true"
@@ -40,15 +43,15 @@
         <activity
             android:name=".Controller.NewCourse"
             android:exported="true"
-            android:label="New Course"/>
+            android:label="New Course" />
         <activity
             android:name=".Controller.NewTerm"
             android:exported="true"
-            android:label="New Term"/>
+            android:label="New Term" />
         <activity
             android:name=".HomeScreen"
             android:exported="true"
-            android:label="Home Screen">
+            android:label="Welcome Screen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

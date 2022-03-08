@@ -121,7 +121,6 @@ public class DetailedTerm extends AppCompatActivity implements CourseViewAdapter
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-
         // Determine which app bar item was chosen
         switch (item.getItemId()) {
             case R.id.edit:

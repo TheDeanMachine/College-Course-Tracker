@@ -13,6 +13,9 @@ import com.VFeskin.collegecoursetracker.Utility.DateConverter;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
+
 import java.util.List;
 import java.util.Objects;
 
@@ -85,6 +88,37 @@ public class CourseList extends AppCompatActivity implements CourseViewAdapter.O
         intent.putExtra("PHONE", course.getInstructorPhone());
         intent.putExtra("EMAIL", course.getInstructorEmail());
 
+        startActivity(intent);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.simple_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Determine which app bar item was chosen
+        switch (item.getItemId()) {
+            case R.id.AllTerms:
+                viewAllTerms();
+                return true;
+            case R.id.AllAssessments:
+                viewAllAssessments();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    public void viewAllTerms() {
+        Intent intent = new Intent(this, TermList.class);
+        startActivity(intent);
+    }
+
+    public void viewAllAssessments() {
+        Intent intent = new Intent(this, AssessmentList.class);
         startActivity(intent);
     }
 }
