@@ -120,4 +120,5 @@ public class DetailedCourse extends AppCompatActivity implements AssessmentViewA
         intent.putExtra("END", DateConverter.ToTimestamp(assessment.getEndDate()));
         startActivity(intent);
     }
+
 }

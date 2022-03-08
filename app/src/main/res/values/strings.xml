@@ -15,6 +15,11 @@
     <string name="assessment_title">Assessment title</string>
     <string name="create_assessment">CREATE ASSESSMENT</string>
     <string name="get_started">Get Started</string>
+    <string name="edit">Edit</string>
+    <string name="delete">Delete</string>
+    <string name="all_terms">View All Terms</string>
+    <string name="all_courses">View All Courses</string>
+    <string name="all_assessments">View All Assessments</string>
 
 
     <string-array name="course_status">

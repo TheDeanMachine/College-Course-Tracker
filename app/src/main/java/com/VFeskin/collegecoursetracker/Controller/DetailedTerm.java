@@ -15,6 +15,8 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.TextView;
 import java.text.DateFormat;
 import java.util.Date;
@@ -110,5 +112,62 @@ public class DetailedTerm extends AppCompatActivity implements CourseViewAdapter
         intent.putExtra("EMAIL", course.getInstructorEmail());
         startActivity(intent);
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        // Determine which app bar item was chosen
+        switch (item.getItemId()) {
+            case R.id.edit:
+                editItem();
+                return true;
+            case R.id.delete:
+                deleteItem();
+                return true;
+            case R.id.AllTerms:
+                viewAllTerms();
+                return true;
+            case R.id.AllCourses:
+                viewAllCourses();
+                return true;
+            case R.id.AllAssessments:
+                viewAllAssessments();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+
+    private void editItem() {
+
+    }
+
+    private void deleteItem() {
+
+    }
+
+    public void viewAllTerms() {
+        Intent intent = new Intent(this, TermList.class);
+        startActivity(intent);
+    }
+
+    public void viewAllCourses() {
+        Intent intent = new Intent(this, CourseList.class);
+        startActivity(intent);
+    }
+
+    public void viewAllAssessments() {
+        Intent intent = new Intent(this, AssessmentList.class);
+        startActivity(intent);
+    }
+
+
 
 }
