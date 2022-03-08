@@ -9,6 +9,7 @@ import com.google.android.material.snackbar.Snackbar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -173,21 +174,25 @@ public class NewCourse extends AppCompatActivity {
             }
 
             String status = null;
-
             try {
                 status = courseStatusSpinner.getSelectedItem().toString();
                 if (status == null || courseStatusSpinner.getSelectedItem().equals("Select status")) {
                     throw new Exception();
                 }
             } catch (Exception e) {
-                Snackbar.make(view, "Please course status", Snackbar.LENGTH_SHORT).show();
+                Snackbar.make(view, "Please select course status", Snackbar.LENGTH_SHORT).show();
                 return;
             }
 
             id = getIntent().getIntExtra("ID", 0);
 
             CourseViewModel.insert(new Course(title, startDate, endDate, name, phone, email, status, id));
+//            backToScreen();
         });
-
     }
+
+//    public void backToScreen() {
+//        Intent intent = new Intent(this, TermList.class);///?????
+//        startActivity(intent);
+//    }
 }
