@@ -61,16 +61,17 @@ public class EditCourse extends AppCompatActivity {
 
         // get values from term card and set text
         Bundle extra = getIntent().getExtras();
-        FK = extra.getInt("ID");
+        PK = extra.getInt("ID");
         courseTitleTxt.setText(extra.getString("TITLE"));
         startDate = DateConverter.fromTimestamp(extra.getLong("START"));
         startDateTxt.setText(DateFormat.getDateInstance(DateFormat.MEDIUM).format(startDate));
         endDate = DateConverter.fromTimestamp(extra.getLong("END"));
         endDateTxt.setText(DateFormat.getDateInstance(DateFormat.MEDIUM).format(endDate));
-//        courseStatusSpinner.setSelection(  courseStatusSpinner.getPosition(extra.getString("STATUS")));
+        courseStatusSpinner.setSelection(((ArrayAdapter<String>)courseStatusSpinner.getAdapter()).getPosition(extra.getString("STATUS")));
         instructorNameTxt.setText(extra.getString("NAME"));
         instructorPhoneTxt.setText(extra.getString("PHONE"));
         instructorEmailTxt.setText(extra.getString("EMAIL"));
+        FK = extra.getInt("FK");
 
         // shows the date picker, onClick
         startDateTxt.setOnClickListener(view -> new DatePickerDialog(EditCourse.this, dateDialog,
@@ -179,18 +180,10 @@ public class EditCourse extends AppCompatActivity {
                 return;
             }
 
-
-
-//            CourseViewModel.update(new Course(title, startDate, endDate, name, phone, email, status, id));
-//            finish();
+            CourseViewModel.update(new Course(PK, title, startDate, endDate, name, phone, email, status, FK));
+            finish();
         });
 
     }
-
-
-
-
-
-
 
 }

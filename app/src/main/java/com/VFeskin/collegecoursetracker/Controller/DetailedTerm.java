@@ -1,7 +1,6 @@
 package com.VFeskin.collegecoursetracker.Controller;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -24,6 +23,10 @@ import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
+/**
+ * This class displays a selected term in detail.
+ * The details include a RecyclerView with courses assigned to this term.
+ */
 public class DetailedTerm extends AppCompatActivity implements CourseViewAdapter.OnCourseClickListener {
 
     // XML attributes
@@ -32,7 +35,7 @@ public class DetailedTerm extends AppCompatActivity implements CourseViewAdapter
     private TextView end;
 
     // data
-    private int id; // PK
+    private int PK;
     private Date startDate;
     private Date endDate;
     private LiveData<List<Course>> courseList;
@@ -62,7 +65,7 @@ public class DetailedTerm extends AppCompatActivity implements CourseViewAdapter
 
         // get values from term card and set text
         Bundle extra = getIntent().getExtras();
-        id = extra.getInt("ID");
+        PK = extra.getInt("ID");
 //        title.setText(extra.getString("TITLE"));
 //        startDate = DateConverter.fromTimestamp(extra.getLong("START"));
 //        start.setText(DateFormat.getDateInstance(DateFormat.MEDIUM).format(startDate));
@@ -85,14 +88,14 @@ public class DetailedTerm extends AppCompatActivity implements CourseViewAdapter
                 .create(TermViewModel.class);
 
         // observers
-        coursesByTermId = courseViewModel.getByTermId(id);
+        coursesByTermId = courseViewModel.getByTermId(PK);
         coursesByTermId.observe(this, courses -> {
             // set recycle view with courses
             courseViewAdapter = new CourseViewAdapter(courses, DetailedTerm.this);
             recyclerView.setAdapter(courseViewAdapter);
         });
 
-        termById = termViewModel.getByTermPK(id);
+        termById = termViewModel.getByTermPK(PK);
         termById.observe(this, term -> {
             title.setText(term.getTitle());
             startDate = term.getStartDate();
@@ -109,7 +112,7 @@ public class DetailedTerm extends AppCompatActivity implements CourseViewAdapter
 
     public void openNewCourse() {
         Intent intent = new Intent(this, NewCourse.class);
-        intent.putExtra("ID", id);
+        intent.putExtra("ID", PK);
         startActivity(intent);
     }
 
@@ -162,7 +165,7 @@ public class DetailedTerm extends AppCompatActivity implements CourseViewAdapter
 
     private void editItem() {
         Intent intent = new Intent(this, EditTerm.class);
-        intent.putExtra("ID", id);
+        intent.putExtra("ID", PK);
         intent.putExtra("TITLE", title.getText());
         intent.putExtra("START", DateConverter.ToTimestamp(startDate));
         intent.putExtra("END", DateConverter.ToTimestamp(endDate));
@@ -171,7 +174,7 @@ public class DetailedTerm extends AppCompatActivity implements CourseViewAdapter
 
     private void deleteItem() {
 
-        TermViewModel.delete(new Term(id, title.toString(), startDate, endDate));
+        TermViewModel.delete(new Term(PK, title.toString(), startDate, endDate));
         Intent intent = new Intent(this, TermList.class);
         startActivity(intent);
 

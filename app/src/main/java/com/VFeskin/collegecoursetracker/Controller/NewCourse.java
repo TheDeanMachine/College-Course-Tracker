@@ -44,9 +44,6 @@ public class NewCourse extends AppCompatActivity {
     private Date startDate;
     private Date endDate;
 
-//    // view model reference, gives access to all courses
-//    private CourseViewModel courseViewModel;
-
     // term PK
     private int id;
 
@@ -60,21 +57,11 @@ public class NewCourse extends AppCompatActivity {
         startDateTxt = findViewById(R.id.editTextCourseStartDate);
         endDateTxt = findViewById(R.id.editTextCourseEndDate);
         courseStatusSpinner = findViewById(R.id.spinner);
-//        courseStatusSpinner.setPrompt("Please Select status");
-
-//        // create an array with Enum values for the spinner to hold
-//        courseStatusSpinner.setAdapter(new ArrayAdapter<>(this,
-//                android.R.layout.simple_spinner_item, Status.values()));
 
         instructorNameTxt = findViewById(R.id.editTextInstructorName);
         instructorPhoneTxt = findViewById(R.id.editTextInstructorPhone);
         instructorEmailTxt = findViewById(R.id.editTextInstructorEmailAddress);
         createCourseButton = findViewById(R.id.createCourseButton);
-
-        // creates an instance of view model to use
-//        courseViewModel = new ViewModelProvider.AndroidViewModelFactory(NewCourse.this
-//                .getApplication())
-//                .create(CourseViewModel.class);
 
         // shows the date picker, onClick
         startDateTxt.setOnClickListener(view -> new DatePickerDialog(NewCourse.this, dateDialog,

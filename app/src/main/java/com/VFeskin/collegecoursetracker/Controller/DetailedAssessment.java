@@ -9,6 +9,9 @@ import android.widget.TextView;
 import java.text.DateFormat;
 import java.util.Date;
 
+/**
+ * This class displays a selected assessment in detail.
+ */
 public class DetailedAssessment extends AppCompatActivity {
 
     // XML attributes
