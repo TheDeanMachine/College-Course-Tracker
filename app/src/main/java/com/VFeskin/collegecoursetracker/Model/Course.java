@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 import java.util.Date;
@@ -49,10 +50,26 @@ public class Course {
     @ColumnInfo(name = "term_id")
     private int termId; //FK
 
-
+    // for creating new objects
     public Course(@NonNull String title, @NonNull Date startDate, @NonNull Date endDate,
                   String instructorName, String instructorPhone, String instructorEmail,
                   String courseStatus, int termId) {
+        this.title = title;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.instructorName = instructorName;
+        this.instructorPhone = instructorPhone;
+        this.instructorEmail = instructorEmail;
+        this.courseStatus = courseStatus;
+        this.termId = termId;
+    }
+
+    // for deleting and updating
+    @Ignore
+    public Course(int id, @NonNull String title, @NonNull Date startDate, @NonNull Date endDate,
+                  String instructorName, String instructorPhone,
+                  String instructorEmail, String courseStatus, int termId) {
+        this.id = id;
         this.title = title;
         this.startDate = startDate;
         this.endDate = endDate;

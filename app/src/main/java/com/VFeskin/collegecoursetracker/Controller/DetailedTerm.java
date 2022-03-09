@@ -1,6 +1,7 @@
 package com.VFeskin.collegecoursetracker.Controller;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -169,6 +170,10 @@ public class DetailedTerm extends AppCompatActivity implements CourseViewAdapter
     }
 
     private void deleteItem() {
+
+        TermViewModel.delete(new Term(id, title.toString(), startDate, endDate));
+        Intent intent = new Intent(this, TermList.class);
+        startActivity(intent);
 
     }
 

@@ -3,6 +3,7 @@ package com.VFeskin.collegecoursetracker.Model;
 import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 import java.util.Date;
@@ -29,8 +30,17 @@ public class Term {
     @NonNull
     private Date endDate;
 
-
+    // for creating new objects
     public Term(@NonNull String title, @NonNull Date startDate, @NonNull Date endDate) {
+        this.title = title;
+        this.startDate = startDate;
+        this.endDate = endDate;
+    }
+
+    // for deleting and updating
+    @Ignore
+    public Term(int id, @NonNull String title, @NonNull Date startDate, @NonNull Date endDate) {
+        this.id = id;
         this.title = title;
         this.startDate = startDate;
         this.endDate = endDate;

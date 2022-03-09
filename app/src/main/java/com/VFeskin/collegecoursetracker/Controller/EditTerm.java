@@ -89,6 +89,7 @@ public class EditTerm extends AppCompatActivity {
             endDateTxt.setText(DateFormat.getDateInstance(DateFormat.MEDIUM).format(endDate));
         };
 
+        // collect the input and update the term
         updateTerm.setOnClickListener(view -> {
             // Input validation
             String title = null;
@@ -115,9 +116,7 @@ public class EditTerm extends AppCompatActivity {
                 return;
             }
 
-            Term term = new Term(title, startDate, endDate);
-            term.setId(id);
-            TermViewModel.update(term);
+            TermViewModel.update(new Term(id, title, startDate, endDate));
             finish();
         });
 
