@@ -5,5 +5,56 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Controller.EditTerm">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:fillViewport="true" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/editTextUpdateTermTitle"
+                style="@style/form_style"
+                android:layout_width="match_parent"
+                android:hint="@string/term_title"
+                android:minHeight="48dp" />
+
+            <EditText
+                android:id="@+id/editTextUpdateTermStartDate"
+                style="@style/form_style"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:focusable="false"
+                android:hint="@string/start_date"
+                android:inputType="date"
+                android:minHeight="48dp" />
+
+            <EditText
+                android:id="@+id/editTextUpdateTermEndDate"
+                style="@style/form_style"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:focusable="false"
+                android:hint="@string/end_date"
+                android:inputType="date"
+                android:minHeight="48dp" />
+
+            <Button
+                android:id="@+id/UpdateTermTermButton"
+                style="@style/form_style"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:text="@string/update_term" />
+        </LinearLayout>
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

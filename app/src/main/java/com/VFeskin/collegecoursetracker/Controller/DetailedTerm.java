@@ -145,7 +145,12 @@ public class DetailedTerm extends AppCompatActivity implements CourseViewAdapter
 
 
     private void editItem() {
-
+        Intent intent = new Intent(this, EditTerm.class);
+        intent.putExtra("ID", id);
+        intent.putExtra("TITLE", title.getText());
+        intent.putExtra("START", DateConverter.ToTimestamp(startDate));
+        intent.putExtra("END", DateConverter.ToTimestamp(endDate));
+        startActivity(intent);
     }
 
     private void deleteItem() {

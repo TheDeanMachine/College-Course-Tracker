@@ -20,6 +20,7 @@
     <string name="all_terms">View All Terms</string>
     <string name="all_courses">View All Courses</string>
     <string name="all_assessments">View All Assessments</string>
+    <string name="update_term">UPDATE TERM</string>
 
 
     <string-array name="course_status">
