@@ -2,7 +2,6 @@ package com.VFeskin.collegecoursetracker.Controller;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.LiveData;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -16,7 +15,6 @@ import com.VFeskin.collegecoursetracker.Utility.DateConverter;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
@@ -85,7 +83,7 @@ public class DetailedTerm extends AppCompatActivity implements CourseViewAdapter
                 .getApplication())
                 .create(TermViewModel.class);
 
-        // observer
+        // observers
         coursesByTermId = courseViewModel.getByTermId(id);
         coursesByTermId.observe(this, courses -> {
             // set recycle view with courses
@@ -93,7 +91,7 @@ public class DetailedTerm extends AppCompatActivity implements CourseViewAdapter
             recyclerView.setAdapter(courseViewAdapter);
         });
 
-        termById = termViewModel.getById(id);
+        termById = termViewModel.getByTermPK(id);
         termById.observe(this, term -> {
             title.setText(term.getTitle());
             startDate = term.getStartDate();

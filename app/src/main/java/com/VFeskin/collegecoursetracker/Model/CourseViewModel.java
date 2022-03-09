@@ -32,6 +32,10 @@ public class CourseViewModel extends AndroidViewModel {
         return repository.getByTermId(id);
     }
 
+    public LiveData<Course> getByCoursePK(int id) {
+        return repository.getByCoursePK(id);
+    }
+
     public static void insert(Course course) {
         repository.insertCourse(course);
     }

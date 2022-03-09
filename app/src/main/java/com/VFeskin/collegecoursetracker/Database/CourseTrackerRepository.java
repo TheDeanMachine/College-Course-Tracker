@@ -2,7 +2,6 @@ package com.VFeskin.collegecoursetracker.Database;
 
 import android.app.Application;
 
-import androidx.appcompat.widget.AlertDialogLayout;
 import androidx.lifecycle.LiveData;
 
 import com.VFeskin.collegecoursetracker.DAO.AssessmentDAO;
@@ -50,8 +49,8 @@ public class CourseTrackerRepository {
         return allTerms;
     }
 
-    public LiveData<Term> getById(int id) {
-        return termDAO.getById(id);
+    public LiveData<Term> getByTermPK(int id) {
+        return termDAO.getByTermPK(id);
     }
 
     public void insertTerm(Term term) {
@@ -82,6 +81,10 @@ public class CourseTrackerRepository {
         return courseDAO.getByTermId(id);
     }
 
+    public LiveData<Course> getByCoursePK(int id) {
+        return courseDAO.getByCoursePK(id);
+    }
+
     public void insertCourse(Course course) {
         CourseTrackerDatabase.databaseWriteExecutor.execute(() -> {
             courseDAO.insert(course);
@@ -108,6 +111,10 @@ public class CourseTrackerRepository {
 
     public LiveData<List<Assessment>> getByCourseId(int id) {
        return assessmentDAO.getByCourseId(id);
+    }
+
+    public LiveData<Assessment> getByAssessmentsPK(int id) {
+        return assessmentDAO.getByAssessmentsPK(id);
     }
 
     public void insertAssessments(Assessment assessment) {

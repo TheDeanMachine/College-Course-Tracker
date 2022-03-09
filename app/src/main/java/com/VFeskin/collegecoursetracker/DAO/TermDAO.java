@@ -29,7 +29,7 @@ public interface TermDAO {
     LiveData<List<Term>> getAllTerms();
 
     @Query("SELECT * FROM Terms WHERE id = :id")
-    LiveData<Term> getById(int id);
+    LiveData<Term> getByTermPK(int id);
 }
 
 

@@ -32,6 +32,10 @@ public class AssessmentViewModel extends AndroidViewModel {
         return repository.getByCourseId(id);
     }
 
+    public LiveData<Assessment> getByAssessmentsPK(int id) {
+        return repository.getByAssessmentsPK(id);
+    }
+
     public static void insert(Assessment assessment) {
         repository.insertAssessments(assessment);
     }

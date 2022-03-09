@@ -30,4 +30,7 @@ public interface CourseDAO {
 
     @Query("SELECT * FROM Courses WHERE term_id = :id ORDER BY start_date ASC")
     LiveData<List<Course>> getByTermId(int id);
+
+    @Query("SELECT * FROM Courses WHERE id = :id")
+    LiveData<Course> getByCoursePK(int id);
 }
