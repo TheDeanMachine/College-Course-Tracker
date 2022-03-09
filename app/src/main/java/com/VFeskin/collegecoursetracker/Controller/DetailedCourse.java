@@ -34,7 +34,7 @@ public class DetailedCourse extends AppCompatActivity implements AssessmentViewA
     public TextView email;
 
     // data
-    private int id;
+    private int id; // term pk
     private Date startDate;
     private Date endDate;
     private LiveData<List<Assessment>> assessmentList;

@@ -1,19 +1,15 @@
 package com.VFeskin.collegecoursetracker.Controller;
 
+import androidx.appcompat.app.AppCompatActivity;
 import com.VFeskin.collegecoursetracker.Model.Course;
 import com.VFeskin.collegecoursetracker.Model.CourseViewModel;
 import com.VFeskin.collegecoursetracker.R;
-import com.VFeskin.collegecoursetracker.Utility.Status;
+import com.VFeskin.collegecoursetracker.Utility.DateConverter;
 import com.google.android.material.snackbar.Snackbar;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.ViewModelProvider;
 import android.app.DatePickerDialog;
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 import java.text.DateFormat;
@@ -21,11 +17,11 @@ import java.util.Calendar;
 import java.util.Date;
 
 /**
- * This class is used for adding a new course.
- * Displays a form that the user can fill out, uses the information entered
- * to create a new course object/entity and adding it into the database.
+ * This class is used for updating a course.
+ * Displays a form that the user can make changes to and,
+ * uses the information entered to update the course object/entity.
  */
-public class NewCourse extends AppCompatActivity {
+public class EditCourse extends AppCompatActivity {
 
     // XML attributes
     private EditText courseTitleTxt;
@@ -35,7 +31,7 @@ public class NewCourse extends AppCompatActivity {
     private EditText instructorNameTxt;
     private EditText instructorPhoneTxt;
     private EditText instructorEmailTxt;
-    private Button createCourseButton;
+    private Button updateCourseButton;
 
     // date related fields
     private final Calendar calendar = Calendar.getInstance();
@@ -44,47 +40,47 @@ public class NewCourse extends AppCompatActivity {
     private Date startDate;
     private Date endDate;
 
-//    // view model reference, gives access to all courses
-//    private CourseViewModel courseViewModel;
-
-    // term PK
-    private int id;
+    // keys
+    private int PK;
+    private int FK;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_new_course);
+        setContentView(R.layout.activity_edit_course);
 
         // set the field values to the xml ids
-        courseTitleTxt = findViewById(R.id.editTextCourseTitle);
-        startDateTxt = findViewById(R.id.editTextCourseStartDate);
-        endDateTxt = findViewById(R.id.editTextCourseEndDate);
-        courseStatusSpinner = findViewById(R.id.spinner);
-//        courseStatusSpinner.setPrompt("Please Select status");
+        courseTitleTxt = findViewById(R.id.editTextUpdateCourseTitle);
+        startDateTxt = findViewById(R.id.editTextUpdateCourseStartDate);
+        endDateTxt = findViewById(R.id.editTextUpdateCourseEndDate);
+        courseStatusSpinner = findViewById(R.id.courseUpdateSpinner);
+        instructorNameTxt = findViewById(R.id.editTextUpdateInstructorName);
+        instructorPhoneTxt = findViewById(R.id.editTextUpdateInstructorPhone);
+        instructorEmailTxt = findViewById(R.id.editTextUpdateInstructorEmailAddress);
+        updateCourseButton = findViewById(R.id.updateCourseButton);
 
-//        // create an array with Enum values for the spinner to hold
-//        courseStatusSpinner.setAdapter(new ArrayAdapter<>(this,
-//                android.R.layout.simple_spinner_item, Status.values()));
-
-        instructorNameTxt = findViewById(R.id.editTextInstructorName);
-        instructorPhoneTxt = findViewById(R.id.editTextInstructorPhone);
-        instructorEmailTxt = findViewById(R.id.editTextInstructorEmailAddress);
-        createCourseButton = findViewById(R.id.createCourseButton);
-
-        // creates an instance of view model to use
-//        courseViewModel = new ViewModelProvider.AndroidViewModelFactory(NewCourse.this
-//                .getApplication())
-//                .create(CourseViewModel.class);
+        // get values from term card and set text
+        Bundle extra = getIntent().getExtras();
+        FK = extra.getInt("ID");
+        courseTitleTxt.setText(extra.getString("TITLE"));
+        startDate = DateConverter.fromTimestamp(extra.getLong("START"));
+        startDateTxt.setText(DateFormat.getDateInstance(DateFormat.MEDIUM).format(startDate));
+        endDate = DateConverter.fromTimestamp(extra.getLong("END"));
+        endDateTxt.setText(DateFormat.getDateInstance(DateFormat.MEDIUM).format(endDate));
+//        courseStatusSpinner.setSelection(  courseStatusSpinner.getPosition(extra.getString("STATUS")));
+        instructorNameTxt.setText(extra.getString("NAME"));
+        instructorPhoneTxt.setText(extra.getString("PHONE"));
+        instructorEmailTxt.setText(extra.getString("EMAIL"));
 
         // shows the date picker, onClick
-        startDateTxt.setOnClickListener(view -> new DatePickerDialog(NewCourse.this, dateDialog,
+        startDateTxt.setOnClickListener(view -> new DatePickerDialog(EditCourse.this, dateDialog,
                 calendar.get(Calendar.YEAR),
                 calendar.get(Calendar.MONTH),
                 calendar.get(Calendar.DAY_OF_MONTH))
                 .show());
 
         // shows the date picker, onClick
-        endDateTxt.setOnClickListener(view -> new DatePickerDialog(NewCourse.this, dateDialog2,
+        endDateTxt.setOnClickListener(view -> new DatePickerDialog(EditCourse.this, dateDialog2,
                 calendar.get(Calendar.YEAR),
                 calendar.get(Calendar.MONTH),
                 calendar.get(Calendar.DAY_OF_MONTH))
@@ -108,8 +104,8 @@ public class NewCourse extends AppCompatActivity {
             endDateTxt.setText(DateFormat.getDateInstance(DateFormat.MEDIUM).format(endDate));
         };
 
-        // collect input and create new course
-        createCourseButton.setOnClickListener(view -> {
+        // collect input and update the course
+        updateCourseButton.setOnClickListener(view -> {
 
             // Input validation
             String title = null;
@@ -150,7 +146,7 @@ public class NewCourse extends AppCompatActivity {
 
             String phone = null;
             try {
-               phone = instructorPhoneTxt.getText().toString();
+                phone = instructorPhoneTxt.getText().toString();
                 if(phone == null || phone.isEmpty()) {
                     throw new Exception();
                 }
@@ -183,12 +179,18 @@ public class NewCourse extends AppCompatActivity {
                 return;
             }
 
-            id = getIntent().getIntExtra("ID", 0);
 
-            CourseViewModel.insert(new Course(title, startDate, endDate, name, phone, email, status, id));
-            finish();
+
+//            CourseViewModel.update(new Course(title, startDate, endDate, name, phone, email, status, id));
+//            finish();
         });
 
     }
+
+
+
+
+
+
 
 }

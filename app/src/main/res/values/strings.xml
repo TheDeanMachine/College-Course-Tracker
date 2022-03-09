@@ -21,6 +21,7 @@
     <string name="all_courses">View All Courses</string>
     <string name="all_assessments">View All Assessments</string>
     <string name="update_term">UPDATE TERM</string>
+    <string name="update_course">UPDATE COURSE</string>
 
 
     <string-array name="course_status">

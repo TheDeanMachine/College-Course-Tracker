@@ -16,8 +16,8 @@ import java.util.Date;
 
 /**
  * This class is used for updating a term.
- * Displays a form that the user can fill out, uses the information entered
- * to update a new term object/entity.
+ * Displays a form that the user can make changes to and,
+ * uses the information entered to update the term object/entity.
  */
 public class EditTerm extends AppCompatActivity {
 
