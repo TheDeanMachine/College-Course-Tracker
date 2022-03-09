@@ -28,6 +28,10 @@ public class TermViewModel extends AndroidViewModel {
         return allTerms;
     }
 
+    public LiveData<Term> getById(int id) {
+        return repository.getById(id);
+    }
+
     public static void insert(Term term) {
         repository.insertTerm(term);
     }

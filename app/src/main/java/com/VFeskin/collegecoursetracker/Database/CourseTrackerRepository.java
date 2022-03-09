@@ -50,6 +50,10 @@ public class CourseTrackerRepository {
         return allTerms;
     }
 
+    public LiveData<Term> getById(int id) {
+        return termDAO.getById(id);
+    }
+
     public void insertTerm(Term term) {
         CourseTrackerDatabase.databaseWriteExecutor.execute(() -> {
             termDAO.insert(term);

@@ -9,6 +9,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.VFeskin.collegecoursetracker.Adapter.CourseViewAdapter;
 import com.VFeskin.collegecoursetracker.Model.Course;
 import com.VFeskin.collegecoursetracker.Model.CourseViewModel;
+import com.VFeskin.collegecoursetracker.Model.Term;
+import com.VFeskin.collegecoursetracker.Model.TermViewModel;
 import com.VFeskin.collegecoursetracker.R;
 import com.VFeskin.collegecoursetracker.Utility.DateConverter;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -31,18 +33,20 @@ public class DetailedTerm extends AppCompatActivity implements CourseViewAdapter
     private TextView end;
 
     // data
-    private int id;
+    private int id; // PK
     private Date startDate;
     private Date endDate;
     private LiveData<List<Course>> courseList;
     private LiveData<List<Course>> coursesByTermId;
+    private LiveData<Term> termById;
 
     // recycle view
     private RecyclerView recyclerView;
     private CourseViewAdapter courseViewAdapter;
 
-    // course view model
+    // view model
     private CourseViewModel courseViewModel;
+    private TermViewModel termViewModel;
 
     // add button
     private FloatingActionButton fab;
@@ -60,11 +64,11 @@ public class DetailedTerm extends AppCompatActivity implements CourseViewAdapter
         // get values from term card and set text
         Bundle extra = getIntent().getExtras();
         id = extra.getInt("ID");
-        title.setText(extra.getString("TITLE"));
-        startDate = DateConverter.fromTimestamp(extra.getLong("START"));
-        start.setText(DateFormat.getDateInstance(DateFormat.MEDIUM).format(startDate));
-        endDate = DateConverter.fromTimestamp(extra.getLong("END"));
-        end.setText(DateFormat.getDateInstance(DateFormat.MEDIUM).format(endDate));
+//        title.setText(extra.getString("TITLE"));
+//        startDate = DateConverter.fromTimestamp(extra.getLong("START"));
+//        start.setText(DateFormat.getDateInstance(DateFormat.MEDIUM).format(startDate));
+//        endDate = DateConverter.fromTimestamp(extra.getLong("END"));
+//        end.setText(DateFormat.getDateInstance(DateFormat.MEDIUM).format(endDate));
 
         // configure recycle view
         recyclerView = findViewById(R.id.detail_term_recycler_view);
@@ -76,12 +80,26 @@ public class DetailedTerm extends AppCompatActivity implements CourseViewAdapter
                 .getApplication())
                 .create(CourseViewModel.class);
 
+        // creates an instance of view model to use
+        termViewModel = new ViewModelProvider.AndroidViewModelFactory(DetailedTerm.this
+                .getApplication())
+                .create(TermViewModel.class);
+
         // observer
         coursesByTermId = courseViewModel.getByTermId(id);
         coursesByTermId.observe(this, courses -> {
             // set recycle view with courses
             courseViewAdapter = new CourseViewAdapter(courses, DetailedTerm.this);
             recyclerView.setAdapter(courseViewAdapter);
+        });
+
+        termById = termViewModel.getById(id);
+        termById.observe(this, term -> {
+            title.setText(term.getTitle());
+            startDate = term.getStartDate();
+            endDate = term.getEndDate();
+            start.setText(DateFormat.getDateInstance(DateFormat.MEDIUM).format(term.getStartDate()));
+            end.setText(DateFormat.getDateInstance(DateFormat.MEDIUM).format(term.getEndDate()));
         });
 
         // add new course
@@ -142,7 +160,6 @@ public class DetailedTerm extends AppCompatActivity implements CourseViewAdapter
                 return super.onOptionsItemSelected(item);
         }
     }
-
 
     private void editItem() {
         Intent intent = new Intent(this, EditTerm.class);
