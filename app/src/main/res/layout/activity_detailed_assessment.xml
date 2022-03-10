@@ -9,42 +9,86 @@
 
     <LinearLayout
         android:id="@+id/linearLayout"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:background="@color/purple_200"
-        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:id="@+id/textViewDetailAssessmentTitle"
+        <LinearLayout
+            android:id="@+id/linearLayoutLeft"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:background="@color/purple_200"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textViewDetailAssessmentTitleSet"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:text="@string/assessment_title_txt" />
+
+            <TextView
+                android:id="@+id/textViewDetailAssessmentTypeSet"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:text="@string/assessment_type_txt" />
+
+            <TextView
+                android:id="@+id/textViewDetailAssessmentStartDateSet"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:text="@string/start_date_txt" />
+
+            <TextView
+                android:id="@+id/textViewDetailAssessmentEndDateSet"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:text="@string/end_date_txt" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayoutRight"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:text="TextView" />
+            android:background="@color/purple_200"
+            android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/textViewDetailAssessmentType"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:text="TextView" />
+            <TextView
+                android:id="@+id/textViewDetailAssessmentTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:text="TextView" />
 
-        <TextView
-            android:id="@+id/textViewDetailAssessmentStartDate"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:text="TextView" />
+            <TextView
+                android:id="@+id/textViewDetailAssessmentType"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:text="TextView" />
 
-        <TextView
-            android:id="@+id/textViewDetailAssessmentEndDate"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:text="TextView" />
+            <TextView
+                android:id="@+id/textViewDetailAssessmentStartDate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:text="TextView" />
 
+            <TextView
+                android:id="@+id/textViewDetailAssessmentEndDate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:text="TextView" />
+        </LinearLayout>
     </LinearLayout>
 
 

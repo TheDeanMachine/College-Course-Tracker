@@ -33,6 +33,10 @@
     <string name="instructor_name_txt">Instructor Name</string>
     <string name="instructor_phone_txt">Instructor Phone</string>
     <string name="instructor_email_txt">Instructor Email</string>
+    <string name="assessment_title_txt">Assessment Title</string>
+    <string name="assessment_type_txt">Assessment Type</string>
+    <string name="start_date_txt">Start Date</string>
+    <string name="end_date_txt">End Date</string>
 
 
     <string-array name="course_status">
