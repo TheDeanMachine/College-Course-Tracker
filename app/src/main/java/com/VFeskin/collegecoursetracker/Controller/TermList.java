@@ -81,10 +81,6 @@ public class TermList extends AppCompatActivity implements TermViewAdapter.OnTer
         // pass data to the detail view
         Term term = Objects.requireNonNull(termViewModel.allTerms.getValue()).get(position);
         intent.putExtra("ID", term.getId());
-//        intent.putExtra("TITLE", term.getTitle());
-//        intent.putExtra("START", DateConverter.ToTimestamp(term.getStartDate()));
-//        intent.putExtra("END", DateConverter.ToTimestamp(term.getEndDate()));
-
         startActivity(intent);
     }
 

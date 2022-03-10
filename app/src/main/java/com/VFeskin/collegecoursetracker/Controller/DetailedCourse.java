@@ -72,18 +72,7 @@ public class DetailedCourse extends AppCompatActivity implements AssessmentViewA
         phone = findViewById(R.id.textViewDetailCourseInstructorPhone);
         email = findViewById(R.id.textViewDetailCourseInstructorEmail);
 
-        // get values from term card and set text
-        Bundle extra = getIntent().getExtras();
-        PK = extra.getInt("ID");
-//        title.setText(extra.getString("TITLE"));
-//        startDate = DateConverter.fromTimestamp(extra.getLong("START"));
-//        start.setText(DateFormat.getDateInstance(DateFormat.MEDIUM).format(startDate));
-//        endDate = DateConverter.fromTimestamp(extra.getLong("END"));
-//        end.setText(DateFormat.getDateInstance(DateFormat.MEDIUM).format(endDate));
-//        status.setText(extra.getString("STATUS"));
-//        name.setText(extra.getString("NAME"));
-//        phone.setText(extra.getString("PHONE"));
-//        email.setText(extra.getString("EMAIL"));
+        PK = getIntent().getIntExtra("ID", 0);
 
         // configure recycle view
         recyclerView = findViewById(R.id.detail_course_recycler_view);

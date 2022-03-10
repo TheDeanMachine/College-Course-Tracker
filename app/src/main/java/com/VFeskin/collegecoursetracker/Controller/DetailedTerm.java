@@ -63,14 +63,7 @@ public class DetailedTerm extends AppCompatActivity implements CourseViewAdapter
         start = findViewById(R.id.textViewDetailStartDate);
         end = findViewById(R.id.textViewDetailEndDate);
 
-        // get values from term card and set text
-        Bundle extra = getIntent().getExtras();
-        PK = extra.getInt("ID");
-//        title.setText(extra.getString("TITLE"));
-//        startDate = DateConverter.fromTimestamp(extra.getLong("START"));
-//        start.setText(DateFormat.getDateInstance(DateFormat.MEDIUM).format(startDate));
-//        endDate = DateConverter.fromTimestamp(extra.getLong("END"));
-//        end.setText(DateFormat.getDateInstance(DateFormat.MEDIUM).format(endDate));
+        PK = getIntent().getIntExtra("ID", 0);
 
         // configure recycle view
         recyclerView = findViewById(R.id.detail_term_recycler_view);
@@ -119,17 +112,9 @@ public class DetailedTerm extends AppCompatActivity implements CourseViewAdapter
     @Override
     public void onCourseClick(int position) {
         Intent intent = new Intent(this, DetailedCourse.class);
-
         // pass data to the detail view
         Course course = Objects.requireNonNull(coursesByTermId.getValue()).get(position);
         intent.putExtra("ID", course.getId());
-//        intent.putExtra("TITLE", course.getTitle());
-//        intent.putExtra("START", DateConverter.ToTimestamp(course.getStartDate()));
-//        intent.putExtra("END", DateConverter.ToTimestamp(course.getEndDate()));
-//        intent.putExtra("STATUS", course.getCourseStatus());
-//        intent.putExtra("NAME", course.getInstructorName());
-//        intent.putExtra("PHONE", course.getInstructorPhone());
-//        intent.putExtra("EMAIL", course.getInstructorEmail());
         startActivity(intent);
     }
 

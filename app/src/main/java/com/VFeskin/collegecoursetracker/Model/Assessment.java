@@ -54,8 +54,8 @@ public class Assessment {
 
     // for deleting and updating
     @Ignore
-    public Assessment(int id, @NonNull String assessmentType, @NonNull String title, @NonNull Date startDate,
-                      @NonNull Date endDate, int courseId) {
+    public Assessment(int id, @NonNull String assessmentType, @NonNull String title,
+                      @NonNull Date startDate, @NonNull Date endDate, int courseId) {
         this.id = id;
         this.assessmentType = assessmentType;
         this.title = title;
