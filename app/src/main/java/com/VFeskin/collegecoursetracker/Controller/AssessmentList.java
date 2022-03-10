@@ -111,11 +111,13 @@ public class AssessmentList extends AppCompatActivity implements AssessmentViewA
     public void viewAllTerms() {
         Intent intent = new Intent(this, TermList.class);
         startActivity(intent);
+        finish();
     }
 
     public void viewAllCourses() {
         Intent intent = new Intent(this, CourseList.class);
         startActivity(intent);
+        finish();
     }
 
 }

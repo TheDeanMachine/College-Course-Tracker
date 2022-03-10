@@ -115,10 +115,12 @@ public class CourseList extends AppCompatActivity implements CourseViewAdapter.O
     public void viewAllTerms() {
         Intent intent = new Intent(this, TermList.class);
         startActivity(intent);
+        finish();
     }
 
     public void viewAllAssessments() {
         Intent intent = new Intent(this, AssessmentList.class);
         startActivity(intent);
+        finish();
     }
 }
