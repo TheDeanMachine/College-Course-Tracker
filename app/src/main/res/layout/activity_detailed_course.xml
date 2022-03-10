@@ -8,64 +8,128 @@
 
     <LinearLayout
         android:id="@+id/linearLayout"
-        android:layout_width="0dp"
-        android:layout_height="280dp"
-        android:background="@color/purple_200"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toTopOf="@+id/detail_course_recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
 
+        <LinearLayout
+            android:id="@+id/linearLayoutLeft"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:background="@color/purple_200"
+            android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/textViewDetailCourseTitle"
+            <TextView
+                android:id="@+id/textViewDetailCourseTitleSet"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:text="@string/course_title" />
+
+            <TextView
+                android:id="@+id/textViewDetailCourseStartDateSet"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:text="@string/course_start_date" />
+
+            <TextView
+                android:id="@+id/textViewDetailCourseEndDateSet"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:text="@string/course_end_date" />
+
+            <TextView
+                android:id="@+id/textViewDetailCourseStatusSet"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:text="@string/course_status" />
+
+            <TextView
+                android:id="@+id/textViewDetailCourseInstructorNameSet"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:text="@string/instructor_name_txt" />
+
+            <TextView
+                android:id="@+id/textViewDetailCourseInstructorPhoneSet"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:text="@string/instructor_phone_txt" />
+
+            <TextView
+                android:id="@+id/textViewDetailCourseInstructorEmailSet"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:text="@string/instructor_email_txt" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayoutRight"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:text="TextView" />
+            android:orientation="vertical"
+            android:background="@color/purple_200">
 
-        <TextView
-            android:id="@+id/textViewDetailCourseStartDate"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:text="TextView" />
+            <TextView
+                android:id="@+id/textViewDetailCourseTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:text="TextView" />
 
-        <TextView
-            android:id="@+id/textViewDetailCourseEndDate"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:text="TextView" />
+            <TextView
+                android:id="@+id/textViewDetailCourseStartDate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:text="TextView" />
 
-        <TextView
-            android:id="@+id/textViewDetailCourseStatus"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:text="TextView" />
+            <TextView
+                android:id="@+id/textViewDetailCourseEndDate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:text="TextView" />
 
-        <TextView
-            android:id="@+id/textViewDetailCourseInstructorName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:text="TextView" />
+            <TextView
+                android:id="@+id/textViewDetailCourseStatus"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:text="TextView" />
 
-        <TextView
-            android:id="@+id/textViewDetailCourseInstructorPhone"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:text="TextView" />
+            <TextView
+                android:id="@+id/textViewDetailCourseInstructorName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:text="TextView" />
 
-        <TextView
-            android:id="@+id/textViewDetailCourseInstructorEmail"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:text="TextView" />
+            <TextView
+                android:id="@+id/textViewDetailCourseInstructorPhone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:text="TextView" />
+
+            <TextView
+                android:id="@+id/textViewDetailCourseInstructorEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:text="TextView" />
+        </LinearLayout>
     </LinearLayout>
 
 
@@ -80,7 +144,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"/>
 
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton

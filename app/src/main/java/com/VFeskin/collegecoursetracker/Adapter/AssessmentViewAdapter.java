@@ -8,6 +8,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.VFeskin.collegecoursetracker.Model.Assessment;
 import com.VFeskin.collegecoursetracker.R;
+
+import java.text.DateFormat;
 import java.util.List;
 
 /**
@@ -48,12 +50,16 @@ public class AssessmentViewAdapter extends RecyclerView.Adapter<AssessmentViewAd
     public void onBindViewHolder(@NonNull AssessmentViewAdapter.ViewHolder holder, int position) {
         // get assessment at position in list
         Assessment assessment = assessmentList.get(position);
+
         // set the card view with its data
-//        holder.testType.setText(assessment.getAssessmentType());
         holder.title.setText(assessment.getTitle());
-        holder.start.setText(assessment.getStartDate().toString());
+        holder.start.setText(DateFormat.getDateInstance(DateFormat.MEDIUM).format(assessment.getStartDate()));
+
+//        holder.testType.setText(assessment.getAssessmentType());
 //        holder.end.setText(assessment.getEndDate().toString());
 
+//        // format display for date and time
+//        holder.start.setText(DateFormat.getDateTimeInstance(DateFormat.MEDIUM, DateFormat.SHORT).format(assessment.getStartDate()));
     }
 
     /*

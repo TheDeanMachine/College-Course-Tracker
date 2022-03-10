@@ -8,6 +8,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.VFeskin.collegecoursetracker.Model.Course;
 import com.VFeskin.collegecoursetracker.R;
+
+import java.text.DateFormat;
 import java.util.List;
 
 /**
@@ -50,8 +52,8 @@ public class CourseViewAdapter extends RecyclerView.Adapter<CourseViewAdapter.Vi
         Course course = courseList.get(position);
         // set the card view with its data
         holder.title.setText(course.getTitle());
-        holder.start.setText(course.getStartDate().toString());
-        holder.end.setText(course.getEndDate().toString());
+        holder.start.setText(DateFormat.getDateInstance(DateFormat.MEDIUM).format(course.getStartDate()));
+        holder.end.setText(DateFormat.getDateInstance(DateFormat.MEDIUM).format(course.getEndDate()));
 //        holder.status.setText(course.getCourseStatus().toString());
 //        holder.name.setText(course.getInstructorName());
 //        holder.phone.setText(course.getInstructorPhone());
