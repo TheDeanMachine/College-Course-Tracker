@@ -25,21 +25,24 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="10dp"
-                android:text="TextView" />
+                android:text="TextView"
+                android:textColor="#000000"/>
 
             <TextView
                 android:id="@+id/textViewCourseStartDate"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="10dp"
-                android:text="TextView" />
+                android:text="TextView"
+                android:textColor="#000000"/>
 
             <TextView
                 android:id="@+id/textViewCourseEndDate"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="10dp"
-                android:text="TextView" />
+                android:text="TextView"
+                android:textColor="#000000"/>
 
             <!--            <TextView-->
             <!--                android:id="@+id/textViewCourseStatus"-->

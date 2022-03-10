@@ -22,56 +22,63 @@
             android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:background="@color/purple_200"
-            android:orientation="vertical">
+            android:orientation="vertical" >
 
             <TextView
                 android:id="@+id/textViewDetailCourseTitleSet"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="10dp"
-                android:text="@string/course_title" />
+                android:text="@string/course_title"
+                android:textColor="#311B92"/>
 
             <TextView
                 android:id="@+id/textViewDetailCourseStartDateSet"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="10dp"
-                android:text="@string/course_start_date" />
+                android:text="@string/course_start_date"
+                android:textColor="#311B92"/>
 
             <TextView
                 android:id="@+id/textViewDetailCourseEndDateSet"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="10dp"
-                android:text="@string/course_end_date" />
+                android:text="@string/course_end_date"
+                android:textColor="#311B92"/>
 
             <TextView
                 android:id="@+id/textViewDetailCourseStatusSet"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="10dp"
-                android:text="@string/course_status" />
+                android:text="@string/course_status"
+                android:textColor="#311B92"/>
 
             <TextView
                 android:id="@+id/textViewDetailCourseInstructorNameSet"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="10dp"
-                android:text="@string/instructor_name_txt" />
+                android:text="@string/instructor_name_txt"
+                android:textColor="#311B92"/>
 
             <TextView
                 android:id="@+id/textViewDetailCourseInstructorPhoneSet"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="10dp"
-                android:text="@string/instructor_phone_txt" />
+                android:text="@string/instructor_phone_txt"
+                android:textColor="#311B92"/>
 
             <TextView
                 android:id="@+id/textViewDetailCourseInstructorEmailSet"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="10dp"
-                android:text="@string/instructor_email_txt" />
+                android:text="@string/instructor_email_txt"
+                android:textColor="#311B92"/>
         </LinearLayout>
 
         <LinearLayout
@@ -86,49 +93,56 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="10dp"
-                android:text="TextView" />
+                android:text="TextView"
+                android:textColor="#311B92"/>
 
             <TextView
                 android:id="@+id/textViewDetailCourseStartDate"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="10dp"
-                android:text="TextView" />
+                android:text="TextView"
+                android:textColor="#311B92"/>
 
             <TextView
                 android:id="@+id/textViewDetailCourseEndDate"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="10dp"
-                android:text="TextView" />
+                android:text="TextView"
+                android:textColor="#311B92"/>
 
             <TextView
                 android:id="@+id/textViewDetailCourseStatus"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="10dp"
-                android:text="TextView" />
+                android:text="TextView"
+                android:textColor="#311B92"/>
 
             <TextView
                 android:id="@+id/textViewDetailCourseInstructorName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="10dp"
-                android:text="TextView" />
+                android:text="TextView"
+                android:textColor="#311B92"/>
 
             <TextView
                 android:id="@+id/textViewDetailCourseInstructorPhone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="10dp"
-                android:text="TextView" />
+                android:text="TextView"
+                android:textColor="#311B92"/>
 
             <TextView
                 android:id="@+id/textViewDetailCourseInstructorEmail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="10dp"
-                android:text="TextView" />
+                android:text="TextView"
+                android:textColor="#311B92"/>
         </LinearLayout>
     </LinearLayout>
 
