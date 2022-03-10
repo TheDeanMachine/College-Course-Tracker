@@ -41,9 +41,6 @@ public class NewAssessment extends AppCompatActivity {
     private Date startDate;
     private Date endDate;
 
-//    // view model reference, gives access to all assessments
-//    private AssessmentViewModel assessmentViewModel;
-
     // course PK
     private int id;
 
@@ -58,11 +55,6 @@ public class NewAssessment extends AppCompatActivity {
         endDateTxt = findViewById(R.id.editTextAssessmentEndDate);
         testTypeSpinner = findViewById(R.id.testSpinner);
         createAssessmentButton = findViewById(R.id.createAssessmentButton);
-
-//        // creates an instance of view model to use
-//        assessmentViewModel = new ViewModelProvider.AndroidViewModelFactory(NewAssessment.this
-//                .getApplication())
-//                .create(AssessmentViewModel.class);
 
         // shows the date picker, onClick
         startDateTxt.setOnClickListener(view -> new DatePickerDialog(NewAssessment.this, dateDialog,

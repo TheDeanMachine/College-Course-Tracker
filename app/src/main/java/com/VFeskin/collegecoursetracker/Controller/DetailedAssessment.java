@@ -3,14 +3,10 @@ package com.VFeskin.collegecoursetracker.Controller;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModelProvider;
-
 import com.VFeskin.collegecoursetracker.Model.Assessment;
 import com.VFeskin.collegecoursetracker.Model.AssessmentViewModel;
-import com.VFeskin.collegecoursetracker.Model.Course;
-import com.VFeskin.collegecoursetracker.Model.CourseViewModel;
 import com.VFeskin.collegecoursetracker.R;
 import com.VFeskin.collegecoursetracker.Utility.DateConverter;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
