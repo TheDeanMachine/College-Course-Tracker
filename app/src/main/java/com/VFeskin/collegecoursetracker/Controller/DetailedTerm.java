@@ -158,6 +158,9 @@ public class DetailedTerm extends AppCompatActivity implements CourseViewAdapter
     }
 
     private void deleteItem() {
+        // check for any corresponding courses
+
+
         if (termById.hasObservers()) {
             termById.removeObservers(DetailedTerm.this);
             TermViewModel.delete(new Term(PK, title.toString(), startDate, endDate));

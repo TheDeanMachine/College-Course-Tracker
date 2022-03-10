@@ -8,35 +8,72 @@
 
     <LinearLayout
         android:id="@+id/linearLayout"
-        android:layout_width="0dp"
-        android:layout_height="120dp"
-        android:background="@color/purple_200"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toTopOf="@+id/detail_term_recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
 
-        <TextView
-            android:id="@+id/textViewDetailTitle"
+        <LinearLayout
+            android:id="@+id/linearLayoutLeft"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:background="@color/purple_200"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textViewDetailTitleSet"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:text="@string/term_title_text" />
+
+            <TextView
+                android:id="@+id/textViewDetailStartDateSet"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:text="@string/term_start_date" />
+
+            <TextView
+                android:id="@+id/textViewDetailEndDateSet"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:text="@string/term_end_date" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayoutRight"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:text="TextView" />
+            android:background="@color/purple_200"
+            android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/textViewDetailStartDate"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:text="TextView" />
+            <TextView
+                android:id="@+id/textViewDetailTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:text="TextView" />
 
-        <TextView
-            android:id="@+id/textViewDetailEndDate"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:text="TextView" />
+            <TextView
+                android:id="@+id/textViewDetailStartDate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:text="TextView" />
+
+            <TextView
+                android:id="@+id/textViewDetailEndDate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:text="TextView" />
+        </LinearLayout>
     </LinearLayout>
 
 

@@ -23,6 +23,9 @@
     <string name="update_term">UPDATE TERM</string>
     <string name="update_course">UPDATE COURSE</string>
     <string name="update_assessment">UPDATE ASSESSMENT</string>
+    <string name="term_title_text">Term Title</string>
+    <string name="term_start_date">Term Start Date</string>
+    <string name="term_end_date">Term End Date</string>
 
 
     <string-array name="course_status">
