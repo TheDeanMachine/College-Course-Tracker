@@ -1,6 +1,7 @@
 package com.VFeskin.collegecoursetracker.Controller;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.DialogFragment;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -11,6 +12,7 @@ import com.VFeskin.collegecoursetracker.Model.CourseViewModel;
 import com.VFeskin.collegecoursetracker.Model.Term;
 import com.VFeskin.collegecoursetracker.Model.TermViewModel;
 import com.VFeskin.collegecoursetracker.R;
+import com.VFeskin.collegecoursetracker.Utility.CourseCheckDialog;
 import com.VFeskin.collegecoursetracker.Utility.DateConverter;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import android.content.Intent;
@@ -159,13 +161,19 @@ public class DetailedTerm extends AppCompatActivity implements CourseViewAdapter
 
     private void deleteItem() {
         // check for any corresponding courses
-
-
-        if (termById.hasObservers()) {
-            termById.removeObservers(DetailedTerm.this);
-            TermViewModel.delete(new Term(PK, title.toString(), startDate, endDate));
-            finish();
+        if (coursesByTermId.getValue().isEmpty()) {
+            // no found courses, ok to delete
+            if (termById.hasObservers()) {
+                termById.removeObservers(DetailedTerm.this);
+                TermViewModel.delete(new Term(PK, title.toString(), startDate, endDate));
+                finish();
+            }
+        } else {
+            // set alert for found courses
+            DialogFragment newFragment = new CourseCheckDialog();
+            newFragment.show(getSupportFragmentManager(), "found class");
         }
+
     }
 
     public void viewAllTerms() {
