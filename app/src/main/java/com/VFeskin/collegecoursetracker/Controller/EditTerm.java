@@ -34,8 +34,8 @@ public class EditTerm extends AppCompatActivity {
     private Date startDate;
     private Date endDate;
 
-    // term PK
-    private int id;
+    // key
+    private int PK;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,7 +50,7 @@ public class EditTerm extends AppCompatActivity {
 
         // get values from term card and set text
         Bundle extra = getIntent().getExtras();
-        id = extra.getInt("ID");
+        PK = extra.getInt("ID");
         termTitleTxt.setText(extra.getString("TITLE"));
         startDate = DateConverter.fromTimestamp(extra.getLong("START"));
         startDateTxt.setText(DateFormat.getDateInstance(DateFormat.MEDIUM).format(startDate));
@@ -116,7 +116,7 @@ public class EditTerm extends AppCompatActivity {
                 return;
             }
 
-            TermViewModel.update(new Term(id, title, startDate, endDate));
+            TermViewModel.update(new Term(PK, title, startDate, endDate));
             finish();
         });
 

@@ -123,13 +123,13 @@ public class DetailedTerm extends AppCompatActivity implements CourseViewAdapter
         // pass data to the detail view
         Course course = Objects.requireNonNull(coursesByTermId.getValue()).get(position);
         intent.putExtra("ID", course.getId());
-        intent.putExtra("TITLE", course.getTitle());
-        intent.putExtra("START", DateConverter.ToTimestamp(course.getStartDate()));
-        intent.putExtra("END", DateConverter.ToTimestamp(course.getEndDate()));
-        intent.putExtra("STATUS", course.getCourseStatus());
-        intent.putExtra("NAME", course.getInstructorName());
-        intent.putExtra("PHONE", course.getInstructorPhone());
-        intent.putExtra("EMAIL", course.getInstructorEmail());
+//        intent.putExtra("TITLE", course.getTitle());
+//        intent.putExtra("START", DateConverter.ToTimestamp(course.getStartDate()));
+//        intent.putExtra("END", DateConverter.ToTimestamp(course.getEndDate()));
+//        intent.putExtra("STATUS", course.getCourseStatus());
+//        intent.putExtra("NAME", course.getInstructorName());
+//        intent.putExtra("PHONE", course.getInstructorPhone());
+//        intent.putExtra("EMAIL", course.getInstructorEmail());
         startActivity(intent);
     }
 
@@ -173,11 +173,11 @@ public class DetailedTerm extends AppCompatActivity implements CourseViewAdapter
     }
 
     private void deleteItem() {
-
-        TermViewModel.delete(new Term(PK, title.toString(), startDate, endDate));
-        Intent intent = new Intent(this, TermList.class);
-        startActivity(intent);
-
+        if (termById.hasObservers()) {
+            termById.removeObservers(DetailedTerm.this);
+            TermViewModel.delete(new Term(PK, title.toString(), startDate, endDate));
+            finish();
+        }
     }
 
     public void viewAllTerms() {

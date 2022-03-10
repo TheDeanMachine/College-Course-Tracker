@@ -192,12 +192,11 @@ public class DetailedCourse extends AppCompatActivity implements AssessmentViewA
     }
 
     private void deleteItem() {
-
-        CourseViewModel.delete(new Course(PK, title.toString(), startDate, endDate,
-                status.toString(), name.toString(), phone.toString(), email.toString(), FK));
-        Intent intent = new Intent(this, TermList.class);
-        startActivity(intent);
-
+        if (courseById.hasObservers()) {
+            courseById.removeObservers(DetailedCourse.this);
+            CourseViewModel.delete(new Course(PK, title.toString(), startDate, endDate, status.toString(), name.toString(), phone.toString(), email.toString(), FK));
+            finish();
+        }
     }
 
     public void viewAllTerms() {

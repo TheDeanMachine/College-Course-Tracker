@@ -59,7 +59,7 @@ public class EditCourse extends AppCompatActivity {
         instructorEmailTxt = findViewById(R.id.editTextUpdateInstructorEmailAddress);
         updateCourseButton = findViewById(R.id.updateCourseButton);
 
-        // get values from term card and set text
+        // get values and set text
         Bundle extra = getIntent().getExtras();
         PK = extra.getInt("ID");
         courseTitleTxt.setText(extra.getString("TITLE"));
