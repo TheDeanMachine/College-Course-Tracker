@@ -166,6 +166,9 @@ public class DetailedCourse extends AppCompatActivity implements AssessmentViewA
     public boolean onOptionsItemSelected(MenuItem item) {
         // Determine which app bar item was chosen
         switch (item.getItemId()) {
+            case R.id.share:
+                shareItem();
+                return true;
             case R.id.edit:
                 editItem();
                 return true;
@@ -184,6 +187,16 @@ public class DetailedCourse extends AppCompatActivity implements AssessmentViewA
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    private void shareItem() {
+        Intent sendIntent = new Intent();
+        sendIntent.setAction(Intent.ACTION_SEND);
+        sendIntent.putExtra(Intent.EXTRA_TEXT, Objects.requireNonNull(courseById.getValue()).getNote());
+        sendIntent.setType("text/plain");
+
+        Intent shareIntent = Intent.createChooser(sendIntent, null);
+        startActivity(shareIntent);
     }
 
     private void editItem() {
