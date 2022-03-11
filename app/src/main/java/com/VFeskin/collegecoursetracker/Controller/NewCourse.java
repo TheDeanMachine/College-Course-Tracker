@@ -35,6 +35,7 @@ public class NewCourse extends AppCompatActivity {
     private EditText instructorNameTxt;
     private EditText instructorPhoneTxt;
     private EditText instructorEmailTxt;
+    private EditText noteTxt;
     private Button createCourseButton;
 
     // date related fields
@@ -57,10 +58,10 @@ public class NewCourse extends AppCompatActivity {
         startDateTxt = findViewById(R.id.editTextCourseStartDate);
         endDateTxt = findViewById(R.id.editTextCourseEndDate);
         courseStatusSpinner = findViewById(R.id.spinner);
-
         instructorNameTxt = findViewById(R.id.editTextInstructorName);
         instructorPhoneTxt = findViewById(R.id.editTextInstructorPhone);
         instructorEmailTxt = findViewById(R.id.editTextInstructorEmailAddress);
+        noteTxt = findViewById(R.id.editTextNewMultiLineNote);
         createCourseButton = findViewById(R.id.createCourseButton);
 
         // shows the date picker, onClick
@@ -170,9 +171,16 @@ public class NewCourse extends AppCompatActivity {
                 return;
             }
 
+            String note;
+            if (noteTxt.getText().toString().isEmpty()) {
+                note = null;
+            } else {
+                note = noteTxt.getText().toString();
+            }
+
             id = getIntent().getIntExtra("ID", 0);
 
-            CourseViewModel.insert(new Course(title, startDate, endDate, name, phone, email, status, id));
+            CourseViewModel.insert(new Course(title, startDate, endDate, name, phone, email, status, note, id));
             finish();
         });
 

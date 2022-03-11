@@ -42,6 +42,7 @@
     <string name="dialog_message">"Please delete corresponding courses before deleting this term."</string>
     <string name="dialog_title">Found Courses!</string>
     <string name="optional_notes">Optional note</string>
+    <string name="share">Share</string>
 
 
     <string-array name="course_status">

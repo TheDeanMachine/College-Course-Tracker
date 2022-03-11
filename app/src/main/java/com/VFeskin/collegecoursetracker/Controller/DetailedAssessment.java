@@ -21,10 +21,10 @@ import java.util.Date;
 public class DetailedAssessment extends AppCompatActivity {
 
     // XML attributes
-    public TextView title;
-    public TextView testType;
-    public TextView start;
-    public TextView end;
+    private TextView title;
+    private TextView testType;
+    private TextView start;
+    private TextView end;
 
     // data
     private int PK;

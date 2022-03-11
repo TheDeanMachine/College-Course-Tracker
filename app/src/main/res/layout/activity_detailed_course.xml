@@ -81,7 +81,7 @@
                 android:textColor="#311B92"/>
 
             <TextView
-                android:id="@+id/textView2"
+                android:id="@+id/textViewDetailCourseNoteSet"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="10dp"
@@ -154,7 +154,7 @@
                 android:textColor="#311B92"/>
 
             <TextView
-                android:id="@+id/textView3"
+                android:id="@+id/textViewDetailCourseNote"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="10dp"

@@ -1,6 +1,9 @@
 package com.VFeskin.collegecoursetracker.Controller;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.ViewModelProvider;
+
 import com.VFeskin.collegecoursetracker.Model.Course;
 import com.VFeskin.collegecoursetracker.Model.CourseViewModel;
 import com.VFeskin.collegecoursetracker.R;
@@ -8,6 +11,7 @@ import com.VFeskin.collegecoursetracker.Utility.DateConverter;
 import com.google.android.material.snackbar.Snackbar;
 import android.app.DatePickerDialog;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -31,6 +35,7 @@ public class EditCourse extends AppCompatActivity {
     private EditText instructorNameTxt;
     private EditText instructorPhoneTxt;
     private EditText instructorEmailTxt;
+    private EditText noteTxt;
     private Button updateCourseButton;
 
     // date related fields
@@ -57,6 +62,7 @@ public class EditCourse extends AppCompatActivity {
         instructorNameTxt = findViewById(R.id.editTextUpdateInstructorName);
         instructorPhoneTxt = findViewById(R.id.editTextUpdateInstructorPhone);
         instructorEmailTxt = findViewById(R.id.editTextUpdateInstructorEmailAddress);
+        noteTxt = findViewById(R.id.editTextUpdateMultiLineNote);
         updateCourseButton = findViewById(R.id.updateCourseButton);
 
         // get values and set text
@@ -71,6 +77,7 @@ public class EditCourse extends AppCompatActivity {
         instructorNameTxt.setText(extra.getString("NAME"));
         instructorPhoneTxt.setText(extra.getString("PHONE"));
         instructorEmailTxt.setText(extra.getString("EMAIL"));
+        noteTxt.setText(extra.getString("NOTE"));
         FK = extra.getInt("FK");
 
         // shows the date picker, onClick
@@ -180,7 +187,14 @@ public class EditCourse extends AppCompatActivity {
                 return;
             }
 
-            CourseViewModel.update(new Course(PK, title, startDate, endDate, name, phone, email, status, FK));
+            String note;
+            if (noteTxt.getText().toString().isEmpty()) {
+                note = null;
+            } else {
+                note = noteTxt.getText().toString();
+            }
+
+            CourseViewModel.update(new Course(PK, title, startDate, endDate, name, phone, email, status, note, FK));
             finish();
         });
 

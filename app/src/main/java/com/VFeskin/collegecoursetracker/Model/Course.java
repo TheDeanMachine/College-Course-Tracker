@@ -50,10 +50,13 @@ public class Course {
     @ColumnInfo(name = "term_id")
     private int termId; //FK
 
+    @ColumnInfo(name = "note")
+    private String note;
+
     // for creating new objects
     public Course(@NonNull String title, @NonNull Date startDate, @NonNull Date endDate,
                   String instructorName, String instructorPhone, String instructorEmail,
-                  String courseStatus, int termId) {
+                  String courseStatus, String note, int termId) {
         this.title = title;
         this.startDate = startDate;
         this.endDate = endDate;
@@ -61,6 +64,7 @@ public class Course {
         this.instructorPhone = instructorPhone;
         this.instructorEmail = instructorEmail;
         this.courseStatus = courseStatus;
+        this.note = note;
         this.termId = termId;
     }
 
@@ -68,7 +72,7 @@ public class Course {
     @Ignore
     public Course(int id, @NonNull String title, @NonNull Date startDate, @NonNull Date endDate,
                   String instructorName, String instructorPhone,
-                  String instructorEmail, String courseStatus, int termId) {
+                  String instructorEmail, String courseStatus, String note, int termId) {
         this.id = id;
         this.title = title;
         this.startDate = startDate;
@@ -77,6 +81,7 @@ public class Course {
         this.instructorPhone = instructorPhone;
         this.instructorEmail = instructorEmail;
         this.courseStatus = courseStatus;
+        this.note = note;
         this.termId = termId;
     }
 
@@ -120,6 +125,10 @@ public class Course {
         return termId;
     }
 
+    public String getNote() {
+        return note;
+    }
+
     // setters
     public void setId(int id) {
         this.id = id;
@@ -155,5 +164,9 @@ public class Course {
 
     public void setTermId(int termId) {
         this.termId = termId;
+    }
+
+    public void setNote(String note) {
+        this.note = note;
     }
 }

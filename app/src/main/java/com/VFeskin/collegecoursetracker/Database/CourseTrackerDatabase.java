@@ -1,13 +1,11 @@
 package com.VFeskin.collegecoursetracker.Database;
 
 import android.content.Context;
-
 import androidx.room.AutoMigration;
 import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.room.TypeConverters;
-
 import com.VFeskin.collegecoursetracker.DAO.AssessmentDAO;
 import com.VFeskin.collegecoursetracker.DAO.CourseDAO;
 import com.VFeskin.collegecoursetracker.DAO.TermDAO;
@@ -15,7 +13,6 @@ import com.VFeskin.collegecoursetracker.Model.Assessment;
 import com.VFeskin.collegecoursetracker.Model.Course;
 import com.VFeskin.collegecoursetracker.Model.Term;
 import com.VFeskin.collegecoursetracker.Utility.DateConverter;
-
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -24,7 +21,7 @@ import java.util.concurrent.Executors;
  * Room executes all queries on a separate thread and ensures that
  * you're not doing any long running operations on the main thread, blocking the UI.
  */
-@Database(entities = { Term.class, Course.class, Assessment.class }, version = 6, exportSchema = false)
+@Database(entities = { Term.class, Course.class, Assessment.class }, version = 7, exportSchema = false)
 @TypeConverters({DateConverter.class})
 public abstract class CourseTrackerDatabase extends RoomDatabase {
     public abstract TermDAO termDAO();

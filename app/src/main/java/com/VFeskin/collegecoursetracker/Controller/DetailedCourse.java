@@ -17,6 +17,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
 import java.text.DateFormat;
 import java.util.Date;
@@ -30,13 +31,15 @@ import java.util.Objects;
 public class DetailedCourse extends AppCompatActivity implements AssessmentViewAdapter.OnAssessmentClickListener {
 
     // XML attributes
-    public TextView title;
-    public TextView start;
-    public TextView end;
-    public TextView status;
-    public TextView name;
-    public TextView phone;
-    public TextView email;
+    private TextView title;
+    private TextView start;
+    private TextView end;
+    private TextView status;
+    private TextView name;
+    private TextView phone;
+    private TextView email;
+    private TextView note;
+    private TextView noteSet;
 
     // data
     private int PK;
@@ -71,6 +74,8 @@ public class DetailedCourse extends AppCompatActivity implements AssessmentViewA
         name = findViewById(R.id.textViewDetailCourseInstructorName);
         phone = findViewById(R.id.textViewDetailCourseInstructorPhone);
         email = findViewById(R.id.textViewDetailCourseInstructorEmail);
+        note = findViewById(R.id.textViewDetailCourseNote);
+        noteSet = findViewById(R.id.textViewDetailCourseNoteSet);
 
         PK = getIntent().getIntExtra("ID", 0);
 
@@ -108,6 +113,15 @@ public class DetailedCourse extends AppCompatActivity implements AssessmentViewA
             phone.setText(course.getInstructorPhone());
             email.setText(course.getInstructorEmail());
             FK = course.getTermId();
+
+            // check for optional note
+            if (course.getNote() == null) {
+                note.setVisibility(View.GONE);
+                noteSet.setVisibility(View.GONE);
+            } else {
+                note.setText(course.getNote());
+            }
+
         });
 
         // add new assessment
@@ -139,6 +153,12 @@ public class DetailedCourse extends AppCompatActivity implements AssessmentViewA
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu, menu);
+
+        // set share button if optional note is found
+        if (Objects.requireNonNull(courseById.getValue()).getNote() != null) {
+            MenuItem shareItem = menu.findItem(R.id.share);
+            shareItem.setVisible(true);
+        }
         return true;
     }
 
@@ -177,13 +197,18 @@ public class DetailedCourse extends AppCompatActivity implements AssessmentViewA
         intent.putExtra("PHONE", phone.getText());
         intent.putExtra("EMAIL", email.getText());
         intent.putExtra("FK", FK);
+        if (Objects.requireNonNull(courseById.getValue()).getNote() != null) {
+            intent.putExtra("NOTE", note.getText());
+        }
+
         startActivity(intent);
+        finish();
     }
 
     private void deleteItem() {
         if (courseById.hasObservers()) {
             courseById.removeObservers(DetailedCourse.this);
-            CourseViewModel.delete(new Course(PK, title.toString(), startDate, endDate, status.toString(), name.toString(), phone.toString(), email.toString(), FK));
+            CourseViewModel.delete(new Course(PK, title.toString(), startDate, endDate, status.toString(), name.toString(), phone.toString(), email.toString(), null, FK));
             finish();
         }
     }
