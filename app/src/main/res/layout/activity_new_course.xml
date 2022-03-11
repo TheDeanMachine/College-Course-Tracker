@@ -93,6 +93,18 @@
                 android:entries="@array/course_status"
                 tools:ignore="SpeakableTextPresentCheck" />
 
+            <EditText
+                android:id="@+id/editTextNewMultiLineNote"
+                style="@style/form_style"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:gravity="start|top"
+                android:hint="@string/optional_notes"
+                android:inputType="textMultiLine"
+                android:minHeight="48dp"
+                tools:ignore="SpeakableTextPresentCheck" />
+
             <Button
                 android:id="@+id/createCourseButton"
                 style="@style/form_style"

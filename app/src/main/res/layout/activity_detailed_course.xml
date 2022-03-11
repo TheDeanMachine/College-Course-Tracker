@@ -79,6 +79,15 @@
                 android:padding="10dp"
                 android:text="@string/instructor_email_txt"
                 android:textColor="#311B92"/>
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:text="Notes"
+                android:textColor="#311B92" />
+
         </LinearLayout>
 
         <LinearLayout
@@ -143,6 +152,14 @@
                 android:padding="10dp"
                 android:text="TextView"
                 android:textColor="#311B92"/>
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:text="TextView"
+                android:textColor="#311B92" />
         </LinearLayout>
     </LinearLayout>
 
