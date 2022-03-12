@@ -43,6 +43,8 @@
     <string name="dialog_title">Found Courses!</string>
     <string name="optional_notes">Optional note</string>
     <string name="share">Share</string>
+    <string name="channel_name">Channel 1</string>
+    <string name="channel_description">Date receiver channel</string>
 
 
     <string-array name="course_status">
