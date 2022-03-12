@@ -7,13 +7,22 @@ import com.VFeskin.collegecoursetracker.Model.Assessment;
 import com.VFeskin.collegecoursetracker.Model.AssessmentViewModel;
 import com.VFeskin.collegecoursetracker.R;
 import com.VFeskin.collegecoursetracker.Utility.DateConverter;
+import com.VFeskin.collegecoursetracker.Utility.DateReceiver;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
+
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
 import java.text.DateFormat;
 import java.util.Date;
+import java.util.Objects;
 
 /**
  * This class displays a selected assessment in detail.
@@ -36,6 +45,9 @@ public class DetailedAssessment extends AppCompatActivity {
     // view model
     private AssessmentViewModel assessmentViewModel;
 
+    // add button
+    private FloatingActionButton fabAlarm;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +57,7 @@ public class DetailedAssessment extends AppCompatActivity {
         testType = findViewById(R.id.textViewDetailAssessmentType);
         start = findViewById(R.id.textViewDetailAssessmentStartDate);
         end = findViewById(R.id.textViewDetailAssessmentEndDate);
+        fabAlarm = findViewById(R.id.add_test_alarm);
 
         PK = getIntent().getIntExtra("ID", 0);
 
@@ -63,6 +76,23 @@ public class DetailedAssessment extends AppCompatActivity {
             testType.setText(assessment.getAssessmentType());
             FK = assessment.getCourseId();
         });
+
+        // add alarm
+        fabAlarm.setOnClickListener(this::addTestAlarm);
+    }
+
+    private void addTestAlarm(View view) {
+        Long trigger = startDate.getTime();
+        String title = Objects.requireNonNull(assessmentByID.getValue()).getTitle();
+
+        Intent intent = new Intent(this, DateReceiver.class);
+        intent.putExtra("KEY", "Assessment " + title + " starts today" );
+
+        AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, DateReceiver.numAlert++ ,intent, 0);
+        alarmManager.set(AlarmManager.RTC_WAKEUP, trigger, pendingIntent);
+
+        Snackbar.make(view, "Alarm for " + title + " set", Snackbar.LENGTH_LONG).show();
     }
 
     @Override

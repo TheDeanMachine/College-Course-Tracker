@@ -153,7 +153,7 @@ public class DetailedCourse extends AppCompatActivity implements AssessmentViewA
         PendingIntent pendingIntent = PendingIntent.getBroadcast(this, DateReceiver.numAlert++ ,intent, 0);
         alarmManager.set(AlarmManager.RTC_WAKEUP, trigger, pendingIntent);
 
-        Snackbar.make(view, "Alarm for " + title + " set", Snackbar.LENGTH_SHORT).show();
+        Snackbar.make(view, "Alarm for " + title + " set", Snackbar.LENGTH_LONG).show();
     }
 
     private void openNewAssessment() {
