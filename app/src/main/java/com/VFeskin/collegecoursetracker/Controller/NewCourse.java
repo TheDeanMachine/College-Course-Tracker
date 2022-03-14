@@ -5,6 +5,8 @@ import com.VFeskin.collegecoursetracker.Model.CourseViewModel;
 import com.VFeskin.collegecoursetracker.R;
 import com.VFeskin.collegecoursetracker.Utility.Status;
 import com.google.android.material.snackbar.Snackbar;
+
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 import android.app.DatePickerDialog;
@@ -184,6 +186,21 @@ public class NewCourse extends AppCompatActivity {
             finish();
         });
 
+    }
+
+    // saves the date on orientation change
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putSerializable("START", startDate);
+        outState.putSerializable("END", endDate);
+    }
+
+    @Override
+    protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        startDate = (Date) savedInstanceState.getSerializable("START");
+        endDate = (Date) savedInstanceState.getSerializable("END");
     }
 
 }

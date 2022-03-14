@@ -1,5 +1,6 @@
 package com.VFeskin.collegecoursetracker.Controller;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -133,6 +134,21 @@ public class NewAssessment extends AppCompatActivity {
             finish();
         });
 
+    }
+
+    // saves the date on orientation change
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putSerializable("START", startDate);
+        outState.putSerializable("END", endDate);
+    }
+
+    @Override
+    protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        startDate = (Date) savedInstanceState.getSerializable("START");
+        endDate = (Date) savedInstanceState.getSerializable("END");
     }
 
 }
