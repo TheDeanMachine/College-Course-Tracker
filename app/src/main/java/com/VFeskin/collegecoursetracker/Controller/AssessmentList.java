@@ -10,7 +10,7 @@ import com.VFeskin.collegecoursetracker.Model.Assessment;
 import com.VFeskin.collegecoursetracker.Model.AssessmentViewModel;
 import com.VFeskin.collegecoursetracker.R;
 import com.VFeskin.collegecoursetracker.Utility.DateConverter;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -82,8 +82,8 @@ public class AssessmentList extends AppCompatActivity implements AssessmentViewA
         intent.putExtra("ID", assessment.getId());
         intent.putExtra("TITLE", assessment.getTitle());
         intent.putExtra("TEST", assessment.getAssessmentType());
-        intent.putExtra("START", DateConverter.ToTimestamp(assessment.getStartDate()));
-        intent.putExtra("END", DateConverter.ToTimestamp(assessment.getEndDate()));
+        intent.putExtra("START", DateConverter.ToTimestamp(assessment.getStartDateTime()));
+//        intent.putExtra("END", DateConverter.ToTimestamp(assessment.getEndDate()));
         startActivity(intent);
     }
 

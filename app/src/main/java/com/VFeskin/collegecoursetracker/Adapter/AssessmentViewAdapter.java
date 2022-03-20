@@ -53,13 +53,13 @@ public class AssessmentViewAdapter extends RecyclerView.Adapter<AssessmentViewAd
 
         // set the card view with its data
         holder.title.setText(assessment.getTitle());
-        holder.start.setText(DateFormat.getDateInstance(DateFormat.MEDIUM).format(assessment.getStartDate()));
+//        holder.start.setText(DateFormat.getDateInstance(DateFormat.MEDIUM).format(assessment.getStartDateTime()));
 
 //        holder.testType.setText(assessment.getAssessmentType());
 //        holder.end.setText(assessment.getEndDate().toString());
 
 //        // format display for date and time
-//        holder.start.setText(DateFormat.getDateTimeInstance(DateFormat.MEDIUM, DateFormat.SHORT).format(assessment.getStartDate()));
+        holder.start.setText(DateFormat.getDateTimeInstance(DateFormat.MEDIUM, DateFormat.SHORT).format(assessment.getStartDateTime()));
     }
 
     /*
@@ -77,7 +77,7 @@ public class AssessmentViewAdapter extends RecyclerView.Adapter<AssessmentViewAd
         public TextView testType;
         public TextView title;
         public TextView start;
-        public TextView end;
+//        public TextView end;
 
         // listener reference
         OnAssessmentClickListener onAssessmentClickListener;

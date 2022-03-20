@@ -171,8 +171,8 @@ public class DetailedCourse extends AppCompatActivity implements AssessmentViewA
         intent.putExtra("ID", assessment.getId());
         intent.putExtra("TITLE", assessment.getTitle());
         intent.putExtra("TEST", assessment.getAssessmentType());
-        intent.putExtra("START", DateConverter.ToTimestamp(assessment.getStartDate()));
-        intent.putExtra("END", DateConverter.ToTimestamp(assessment.getEndDate()));
+        intent.putExtra("START", DateConverter.ToTimestamp(assessment.getStartDateTime()));
+//        intent.putExtra("END", DateConverter.ToTimestamp(assessment.getEndDate()));
         startActivity(intent);
     }
 

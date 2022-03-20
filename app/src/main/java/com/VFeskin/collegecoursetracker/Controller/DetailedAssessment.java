@@ -33,13 +33,13 @@ public class DetailedAssessment extends AppCompatActivity {
     private TextView title;
     private TextView testType;
     private TextView start;
-    private TextView end;
+//    private TextView end;
 
     // data
     private int PK;
     private int FK;
-    private Date startDate;
-    private Date endDate;
+    private Date startDateTime;
+//    private Date endDate;
     private LiveData<Assessment> assessmentByID;
 
     // view model
@@ -56,7 +56,7 @@ public class DetailedAssessment extends AppCompatActivity {
         title = findViewById(R.id.textViewDetailAssessmentTitle);
         testType = findViewById(R.id.textViewDetailAssessmentType);
         start = findViewById(R.id.textViewDetailAssessmentStartDate);
-        end = findViewById(R.id.textViewDetailAssessmentEndDate);
+//        end = findViewById(R.id.textViewDetailAssessmentEndDate);
         fabAlarm = findViewById(R.id.add_test_alarm);
 
         PK = getIntent().getIntExtra("ID", 0);
@@ -69,10 +69,10 @@ public class DetailedAssessment extends AppCompatActivity {
         assessmentByID = assessmentViewModel.getByAssessmentsPK(PK);
         assessmentByID.observe(this, assessment -> {
             title.setText(assessment.getTitle());
-            startDate = assessment.getStartDate();
-            endDate = assessment.getEndDate();
-            start.setText(DateFormat.getDateInstance(DateFormat.MEDIUM).format(assessment.getStartDate()));
-            end.setText(DateFormat.getDateInstance(DateFormat.MEDIUM).format(assessment.getEndDate()));
+            startDateTime = assessment.getStartDateTime();
+//            endDate = assessment.getEndDate();
+            start.setText(DateFormat.getDateInstance(DateFormat.MEDIUM).format(assessment.getStartDateTime()));
+//            end.setText(DateFormat.getDateInstance(DateFormat.MEDIUM).format(assessment.getEndDate()));
             testType.setText(assessment.getAssessmentType());
             FK = assessment.getCourseId();
         });
@@ -82,7 +82,7 @@ public class DetailedAssessment extends AppCompatActivity {
     }
 
     private void addTestAlarm(View view) {
-        Long trigger = startDate.getTime();
+        Long trigger = startDateTime.getTime();
         String title = Objects.requireNonNull(assessmentByID.getValue()).getTitle();
 
         Intent intent = new Intent(this, DateReceiver.class);
@@ -129,8 +129,8 @@ public class DetailedAssessment extends AppCompatActivity {
         Intent intent = new Intent(this, EditAssessment.class);
         intent.putExtra("ID", PK);
         intent.putExtra("TITLE", title.getText());
-        intent.putExtra("START", DateConverter.ToTimestamp(startDate));
-        intent.putExtra("END", DateConverter.ToTimestamp(endDate));
+        intent.putExtra("START", DateConverter.ToTimestamp(startDateTime));
+//        intent.putExtra("END", DateConverter.ToTimestamp(endDate));
         intent.putExtra("TEST", testType.getText());
         intent.putExtra("FK", FK);
         startActivity(intent);
@@ -139,7 +139,7 @@ public class DetailedAssessment extends AppCompatActivity {
     private void deleteItem() {
         if (assessmentByID.hasObservers()) {
             assessmentByID.removeObservers(DetailedAssessment.this);
-            AssessmentViewModel.delete(new Assessment(PK, testType.toString(), title.toString(), startDate, endDate, FK));
+            AssessmentViewModel.delete(new Assessment(PK, testType.toString(), title.toString(), startDateTime, FK));
             finish();
         }
     }

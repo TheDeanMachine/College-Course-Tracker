@@ -165,8 +165,9 @@ public class NewAssessment extends AppCompatActivity {
 
             startDate.setTime(startTime);
 
-//            AssessmentViewModel.insert(new Assessment(test, title, startDate, endDate, id));
-//            finish();
+
+            AssessmentViewModel.insert(new Assessment(test, title, startDate, id));
+            finish();
         });
 
     }

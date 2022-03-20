@@ -31,36 +31,28 @@ public class Assessment {
     @NonNull
     private String title;
 
-    @ColumnInfo(name = "start_date")
+    @ColumnInfo(name = "start_date_time")
     @NonNull
-    private Date startDate;
-
-    @ColumnInfo(name = "end_date")
-    @NonNull
-    private Date endDate;
+    private Date startDateTime;
 
     @ColumnInfo(name = "course_id")
     private int courseId; //FK
 
     // for creating new objects
-    public Assessment(@NonNull String assessmentType, @NonNull String title, @NonNull Date startDate,
-                      @NonNull Date endDate, int courseId) {
+    public Assessment(@NonNull String assessmentType, @NonNull String title, @NonNull Date startDateTime, int courseId) {
         this.assessmentType = assessmentType;
         this.title = title;
-        this.startDate = startDate;
-        this.endDate = endDate;
+        this.startDateTime = startDateTime;
         this.courseId = courseId;
     }
 
     // for deleting and updating
     @Ignore
-    public Assessment(int id, @NonNull String assessmentType, @NonNull String title,
-                      @NonNull Date startDate, @NonNull Date endDate, int courseId) {
+    public Assessment(int id, @NonNull String assessmentType, @NonNull String title, @NonNull Date startDateTime, int courseId) {
         this.id = id;
         this.assessmentType = assessmentType;
         this.title = title;
-        this.startDate = startDate;
-        this.endDate = endDate;
+        this.startDateTime = startDateTime;
         this.courseId = courseId;
     }
 
@@ -75,13 +67,8 @@ public class Assessment {
     }
 
     @NonNull
-    public Date getStartDate() {
-        return startDate;
-    }
-
-    @NonNull
-    public Date getEndDate() {
-        return endDate;
+    public Date getStartDateTime() {
+        return startDateTime;
     }
 
     @NonNull
@@ -102,12 +89,8 @@ public class Assessment {
         this.title = title;
     }
 
-    public void setStartDate(@NonNull Date startDate) {
-        this.startDate = startDate;
-    }
-
-    public void setEndDate(@NonNull Date endDate) {
-        this.endDate = endDate;
+    public void setStartDateTime(@NonNull Date startDateTime) {
+        this.startDateTime = startDateTime;
     }
 
     public void setAssessmentType(@NonNull String assessmentType) {
