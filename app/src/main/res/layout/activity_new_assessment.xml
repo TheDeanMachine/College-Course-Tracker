@@ -48,6 +48,17 @@
                 android:inputType="date"
                 android:minHeight="48dp" />
 
+            <EditText
+                android:id="@+id/editTextAssessmentStarTime"
+                style="@style/form_style"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:focusable="false"
+                android:hint="@string/start_time"
+                android:inputType="date"
+                android:minHeight="48dp" />
+
             <Spinner
                 android:id="@+id/testSpinner"
                 android:layout_width="match_parent"

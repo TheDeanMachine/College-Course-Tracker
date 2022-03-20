@@ -10,12 +10,14 @@ import com.VFeskin.collegecoursetracker.R;
 import com.google.android.material.snackbar.Snackbar;
 
 import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
 import android.os.Bundle;
 import android.text.Editable;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TimePicker;
 
 import java.text.DateFormat;
 import java.util.Calendar;
@@ -32,6 +34,7 @@ public class NewAssessment extends AppCompatActivity {
     private EditText assessmentTitleTxt;
     private EditText startDateTxt;
     private EditText endDateTxt;
+    private EditText startTimeTxt;
     private Spinner testTypeSpinner;
     private Button createAssessmentButton;
 
@@ -39,6 +42,7 @@ public class NewAssessment extends AppCompatActivity {
     private final Calendar calendar = Calendar.getInstance();
     DatePickerDialog.OnDateSetListener dateDialog;
     DatePickerDialog.OnDateSetListener dateDialog2;
+    TimePickerDialog.OnTimeSetListener timeDialog;
     private Date startDate;
     private Date endDate;
 
@@ -54,6 +58,7 @@ public class NewAssessment extends AppCompatActivity {
         assessmentTitleTxt = findViewById(R.id.editTextAssessmentTitle);
         startDateTxt = findViewById(R.id.editTextAssessmentStartDate);
         endDateTxt = findViewById(R.id.editTextAssessmentEndDate);
+        startTimeTxt = findViewById(R.id.editTextAssessmentStarTime);
         testTypeSpinner = findViewById(R.id.testSpinner);
         createAssessmentButton = findViewById(R.id.createAssessmentButton);
 
@@ -70,6 +75,20 @@ public class NewAssessment extends AppCompatActivity {
                 calendar.get(Calendar.MONTH),
                 calendar.get(Calendar.DAY_OF_MONTH))
                 .show());
+
+
+
+        startTimeTxt.setOnClickListener(view -> new TimePickerDialog(this, timeDialog,
+                calendar.get(Calendar.HOUR_OF_DAY),
+                calendar.get(Calendar.MINUTE),
+                false)
+                .show());
+
+        timeDialog = (view, hour, minute) -> {
+            // Do something with the time chosen by the user
+
+        };
+
 
         // gets the values from date picker, onDataSet
         dateDialog = (view, year, month, day) -> {
