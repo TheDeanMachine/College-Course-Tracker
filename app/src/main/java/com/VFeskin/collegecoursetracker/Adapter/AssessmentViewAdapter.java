@@ -53,13 +53,8 @@ public class AssessmentViewAdapter extends RecyclerView.Adapter<AssessmentViewAd
 
         // set the card view with its data
         holder.title.setText(assessment.getTitle());
-//        holder.start.setText(DateFormat.getDateInstance(DateFormat.MEDIUM).format(assessment.getStartDateTime()));
-
-//        holder.testType.setText(assessment.getAssessmentType());
-//        holder.end.setText(assessment.getEndDate().toString());
-
-//        // format display for date and time
-        holder.start.setText(DateFormat.getDateTimeInstance(DateFormat.MEDIUM, DateFormat.SHORT).format(assessment.getStartDateTime()));
+        holder.start.setText(DateFormat.getDateTimeInstance(DateFormat.MEDIUM, DateFormat.SHORT)
+                .format(assessment.getStartDateTime()));
     }
 
     /*
@@ -73,21 +68,18 @@ public class AssessmentViewAdapter extends RecyclerView.Adapter<AssessmentViewAd
 
     // Provides a reference to the type of view items
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+
         // XML attributes
-        public TextView testType;
         public TextView title;
         public TextView start;
-//        public TextView end;
 
         // listener reference
         OnAssessmentClickListener onAssessmentClickListener;
 
         public ViewHolder(@NonNull View itemView, OnAssessmentClickListener listener) {
             super(itemView);
-//            testType = itemView.findViewById(R.id.textViewAssessmentType);
             title = itemView.findViewById(R.id.textViewAssessmentTitle);
             start = itemView.findViewById(R.id.textViewAssessmentStartDate);
-//            end = itemView.findViewById(R.id.textViewAssessmentEndDate);
 
             // associate card view with a click listener
             onAssessmentClickListener = listener;
