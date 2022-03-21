@@ -52,6 +52,7 @@
     <string name="cancel_timer">Cancel Timer</string>
     <string name="set_alarm">Set Alarm</string>
     <string name="cancel_alarm">Cancel Alarm</string>
+    <string name="set_reminder">set reminder</string>
 
 
     <string-array name="course_status">

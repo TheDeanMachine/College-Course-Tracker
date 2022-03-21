@@ -52,7 +52,7 @@ public class DetailedAssessment extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout._temp_);
+        setContentView(R.layout.activity_detailed_assessment);
         title = findViewById(R.id.textViewDetailAssessmentTitle);
         testType = findViewById(R.id.textViewDetailAssessmentType);
         start = findViewById(R.id.textViewDetailAssessmentStartDate);
@@ -71,7 +71,7 @@ public class DetailedAssessment extends AppCompatActivity {
             title.setText(assessment.getTitle());
             startDateTime = assessment.getStartDateTime();
 //            endDate = assessment.getEndDate();
-            start.setText(DateFormat.getDateInstance(DateFormat.MEDIUM).format(assessment.getStartDateTime()));
+            start.setText(DateFormat.getDateTimeInstance(DateFormat.MEDIUM, DateFormat.SHORT).format(assessment.getStartDateTime()));
 //            end.setText(DateFormat.getDateInstance(DateFormat.MEDIUM).format(assessment.getEndDate()));
             testType.setText(assessment.getAssessmentType());
             FK = assessment.getCourseId();
