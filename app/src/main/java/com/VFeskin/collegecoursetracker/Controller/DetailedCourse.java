@@ -24,6 +24,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import java.text.DateFormat;
 import java.util.Date;
@@ -38,12 +39,15 @@ public class DetailedCourse extends AppCompatActivity implements AssessmentViewA
 
     // XML attributes
     private TextView title;
+    private TextView status;
     private TextView start;
     private TextView end;
-    private TextView status;
+    private TextView time;
+    private TextView roomNum;
     private TextView name;
     private TextView phone;
     private TextView email;
+
     private TextView note;
     private TextView noteSet;
 
@@ -66,7 +70,8 @@ public class DetailedCourse extends AppCompatActivity implements AssessmentViewA
 
     // add button
     private FloatingActionButton fab;
-    private FloatingActionButton fabAlarm;
+//    private FloatingActionButton fabAlarm;
+    private Button buttonAlarm;
 
 
     @Override
@@ -74,14 +79,18 @@ public class DetailedCourse extends AppCompatActivity implements AssessmentViewA
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detailed_course);
         fab = findViewById(R.id.detail_add_new_assessment);
-        fabAlarm = findViewById(R.id.add_course_alarm);
+//        fabAlarm = findViewById(R.id.add_course_alarm);
+        buttonAlarm = findViewById(R.id.add_course_alarm);
         title = findViewById(R.id.textViewDetailCourseTitle);
+        status = findViewById(R.id.textViewDetailCourseStatus);
         start = findViewById(R.id.textViewDetailCourseStartDate);
         end = findViewById(R.id.textViewDetailCourseEndDate);
-        status = findViewById(R.id.textViewDetailCourseStatus);
+        time = findViewById(R.id.textViewDetailCourseTime);
+        roomNum = findViewById(R.id.textViewDetailCourseRoom);
         name = findViewById(R.id.textViewDetailCourseInstructorName);
         phone = findViewById(R.id.textViewDetailCourseInstructorPhone);
         email = findViewById(R.id.textViewDetailCourseInstructorEmail);
+
         note = findViewById(R.id.textViewDetailCourseNote);
         noteSet = findViewById(R.id.textViewDetailCourseNoteSet);
 
@@ -122,14 +131,6 @@ public class DetailedCourse extends AppCompatActivity implements AssessmentViewA
             email.setText(course.getInstructorEmail());
             FK = course.getTermId();
 
-//            // check for optional note
-//            if (course.getNote() == null) {
-//                note.setVisibility(View.GONE);
-//                noteSet.setVisibility(View.GONE);
-//            } else {
-//                note.setText(course.getNote());
-//            }
-
         });
 
         // add new assessment
@@ -138,7 +139,8 @@ public class DetailedCourse extends AppCompatActivity implements AssessmentViewA
         });
 
         // add alarm
-        fabAlarm.setOnClickListener(this::addCourseAlarm);
+//        fabAlarm.setOnClickListener(this::addCourseAlarm);
+        buttonAlarm.setOnClickListener(this::addCourseAlarm);
     }
 
 
@@ -172,7 +174,6 @@ public class DetailedCourse extends AppCompatActivity implements AssessmentViewA
         intent.putExtra("TITLE", assessment.getTitle());
         intent.putExtra("TEST", assessment.getAssessmentType());
         intent.putExtra("START", DateConverter.ToTimestamp(assessment.getStartDateTime()));
-//        intent.putExtra("END", DateConverter.ToTimestamp(assessment.getEndDate()));
         startActivity(intent);
     }
 
@@ -181,10 +182,10 @@ public class DetailedCourse extends AppCompatActivity implements AssessmentViewA
         getMenuInflater().inflate(R.menu.menu, menu);
 
         // set share button if optional note is found
-        if (Objects.requireNonNull(courseById.getValue()).getNote() != null) {
-            MenuItem shareItem = menu.findItem(R.id.share);
-            shareItem.setVisible(true);
-        }
+//        if (Objects.requireNonNull(courseById.getValue()).getNote() != null) {
+//            MenuItem shareItem = menu.findItem(R.id.share);
+//            shareItem.setVisible(true);
+//        }
         return true;
     }
 
@@ -192,9 +193,9 @@ public class DetailedCourse extends AppCompatActivity implements AssessmentViewA
     public boolean onOptionsItemSelected(MenuItem item) {
         // Determine which app bar item was chosen
         switch (item.getItemId()) {
-            case R.id.share:
-                shareItem();
-                return true;
+//            case R.id.share:
+//                shareItem();
+//                return true;
             case R.id.edit:
                 editItem();
                 return true;
@@ -215,15 +216,15 @@ public class DetailedCourse extends AppCompatActivity implements AssessmentViewA
         }
     }
 
-    private void shareItem() {
-        Intent sendIntent = new Intent();
-        sendIntent.setAction(Intent.ACTION_SEND);
-        sendIntent.putExtra(Intent.EXTRA_TEXT, Objects.requireNonNull(courseById.getValue()).getNote());
-        sendIntent.setType("text/plain");
-
-        Intent shareIntent = Intent.createChooser(sendIntent, null);
-        startActivity(shareIntent);
-    }
+//    private void shareItem() {
+//        Intent sendIntent = new Intent();
+//        sendIntent.setAction(Intent.ACTION_SEND);
+//        sendIntent.putExtra(Intent.EXTRA_TEXT, Objects.requireNonNull(courseById.getValue()).getNote());
+//        sendIntent.setType("text/plain");
+//
+//        Intent shareIntent = Intent.createChooser(sendIntent, null);
+//        startActivity(shareIntent);
+//    }
 
     private void editItem() {
         Intent intent = new Intent(this, EditCourse.class);
@@ -236,18 +237,18 @@ public class DetailedCourse extends AppCompatActivity implements AssessmentViewA
         intent.putExtra("PHONE", phone.getText());
         intent.putExtra("EMAIL", email.getText());
         intent.putExtra("FK", FK);
-        if (Objects.requireNonNull(courseById.getValue()).getNote() != null) {
-            intent.putExtra("NOTE", note.getText());
-        }
-
+//
+//        if (Objects.requireNonNull(courseById.getValue()).getNote() != null) {
+//            intent.putExtra("NOTE", note.getText());
+//        }
         startActivity(intent);
-        finish();
     }
 
     private void deleteItem() {
         if (courseById.hasObservers()) {
             courseById.removeObservers(DetailedCourse.this);
-            CourseViewModel.delete(new Course(PK, title.toString(), startDate, endDate, status.toString(), name.toString(), phone.toString(), email.toString(), null, FK));
+            CourseViewModel.delete(new Course(PK, title.toString(), startDate, endDate,
+                    status.toString(), name.toString(), phone.toString(), email.toString(), null, FK));
             finish();
         }
     }

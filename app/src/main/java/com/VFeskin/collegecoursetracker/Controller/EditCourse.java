@@ -62,7 +62,7 @@ public class EditCourse extends AppCompatActivity {
         instructorNameTxt = findViewById(R.id.editTextUpdateInstructorName);
         instructorPhoneTxt = findViewById(R.id.editTextUpdateInstructorPhone);
         instructorEmailTxt = findViewById(R.id.editTextUpdateInstructorEmailAddress);
-        noteTxt = findViewById(R.id.editTextUpdateMultiLineNote);
+//        noteTxt = findViewById(R.id.editTextUpdateMultiLineNote);
         updateCourseButton = findViewById(R.id.updateCourseButton);
 
         // get values and set text

@@ -77,7 +77,7 @@
             app:layout_constraintTop_toBottomOf="@+id/textViewDetailCourseStatus" />
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/materialButton"
+            android:id="@+id/add_course_alarm"
             style="?attr/borderlessButtonStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -148,7 +148,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-            android:text=""
+            android:text="    "
             android:textColor="#311B92"
             app:layout_constraintStart_toEndOf="@+id/textViewDetailCourseRoomSet"
             app:layout_constraintTop_toBottomOf="@+id/textViewDetailCourseTime" />
@@ -161,7 +161,7 @@
             android:layout_marginTop="16dp"
             android:text="Instructor"
             android:textAppearance="?attr/textAppearanceHeadline6"
-            app:layout_constraintStart_toEndOf="@+id/materialButton"
+            app:layout_constraintStart_toEndOf="@+id/add_course_alarm"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
@@ -172,7 +172,7 @@
             android:layout_marginTop="16dp"
             android:text="TextView"
             android:textColor="#311B92"
-            app:layout_constraintStart_toEndOf="@+id/materialButton"
+            app:layout_constraintStart_toEndOf="@+id/add_course_alarm"
             app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
         <TextView
@@ -183,7 +183,7 @@
             android:layout_marginTop="8dp"
             android:text="TextView"
             android:textColor="#311B92"
-            app:layout_constraintStart_toEndOf="@+id/materialButton"
+            app:layout_constraintStart_toEndOf="@+id/add_course_alarm"
             app:layout_constraintTop_toBottomOf="@+id/textViewDetailCourseInstructorName" />
 
         <TextView
@@ -194,7 +194,7 @@
             android:layout_marginTop="8dp"
             android:text="TextView"
             android:textColor="#311B92"
-            app:layout_constraintStart_toEndOf="@+id/materialButton"
+            app:layout_constraintStart_toEndOf="@+id/add_course_alarm"
             app:layout_constraintTop_toBottomOf="@+id/textViewDetailCourseInstructorPhone" />
 
         <!--        <com.google.android.material.button.MaterialButton-->
@@ -225,18 +225,18 @@
         app:layout_constraintTop_toBottomOf="@+id/cardView"
         app:layout_constraintVertical_bias="0.0" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/add_course_alarm"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="80dp"
-        android:clickable="true"
-        android:contentDescription="@string/add_button"
-        app:layout_anchorGravity="top|end"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@drawable/ic_baseline_add_alarm_24" />
+<!--    <com.google.android.material.floatingactionbutton.FloatingActionButton-->
+<!--        android:id="@+id/add_course_alarm"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginEnd="8dp"-->
+<!--        android:layout_marginBottom="80dp"-->
+<!--        android:clickable="true"-->
+<!--        android:contentDescription="@string/add_button"-->
+<!--        app:layout_anchorGravity="top|end"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:srcCompat="@drawable/ic_baseline_add_alarm_24" />-->
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/detail_add_new_assessment"

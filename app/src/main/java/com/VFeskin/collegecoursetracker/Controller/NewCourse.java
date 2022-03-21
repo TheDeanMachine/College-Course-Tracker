@@ -63,7 +63,7 @@ public class NewCourse extends AppCompatActivity {
         instructorNameTxt = findViewById(R.id.editTextInstructorName);
         instructorPhoneTxt = findViewById(R.id.editTextInstructorPhone);
         instructorEmailTxt = findViewById(R.id.editTextInstructorEmailAddress);
-        noteTxt = findViewById(R.id.editTextNewMultiLineNote);
+//        noteTxt = findViewById(R.id.editTextNewMultiLineNote);
         createCourseButton = findViewById(R.id.createCourseButton);
 
         // shows the date picker, onClick

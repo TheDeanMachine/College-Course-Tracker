@@ -30,6 +30,16 @@
                 android:inputType="textPersonName"
                 android:minHeight="48dp" />
 
+            <Spinner
+                android:id="@+id/courseUpdateSpinner"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginRight="16dp"
+                android:entries="@array/course_status"
+                tools:ignore="SpeakableTextPresentCheck" />
+
             <EditText
                 android:id="@+id/editTextUpdateCourseStartDate"
                 style="@style/form_style"
@@ -50,6 +60,27 @@
                 android:focusable="false"
                 android:hint="@string/end_date"
                 android:inputType="date"
+                android:minHeight="48dp" />
+
+            <EditText
+                android:id="@+id/editTextUpdateCourseTime"
+                style="@style/form_style"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:focusable="false"
+                android:hint="@string/time"
+                android:inputType="date"
+                android:minHeight="48dp" />
+
+            <EditText
+                android:id="@+id/editTextUpdateCourseRoomNumber"
+                style="@style/form_style"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="@string/room_number_or_course_number"
+                android:inputType="textPersonName"
                 android:minHeight="48dp" />
 
             <EditText
@@ -82,27 +113,19 @@
                 android:inputType="textEmailAddress"
                 android:minHeight="48dp" />
 
-            <Spinner
-                android:id="@+id/courseUpdateSpinner"
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginTop="24dp"
-                android:layout_marginRight="16dp"
-                android:entries="@array/course_status"
-                tools:ignore="SpeakableTextPresentCheck" />
 
-            <EditText
-                android:id="@+id/editTextUpdateMultiLineNote"
-                style="@style/form_style"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:gravity="start|top"
-                android:hint="@string/optional_notes"
-                android:inputType="textMultiLine"
-                android:minHeight="48dp"
-                tools:ignore="SpeakableTextPresentCheck" />
+
+<!--            <EditText-->
+<!--                android:id="@+id/editTextUpdateMultiLineNote"-->
+<!--                style="@style/form_style"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:ems="10"-->
+<!--                android:gravity="start|top"-->
+<!--                android:hint="@string/optional_notes"-->
+<!--                android:inputType="textMultiLine"-->
+<!--                android:minHeight="48dp"-->
+<!--                tools:ignore="SpeakableTextPresentCheck" />-->
 
 
             <Button
