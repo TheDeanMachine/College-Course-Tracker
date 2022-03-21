@@ -29,7 +29,7 @@
     <string name="course_title">Course Title</string>
     <string name="course_end_date">Course End Date</string>
     <string name="course_start_date">Course Start Date</string>
-    <string name="course_status">Course Status</string>
+    <string name="course_status">Course Status:</string>
     <string name="instructor_name_txt">Instructor Name</string>
     <string name="instructor_phone_txt">Instructor Phone</string>
     <string name="instructor_email_txt">Instructor Email</string>
@@ -53,6 +53,9 @@
     <string name="set_alarm">Set Alarm</string>
     <string name="cancel_alarm">Cancel Alarm</string>
     <string name="set_reminder">set reminder</string>
+    <string name="starts_on">Starts on:</string>
+    <string name="ends_on">Ends on:</string>
+    <string name="time_">Time:</string>
 
 
     <string-array name="course_status">

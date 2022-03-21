@@ -122,13 +122,13 @@ public class DetailedCourse extends AppCompatActivity implements AssessmentViewA
             email.setText(course.getInstructorEmail());
             FK = course.getTermId();
 
-            // check for optional note
-            if (course.getNote() == null) {
-                note.setVisibility(View.GONE);
-                noteSet.setVisibility(View.GONE);
-            } else {
-                note.setText(course.getNote());
-            }
+//            // check for optional note
+//            if (course.getNote() == null) {
+//                note.setVisibility(View.GONE);
+//                noteSet.setVisibility(View.GONE);
+//            } else {
+//                note.setText(course.getNote());
+//            }
 
         });
 
