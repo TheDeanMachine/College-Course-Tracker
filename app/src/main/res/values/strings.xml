@@ -48,7 +48,6 @@
     <string name="start_time">Start time</string>
     <string name="date">Date</string>
     <string name="time">Time</string>
-    <string name="starts_at">Starts at:</string>
     <string name="cancel_timer">Cancel Timer</string>
     <string name="set_alarm">Set Alarm</string>
     <string name="cancel_alarm">Cancel Alarm</string>
@@ -56,6 +55,9 @@
     <string name="starts_on">Starts on:</string>
     <string name="ends_on">Ends on:</string>
     <string name="time_">Time:</string>
+    <string name="from">From</string>
+    <string name="to">To</string>
+    <string name="starts_at">Starts at:</string>
 
 
     <string-array name="course_status">
