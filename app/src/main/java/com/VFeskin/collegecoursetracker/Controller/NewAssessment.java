@@ -34,7 +34,6 @@ public class NewAssessment extends AppCompatActivity {
     // XML attributes
     private EditText assessmentTitleTxt;
     private EditText startDateTxt;
-//    private EditText endDateTxt;
     private EditText startTimeTxt;
     private Spinner testTypeSpinner;
     private Button createAssessmentButton;
@@ -42,10 +41,8 @@ public class NewAssessment extends AppCompatActivity {
     // date related fields
     private final Calendar calendar = Calendar.getInstance();
     DatePickerDialog.OnDateSetListener dateDialog;
-    DatePickerDialog.OnDateSetListener dateDialog2;
     TimePickerDialog.OnTimeSetListener timeDialog;
     private Date startDate;
-//    private Date endDate;
     private Long startTime;
 
     // course PK
@@ -59,7 +56,6 @@ public class NewAssessment extends AppCompatActivity {
         // set the field values to the xml ids
         assessmentTitleTxt = findViewById(R.id.editTextAssessmentTitle);
         startDateTxt = findViewById(R.id.editTextAssessmentStartDate);
-//        endDateTxt = findViewById(R.id.editTextAssessmentEndDate);
         startTimeTxt = findViewById(R.id.editTextAssessmentStarTime);
         testTypeSpinner = findViewById(R.id.testSpinner);
         createAssessmentButton = findViewById(R.id.createAssessmentButton);
@@ -71,37 +67,22 @@ public class NewAssessment extends AppCompatActivity {
                 calendar.get(Calendar.DAY_OF_MONTH))
                 .show());
 
-//        // shows the date picker, onClick
-//        endDateTxt.setOnClickListener(view -> new DatePickerDialog(NewAssessment.this, dateDialog2,
-//                calendar.get(Calendar.YEAR),
-//                calendar.get(Calendar.MONTH),
-//                calendar.get(Calendar.DAY_OF_MONTH))
-//                .show());
-
-
-
-
-
+        // shows the time picker, onClick
         startTimeTxt.setOnClickListener(view -> new TimePickerDialog(this, timeDialog,
                 calendar.get(Calendar.HOUR_OF_DAY),
                 calendar.get(Calendar.MINUTE),
                 false)
                 .show());
 
+        // gets the values from time picker, onTimeSet
         timeDialog = (view, hour, minute) -> {
             calendar.set(Calendar.HOUR_OF_DAY, hour);
             calendar.set(Calendar.MINUTE, minute);
             startTime = calendar.getTimeInMillis();
-
             // format the output the screen
-
+            startTimeTxt.setError(null); // clears set error
             startTimeTxt.setText(DateFormat.getTimeInstance(DateFormat.SHORT).format(startTime));
         };
-
-
-
-
-
 
         // gets the values from date picker, onDataSet
         dateDialog = (view, year, month, day) -> {
@@ -111,15 +92,6 @@ public class NewAssessment extends AppCompatActivity {
             startDateTxt.setError(null); // clears set error
             startDateTxt.setText(DateFormat.getDateInstance(DateFormat.MEDIUM).format(startDate));
         };
-
-//        // gets the values from date picker, onDataSet
-//        dateDialog2 = (view, year, month, day) -> {
-//            calendar.set(year, month, day);
-//            endDate = calendar.getTime();
-//            // format the output the screen
-//            endDateTxt.setError(null); // clears set error
-//            endDateTxt.setText(DateFormat.getDateInstance(DateFormat.MEDIUM).format(endDate));
-//        };
 
         // collect input and create new assessment
         createAssessmentButton.setOnClickListener(view -> {
@@ -133,21 +105,21 @@ public class NewAssessment extends AppCompatActivity {
                 }
             } catch (Exception e) {
                 assessmentTitleTxt.setError("Title is required!");
-                Snackbar.make(view, "Please enter a title", Snackbar.LENGTH_SHORT).show();
+                Snackbar.make(view, "Please enter assessment title", Snackbar.LENGTH_SHORT).show();
                 return;
             }
 
             if (startDate == null || startDateTxt.getText().toString().isEmpty()) {
                 startDateTxt.setError("Start date is required!");
-                Snackbar.make(view, "Please enter a date", Snackbar.LENGTH_SHORT).show();
+                Snackbar.make(view, "Please enter assessment date", Snackbar.LENGTH_SHORT).show();
                 return;
             }
 
-//            if (endDate == null || endDateTxt.getText().toString().isEmpty()) {
-//                endDateTxt.setError("End date is required!");
-//                Snackbar.make(view, "Please enter a date", Snackbar.LENGTH_SHORT).show();
-//                return;
-//            }
+            if (startTime == null || startTimeTxt.getText().toString().isEmpty()) {
+                startTimeTxt.setError("Time is required!");
+                Snackbar.make(view, "Please enter assessment time", Snackbar.LENGTH_SHORT).show();
+                return;
+            }
 
             String test = null;
             try {
@@ -160,11 +132,8 @@ public class NewAssessment extends AppCompatActivity {
                 return;
             }
 
-            id = getIntent().getIntExtra("ID", 0);
-
-
-            startDate.setTime(startTime);
-
+            id = getIntent().getIntExtra("ID", 0); // FK
+            startDate.setTime(startTime); // set with user time
 
             AssessmentViewModel.insert(new Assessment(test, title, startDate, id));
             finish();
@@ -177,14 +146,14 @@ public class NewAssessment extends AppCompatActivity {
     protected void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putSerializable("START", startDate);
-//        outState.putSerializable("END", endDate);
+        outState.putSerializable("TIME", startTime);
     }
 
     @Override
     protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
         startDate = (Date) savedInstanceState.getSerializable("START");
-//        endDate = (Date) savedInstanceState.getSerializable("END");
+        startTime = (Long) savedInstanceState.getSerializable("TIME");
     }
 
 }

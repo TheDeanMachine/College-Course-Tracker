@@ -19,6 +19,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import java.text.DateFormat;
 import java.util.Date;
@@ -33,13 +34,11 @@ public class DetailedAssessment extends AppCompatActivity {
     private TextView title;
     private TextView testType;
     private TextView start;
-//    private TextView end;
 
     // data
     private int PK;
     private int FK;
     private Date startDateTime;
-//    private Date endDate;
     private LiveData<Assessment> assessmentByID;
 
     // view model
@@ -47,6 +46,7 @@ public class DetailedAssessment extends AppCompatActivity {
 
     // add button
     private FloatingActionButton fabAlarm;
+    private Button buttonAlarm;
 
 
     @Override
@@ -56,8 +56,8 @@ public class DetailedAssessment extends AppCompatActivity {
         title = findViewById(R.id.textViewDetailAssessmentTitle);
         testType = findViewById(R.id.textViewDetailAssessmentType);
         start = findViewById(R.id.textViewDetailAssessmentStartDate);
-//        end = findViewById(R.id.textViewDetailAssessmentEndDate);
-        fabAlarm = findViewById(R.id.add_test_alarm);
+//        fabAlarm = findViewById(R.id.add_test_alarm);
+        buttonAlarm = findViewById(R.id.add_test_alarm);
 
         PK = getIntent().getIntExtra("ID", 0);
 
@@ -70,15 +70,15 @@ public class DetailedAssessment extends AppCompatActivity {
         assessmentByID.observe(this, assessment -> {
             title.setText(assessment.getTitle());
             startDateTime = assessment.getStartDateTime();
-//            endDate = assessment.getEndDate();
             start.setText(DateFormat.getDateTimeInstance(DateFormat.MEDIUM, DateFormat.SHORT).format(assessment.getStartDateTime()));
-//            end.setText(DateFormat.getDateInstance(DateFormat.MEDIUM).format(assessment.getEndDate()));
             testType.setText(assessment.getAssessmentType());
             FK = assessment.getCourseId();
         });
 
         // add alarm
-        fabAlarm.setOnClickListener(this::addTestAlarm);
+//        fabAlarm.setOnClickListener(this::addTestAlarm);
+        buttonAlarm.setOnClickListener(this::addTestAlarm);
+
     }
 
     private void addTestAlarm(View view) {
@@ -130,7 +130,6 @@ public class DetailedAssessment extends AppCompatActivity {
         intent.putExtra("ID", PK);
         intent.putExtra("TITLE", title.getText());
         intent.putExtra("START", DateConverter.ToTimestamp(startDateTime));
-//        intent.putExtra("END", DateConverter.ToTimestamp(endDate));
         intent.putExtra("TEST", testType.getText());
         intent.putExtra("FK", FK);
         startActivity(intent);
