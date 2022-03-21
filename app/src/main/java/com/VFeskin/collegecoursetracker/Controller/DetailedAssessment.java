@@ -52,7 +52,7 @@ public class DetailedAssessment extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_detailed_assessment);
+        setContentView(R.layout._temp_);
         title = findViewById(R.id.textViewDetailAssessmentTitle);
         testType = findViewById(R.id.textViewDetailAssessmentType);
         start = findViewById(R.id.textViewDetailAssessmentStartDate);

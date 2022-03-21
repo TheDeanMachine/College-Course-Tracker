@@ -48,13 +48,6 @@
                 android:text="@string/start_date_txt"
                 android:textColor="#311B92"/>
 
-            <TextView
-                android:id="@+id/textViewDetailAssessmentEndDateSet"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="10dp"
-                android:text="@string/end_date_txt"
-                android:textColor="#311B92"/>
 
         </LinearLayout>
 
@@ -89,13 +82,6 @@
                 android:text="TextView"
                 android:textColor="#311B92"/>
 
-            <TextView
-                android:id="@+id/textViewDetailAssessmentEndDate"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="10dp"
-                android:text="TextView"
-                android:textColor="#311B92"/>
         </LinearLayout>
     </LinearLayout>
 

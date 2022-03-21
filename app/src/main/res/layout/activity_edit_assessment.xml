@@ -33,20 +33,20 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:focusable="false"
-                android:hint="@string/start_date"
+                android:hint="@string/date"
                 android:inputType="date"
                 android:minHeight="48dp" />
 
-<!--            <EditText-->
-<!--                android:id="@+id/editTextUpdateAssessmentEndDate"-->
-<!--                style="@style/form_style"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:ems="10"-->
-<!--                android:focusable="false"-->
-<!--                android:hint="@string/end_date"-->
-<!--                android:inputType="date"-->
-<!--                android:minHeight="48dp" />-->
+            <EditText
+                android:id="@+id/editTextUpdateAssessmentStartTime"
+                style="@style/form_style"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:focusable="false"
+                android:hint="@string/time"
+                android:inputType="date"
+                android:minHeight="48dp" />
 
             <Spinner
                 android:id="@+id/updateAssessmentSpinner"
