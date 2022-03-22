@@ -42,20 +42,20 @@ public class DetailedCourse extends AppCompatActivity implements AssessmentViewA
     private TextView status;
     private TextView start;
     private TextView end;
-    private TextView time;
+    private TextView startTimeTxt;
+    private TextView endTimeTxt;
     private TextView roomNum;
     private TextView name;
     private TextView phone;
     private TextView email;
-
-    private TextView note;
-    private TextView noteSet;
 
     // data
     private int PK;
     private int FK;
     private Date startDate;
     private Date endDate;
+    private Long startTime;
+    private Long endTime;
     private LiveData<List<Assessment>> assessmentList;
     private LiveData<List<Assessment>> assessmentsByCourseId;
     private LiveData<Course> courseById;
@@ -85,14 +85,12 @@ public class DetailedCourse extends AppCompatActivity implements AssessmentViewA
         status = findViewById(R.id.textViewDetailCourseStatus);
         start = findViewById(R.id.textViewDetailCourseStartDate);
         end = findViewById(R.id.textViewDetailCourseEndDate);
-        time = findViewById(R.id.textViewDetailCourseTime);
+        startTimeTxt = findViewById(R.id.textViewDetailCourseTime);
+        endTimeTxt = findViewById(R.id.textViewDetailCourseEndTime);
         roomNum = findViewById(R.id.textViewDetailCourseRoom);
         name = findViewById(R.id.textViewDetailCourseInstructorName);
         phone = findViewById(R.id.textViewDetailCourseInstructorPhone);
         email = findViewById(R.id.textViewDetailCourseInstructorEmail);
-
-        note = findViewById(R.id.textViewDetailCourseNote);
-        noteSet = findViewById(R.id.textViewDetailCourseNoteSet);
 
         PK = getIntent().getIntExtra("ID", 0);
 
@@ -121,16 +119,20 @@ public class DetailedCourse extends AppCompatActivity implements AssessmentViewA
         courseById = courseViewModel.getByCoursePK(PK);
         courseById.observe(this, course -> {
             title.setText(course.getTitle());
-            startDate = course.getStartDate();
-            endDate = course.getEndDate();
-            start.setText(DateFormat.getDateInstance(DateFormat.MEDIUM).format(course.getStartDate()));
-            end.setText(DateFormat.getDateInstance(DateFormat.MEDIUM).format(course.getEndDate()));
             status.setText(course.getCourseStatus());
+            startDate = course.getStartDateTime();
+            endDate = course.getEndDateTime();
+            start.setText(DateFormat.getDateInstance(DateFormat.MEDIUM).format(course.getStartDateTime()));
+            end.setText(DateFormat.getDateInstance(DateFormat.MEDIUM).format(course.getEndDateTime()));
+            startTime = startDate.getTime();
+            startTimeTxt.setText(DateFormat.getTimeInstance(DateFormat.SHORT).format(startTime));
+            endTime = endDate.getTime();
+            endTimeTxt.setText(DateFormat.getTimeInstance(DateFormat.SHORT).format(endTime));
+            roomNum.setText(course.getRoomNumber());
             name.setText(course.getInstructorName());
             phone.setText(course.getInstructorPhone());
             email.setText(course.getInstructorEmail());
             FK = course.getTermId();
-
         });
 
         // add new assessment
@@ -230,9 +232,10 @@ public class DetailedCourse extends AppCompatActivity implements AssessmentViewA
         Intent intent = new Intent(this, EditCourse.class);
         intent.putExtra("ID", PK);
         intent.putExtra("TITLE", title.getText());
+        intent.putExtra("STATUS", status.getText());
         intent.putExtra("START", DateConverter.ToTimestamp(startDate));
         intent.putExtra("END", DateConverter.ToTimestamp(endDate));
-        intent.putExtra("STATUS", status.getText());
+        intent.putExtra("ROOM", roomNum.getText());
         intent.putExtra("NAME", name.getText());
         intent.putExtra("PHONE", phone.getText());
         intent.putExtra("EMAIL", email.getText());

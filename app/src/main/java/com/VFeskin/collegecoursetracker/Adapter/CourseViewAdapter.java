@@ -52,13 +52,8 @@ public class CourseViewAdapter extends RecyclerView.Adapter<CourseViewAdapter.Vi
         Course course = courseList.get(position);
         // set the card view with its data
         holder.title.setText(course.getTitle());
-        holder.start.setText(DateFormat.getDateInstance(DateFormat.MEDIUM).format(course.getStartDate()));
-        holder.end.setText(DateFormat.getDateInstance(DateFormat.MEDIUM).format(course.getEndDate()));
-//        holder.status.setText(course.getCourseStatus().toString());
-//        holder.name.setText(course.getInstructorName());
-//        holder.phone.setText(course.getInstructorPhone());
-//        holder.email.setText(course.getInstructorEmail());
-
+        holder.start.setText(DateFormat.getDateInstance(DateFormat.MEDIUM).format(course.getStartDateTime()));
+        holder.end.setText(DateFormat.getDateInstance(DateFormat.MEDIUM).format(course.getEndDateTime()));
     }
 
     /*
@@ -76,10 +71,6 @@ public class CourseViewAdapter extends RecyclerView.Adapter<CourseViewAdapter.Vi
         public TextView title;
         public TextView start;
         public TextView end;
-        public TextView status;
-        public TextView name;
-        public TextView phone;
-        public TextView email;
 
         // listener reference
         OnCourseClickListener onCourseClickListener;
@@ -89,10 +80,6 @@ public class CourseViewAdapter extends RecyclerView.Adapter<CourseViewAdapter.Vi
             title = itemView.findViewById(R.id.textViewCourseTitle);
             start = itemView.findViewById(R.id.textViewCourseStartDate);
             end = itemView.findViewById(R.id.textViewCourseEndDate);
-//            status = itemView.findViewById(R.id.textViewCourseStatus);
-//            name = itemView.findViewById(R.id.textViewCourseInstructorName);
-//            phone = itemView.findViewById(R.id.textViewCourseInstructorPhone);
-//            email = itemView.findViewById(R.id.textViewCourseInstructorEmail);
 
             // associate card view with a click listener
             onCourseClickListener = listener;

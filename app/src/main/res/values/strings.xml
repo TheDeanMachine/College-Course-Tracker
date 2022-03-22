@@ -59,6 +59,8 @@
     <string name="to">To</string>
     <string name="starts_at">Starts at:</string>
     <string name="room_number_or_course_number">Room number or Course Number</string>
+    <string name="end_time">End Time</string>
+    <string name="room">Room #</string>
 
 
     <string-array name="course_status">

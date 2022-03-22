@@ -25,13 +25,13 @@ public class Course {
     @NonNull
     private String title;
 
-    @ColumnInfo(name = "start_date")
+    @ColumnInfo(name = "start_date_time")
     @NonNull
-    private Date startDate;
+    private Date startDateTime;
 
-    @ColumnInfo(name = "end_date")
+    @ColumnInfo(name = "end_date_time")
     @NonNull
-    private Date endDate;
+    private Date endDateTime;
 
     @ColumnInfo(name = "instructor_name")
     private String instructorName;
@@ -53,12 +53,12 @@ public class Course {
 
 
     // for creating new objects
-    public Course(@NonNull String title, @NonNull Date startDate, @NonNull Date endDate,
+    public Course(@NonNull String title, @NonNull Date startDateTime, @NonNull Date endDateTime,
                   String instructorName, String instructorPhone, String instructorEmail,
                   String courseStatus, String roomNumber, int termId) {
         this.title = title;
-        this.startDate = startDate;
-        this.endDate = endDate;
+        this.startDateTime = startDateTime;
+        this.endDateTime = endDateTime;
         this.instructorName = instructorName;
         this.instructorPhone = instructorPhone;
         this.instructorEmail = instructorEmail;
@@ -69,13 +69,13 @@ public class Course {
 
     // for deleting and updating
     @Ignore
-    public Course(int id, @NonNull String title, @NonNull Date startDate, @NonNull Date endDate,
+    public Course(int id, @NonNull String title, @NonNull Date startDateTime, @NonNull Date endDateTime,
                   String instructorName, String instructorPhone,
                   String instructorEmail, String courseStatus, String roomNumber, int termId) {
         this.id = id;
         this.title = title;
-        this.startDate = startDate;
-        this.endDate = endDate;
+        this.startDateTime = startDateTime;
+        this.endDateTime = endDateTime;
         this.instructorName = instructorName;
         this.instructorPhone = instructorPhone;
         this.instructorEmail = instructorEmail;
@@ -95,13 +95,13 @@ public class Course {
     }
 
     @NonNull
-    public Date getStartDate() {
-        return startDate;
+    public Date getStartDateTime() {
+        return startDateTime;
     }
 
     @NonNull
-    public Date getEndDate() {
-        return endDate;
+    public Date getEndDateTime() {
+        return endDateTime;
     }
 
     public String getInstructorName() {
@@ -138,12 +138,12 @@ public class Course {
         this.title = title;
     }
 
-    public void setStartDate(@NonNull Date startDate) {
-        this.startDate = startDate;
+    public void setStartDateTime(@NonNull Date startDateTime) {
+        this.startDateTime = startDateTime;
     }
 
-    public void setEndDate(@NonNull Date endDate) {
-        this.endDate = endDate;
+    public void setEndDateTime(@NonNull Date endDateTime) {
+        this.endDateTime = endDateTime;
     }
 
     public void setInstructorName(String instructorName) {

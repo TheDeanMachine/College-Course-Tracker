@@ -63,13 +63,24 @@
                 android:minHeight="48dp" />
 
             <EditText
-                android:id="@+id/editTextUpdateCourseTime"
+                android:id="@+id/editTextUpdateCourseStartTime"
                 style="@style/form_style"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:focusable="false"
-                android:hint="@string/time"
+                android:hint="@string/start_time"
+                android:inputType="date"
+                android:minHeight="48dp" />
+
+            <EditText
+                android:id="@+id/editTextUpdateCourseEndTime"
+                style="@style/form_style"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:focusable="false"
+                android:hint="@string/end_time"
                 android:inputType="date"
                 android:minHeight="48dp" />
 
@@ -81,7 +92,8 @@
                 android:ems="10"
                 android:hint="@string/room_number_or_course_number"
                 android:inputType="textPersonName"
-                android:minHeight="48dp" />
+                android:minHeight="48dp"
+                tools:ignore="TextFields" />
 
             <EditText
                 android:id="@+id/editTextUpdateInstructorName"

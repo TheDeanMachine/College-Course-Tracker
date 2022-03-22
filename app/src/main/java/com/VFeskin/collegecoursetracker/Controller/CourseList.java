@@ -10,7 +10,7 @@ import com.VFeskin.collegecoursetracker.Model.Course;
 import com.VFeskin.collegecoursetracker.Model.CourseViewModel;
 import com.VFeskin.collegecoursetracker.R;
 import com.VFeskin.collegecoursetracker.Utility.DateConverter;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -81,8 +81,8 @@ public class CourseList extends AppCompatActivity implements CourseViewAdapter.O
         Course course = Objects.requireNonNull(courseViewModel.allCourses.getValue()).get(position);
         intent.putExtra("ID", course.getId());
         intent.putExtra("TITLE", course.getTitle());
-        intent.putExtra("START", DateConverter.ToTimestamp(course.getStartDate()));
-        intent.putExtra("END", DateConverter.ToTimestamp(course.getEndDate()));
+        intent.putExtra("START", DateConverter.ToTimestamp(course.getStartDateTime()));
+        intent.putExtra("END", DateConverter.ToTimestamp(course.getEndDateTime()));
         intent.putExtra("STATUS", course.getCourseStatus());
         intent.putExtra("NAME", course.getInstructorName());
         intent.putExtra("PHONE", course.getInstructorPhone());

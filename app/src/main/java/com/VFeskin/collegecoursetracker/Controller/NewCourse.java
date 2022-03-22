@@ -3,19 +3,15 @@ package com.VFeskin.collegecoursetracker.Controller;
 import com.VFeskin.collegecoursetracker.Model.Course;
 import com.VFeskin.collegecoursetracker.Model.CourseViewModel;
 import com.VFeskin.collegecoursetracker.R;
-import com.VFeskin.collegecoursetracker.Utility.Status;
 import com.google.android.material.snackbar.Snackbar;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.ViewModelProvider;
+
 import android.app.DatePickerDialog;
-import android.content.Intent;
+import android.app.TimePickerDialog;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 import java.text.DateFormat;
@@ -31,21 +27,27 @@ public class NewCourse extends AppCompatActivity {
 
     // XML attributes
     private EditText courseTitleTxt;
+    private Spinner courseStatusSpinner;
     private EditText startDateTxt;
     private EditText endDateTxt;
-    private Spinner courseStatusSpinner;
+    private EditText startTimeTxt;
+    private EditText endTimeTxt;
+    private EditText roomNumberTxt;
     private EditText instructorNameTxt;
     private EditText instructorPhoneTxt;
     private EditText instructorEmailTxt;
-    private EditText noteTxt;
     private Button createCourseButton;
 
     // date related fields
     private final Calendar calendar = Calendar.getInstance();
     DatePickerDialog.OnDateSetListener dateDialog;
     DatePickerDialog.OnDateSetListener dateDialog2;
+    TimePickerDialog.OnTimeSetListener timeDialog;
+    TimePickerDialog.OnTimeSetListener timeDialog2;
     private Date startDate;
     private Date endDate;
+    private Long startTime;
+    private Long endTime;
 
     // term PK
     private int id;
@@ -57,14 +59,50 @@ public class NewCourse extends AppCompatActivity {
 
         // set the field values to the xml ids
         courseTitleTxt = findViewById(R.id.editTextCourseTitle);
+        courseStatusSpinner = findViewById(R.id.spinner);
         startDateTxt = findViewById(R.id.editTextCourseStartDate);
         endDateTxt = findViewById(R.id.editTextCourseEndDate);
-        courseStatusSpinner = findViewById(R.id.spinner);
+        startTimeTxt = findViewById(R.id.editTextCourseStartTime);
+        endTimeTxt = findViewById(R.id.editTextCourseEndTime);
+        roomNumberTxt = findViewById(R.id.editTextCourseRoomNumber);
         instructorNameTxt = findViewById(R.id.editTextInstructorName);
         instructorPhoneTxt = findViewById(R.id.editTextInstructorPhone);
         instructorEmailTxt = findViewById(R.id.editTextInstructorEmailAddress);
-//        noteTxt = findViewById(R.id.editTextNewMultiLineNote);
         createCourseButton = findViewById(R.id.createCourseButton);
+
+        // shows the time picker, onClick
+        startTimeTxt.setOnClickListener(view -> new TimePickerDialog(this, timeDialog,
+                calendar.get(Calendar.HOUR_OF_DAY),
+                calendar.get(Calendar.MINUTE),
+                false)
+                .show());
+
+        // shows the time picker, onClick
+        endTimeTxt.setOnClickListener(view -> new TimePickerDialog(this, timeDialog2,
+                calendar.get(Calendar.HOUR_OF_DAY),
+                calendar.get(Calendar.MINUTE),
+                false)
+                .show());
+
+        // gets the values from time picker, onTimeSet
+        timeDialog = (view, hour, minute) -> {
+            calendar.set(Calendar.HOUR_OF_DAY, hour);
+            calendar.set(Calendar.MINUTE, minute);
+            startTime = calendar.getTimeInMillis();
+            // format the output the screen
+            startTimeTxt.setError(null); // clears set error
+            startTimeTxt.setText(DateFormat.getTimeInstance(DateFormat.SHORT).format(startTime));
+        };
+
+        // gets the values from time picker, onTimeSet
+        timeDialog2 = (view, hour, minute) -> {
+            calendar.set(Calendar.HOUR_OF_DAY, hour);
+            calendar.set(Calendar.MINUTE, minute);
+            endTime = calendar.getTimeInMillis();
+            // format the output the screen
+            endTimeTxt.setError(null); // clears set error
+            endTimeTxt.setText(DateFormat.getTimeInstance(DateFormat.SHORT).format(endTime));
+        };
 
         // shows the date picker, onClick
         startDateTxt.setOnClickListener(view -> new DatePickerDialog(NewCourse.this, dateDialog,
@@ -126,6 +164,30 @@ public class NewCourse extends AppCompatActivity {
                 return;
             }
 
+            if (startTime == null || startTimeTxt.getText().toString().isEmpty()) {
+                startTimeTxt.setError("Time is required!");
+                Snackbar.make(view, "Please enter course start time", Snackbar.LENGTH_SHORT).show();
+                return;
+            }
+
+            if (endTime == null || endTimeTxt.getText().toString().isEmpty()) {
+                endTimeTxt.setError("Time is required!");
+                Snackbar.make(view, "Please enter course end time", Snackbar.LENGTH_SHORT).show();
+                return;
+            }
+
+            String room = null;
+            try {
+                room = roomNumberTxt.getText().toString();
+                if(room == null || room.isEmpty()) {
+                    throw new Exception();
+                }
+            } catch (Exception e) {
+                roomNumberTxt.setError("Room number is required!");
+                Snackbar.make(view, "Please enter the room number or course number", Snackbar.LENGTH_SHORT).show();
+                return;
+            }
+
             String name = null;
             try {
                 name = instructorNameTxt.getText().toString();
@@ -173,16 +235,12 @@ public class NewCourse extends AppCompatActivity {
                 return;
             }
 
-            String note;
-            if (noteTxt.getText().toString().isEmpty()) {
-                note = null;
-            } else {
-                note = noteTxt.getText().toString();
-            }
 
+            startDate.setTime(startTime); // set with user time
+            endDate.setTime(endTime); // set with user time
             id = getIntent().getIntExtra("ID", 0);
 
-            CourseViewModel.insert(new Course(title, startDate, endDate, name, phone, email, status, note, id));
+            CourseViewModel.insert(new Course(title, startDate, endDate, name, phone, email, status, room, id));
             finish();
         });
 
@@ -194,6 +252,8 @@ public class NewCourse extends AppCompatActivity {
         super.onSaveInstanceState(outState);
         outState.putSerializable("START", startDate);
         outState.putSerializable("END", endDate);
+        outState.putSerializable("START_TIME", startTime);
+        outState.putSerializable("END_TIME", startTime);
     }
 
     @Override
@@ -201,6 +261,8 @@ public class NewCourse extends AppCompatActivity {
         super.onRestoreInstanceState(savedInstanceState);
         startDate = (Date) savedInstanceState.getSerializable("START");
         endDate = (Date) savedInstanceState.getSerializable("END");
+        startTime = (Long) savedInstanceState.getSerializable("START_TIME");
+        endTime = (Long) savedInstanceState.getSerializable("END_TIME");
     }
 
 }

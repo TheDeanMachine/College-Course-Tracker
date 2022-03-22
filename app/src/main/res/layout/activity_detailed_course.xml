@@ -137,7 +137,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
-            android:text="Room #"
+            android:text="@string/room"
             android:textColor="#311B92"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textViewDetailCourseTimeSet" />
@@ -151,7 +151,8 @@
             android:text="    "
             android:textColor="#311B92"
             app:layout_constraintStart_toEndOf="@+id/textViewDetailCourseRoomSet"
-            app:layout_constraintTop_toBottomOf="@+id/textViewDetailCourseTime" />
+            app:layout_constraintTop_toBottomOf="@+id/textViewDetailCourseTime"
+            tools:ignore="SpeakableTextPresentCheck" />
 
         <TextView
             android:id="@+id/textView7"
@@ -197,6 +198,28 @@
             app:layout_constraintStart_toEndOf="@+id/add_course_alarm"
             app:layout_constraintTop_toBottomOf="@+id/textViewDetailCourseInstructorPhone" />
 
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/to"
+            android:textColor="#311B92"
+            app:layout_constraintStart_toEndOf="@+id/textViewDetailCourseTime"
+            app:layout_constraintTop_toBottomOf="@+id/textViewDetailCourseEndDate" />
+
+        <TextView
+            android:id="@+id/textViewDetailCourseEndTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="8dp"
+            android:text="TextView"
+            android:textColor="#311B92"
+            app:layout_constraintStart_toEndOf="@+id/textView3"
+            app:layout_constraintTop_toBottomOf="@+id/textViewDetailCourseEndDate" />
+
         <!--        <com.google.android.material.button.MaterialButton-->
         <!--            style="?attr/borderlessButtonStyle"-->
         <!--            android:layout_width="wrap_content"-->
@@ -206,6 +229,7 @@
         <!--            android:text="@string/set_reminder"-->
         <!--            app:layout_constraintBottom_toBottomOf="parent"-->
         <!--            app:layout_constraintStart_toEndOf="@+id/materialButton" />-->
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 
@@ -249,4 +273,5 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:srcCompat="@drawable/ic_baseline_add_24" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
