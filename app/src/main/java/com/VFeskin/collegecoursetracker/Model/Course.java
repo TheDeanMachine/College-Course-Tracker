@@ -6,9 +6,7 @@ import androidx.room.Entity;
 import androidx.room.ForeignKey;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
-
 import java.util.Date;
-
 
 /**
  * The following code defines a Course data entity.
@@ -47,16 +45,17 @@ public class Course {
     @ColumnInfo(name = "course_status")
     private String courseStatus;
 
+    @ColumnInfo(name = "room_number")
+    private String roomNumber;
+
     @ColumnInfo(name = "term_id")
     private int termId; //FK
 
-    @ColumnInfo(name = "note")
-    private String note;
 
     // for creating new objects
     public Course(@NonNull String title, @NonNull Date startDate, @NonNull Date endDate,
                   String instructorName, String instructorPhone, String instructorEmail,
-                  String courseStatus, String note, int termId) {
+                  String courseStatus, String roomNumber, int termId) {
         this.title = title;
         this.startDate = startDate;
         this.endDate = endDate;
@@ -64,7 +63,7 @@ public class Course {
         this.instructorPhone = instructorPhone;
         this.instructorEmail = instructorEmail;
         this.courseStatus = courseStatus;
-        this.note = note;
+        this.roomNumber = roomNumber;
         this.termId = termId;
     }
 
@@ -72,7 +71,7 @@ public class Course {
     @Ignore
     public Course(int id, @NonNull String title, @NonNull Date startDate, @NonNull Date endDate,
                   String instructorName, String instructorPhone,
-                  String instructorEmail, String courseStatus, String note, int termId) {
+                  String instructorEmail, String courseStatus, String roomNumber, int termId) {
         this.id = id;
         this.title = title;
         this.startDate = startDate;
@@ -81,7 +80,7 @@ public class Course {
         this.instructorPhone = instructorPhone;
         this.instructorEmail = instructorEmail;
         this.courseStatus = courseStatus;
-        this.note = note;
+        this.roomNumber = roomNumber;
         this.termId = termId;
     }
 
@@ -121,13 +120,14 @@ public class Course {
         return courseStatus;
     }
 
+    public String getRoomNumber() {
+        return roomNumber;
+    }
+
     public int getTermId() {
         return termId;
     }
 
-    public String getNote() {
-        return note;
-    }
 
     // setters
     public void setId(int id) {
@@ -162,11 +162,12 @@ public class Course {
         this.courseStatus = courseStatus;
     }
 
+    public void setRoomNumber(String roomNumber) {
+        this.roomNumber = roomNumber;
+    }
+
     public void setTermId(int termId) {
         this.termId = termId;
     }
 
-    public void setNote(String note) {
-        this.note = note;
-    }
 }

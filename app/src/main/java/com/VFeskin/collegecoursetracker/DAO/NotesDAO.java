@@ -1,6 +1,6 @@
 package com.VFeskin.collegecoursetracker.DAO;
 
-import com.VFeskin.collegecoursetracker.Model.Course;
+import com.VFeskin.collegecoursetracker.Model.Note;
 import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Delete;
@@ -15,22 +15,22 @@ import java.util.List;
  * At compile time, Room automatically generates implementations of the DAO.
  */
 @Dao
-public interface CourseDAO {
+public interface NotesDAO {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    void insert(Course course);
+    void insert(Note note);
 
     @Update
-    void update(Course course);
+    void update(Note note);
 
     @Delete
-    void delete(Course course);
+    void delete(Note note);
 
-    @Query("SELECT * FROM Courses ORDER BY start_date ASC")
-    LiveData<List<Course>> getAllCourses();
+    @Query("SELECT * FROM Notes ORDER BY id ASC")
+    LiveData<List<Note>> getAllNotes();
 
-    @Query("SELECT * FROM Courses WHERE term_id = :id ORDER BY start_date ASC")
-    LiveData<List<Course>> getByTermId(int id);
+    @Query("SELECT * FROM Notes WHERE id = :id ORDER BY id ASC")
+    LiveData<List<Note>> getNotesByCourseId(int id);
 
-    @Query("SELECT * FROM Courses WHERE id = :id")
-    LiveData<Course> getByCoursePK(int id);
+    @Query("SELECT * FROM Notes WHERE id = :id")
+    LiveData<Note> getByNotesPK(int id);
 }

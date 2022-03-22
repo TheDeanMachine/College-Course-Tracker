@@ -6,9 +6,11 @@ import androidx.lifecycle.LiveData;
 
 import com.VFeskin.collegecoursetracker.DAO.AssessmentDAO;
 import com.VFeskin.collegecoursetracker.DAO.CourseDAO;
+import com.VFeskin.collegecoursetracker.DAO.NotesDAO;
 import com.VFeskin.collegecoursetracker.DAO.TermDAO;
 import com.VFeskin.collegecoursetracker.Model.Assessment;
 import com.VFeskin.collegecoursetracker.Model.Course;
+import com.VFeskin.collegecoursetracker.Model.Note;
 import com.VFeskin.collegecoursetracker.Model.Term;
 import java.util.List;
 
@@ -22,11 +24,13 @@ public class CourseTrackerRepository {
     private TermDAO termDAO;
     private CourseDAO courseDAO;
     private AssessmentDAO assessmentDAO;
+    private NotesDAO notesDAO;
 
     // Observed LiveData will notify the observer when the data has changed.
     private LiveData<List<Term>> allTerms;
     private LiveData<List<Course>> allCourses;
     private LiveData<List<Assessment>> allAssessments;
+    private LiveData<List<Note>> allNotes;
 
 
     public CourseTrackerRepository(Application application) {
@@ -35,11 +39,13 @@ public class CourseTrackerRepository {
         termDAO = db.termDAO();
         courseDAO = db.courseDAO();
         assessmentDAO = db.assessmentDAO();
+        notesDAO = db.notesDAO();
 
         // get all
         allTerms = termDAO.getAllTerms();
         allCourses = courseDAO.getAllCourses();
         allAssessments = assessmentDAO.getAllAssessments();
+        allNotes = notesDAO.getAllNotes();
     }
 
     ////// Must call the following on a non-UI thread or it will throw an exception ////////
@@ -134,5 +140,37 @@ public class CourseTrackerRepository {
             assessmentDAO.delete(assessment);
         });
     }
+
+    /// NOTES CRUD ///
+    public LiveData<List<Note>> getAllNotes() {
+        return allNotes;
+    }
+
+    public LiveData<List<Note>> getNotesByCourseId(int id) {
+        return notesDAO.getNotesByCourseId(id);
+    }
+
+    public LiveData<Note> getByNotesPK(int id) {
+        return notesDAO.getByNotesPK(id);
+    }
+
+    public void insertNotes(Note note) {
+        CourseTrackerDatabase.databaseWriteExecutor.execute(() -> {
+            notesDAO.insert(note);
+        });
+    }
+
+    public void updateNotes(Note note) {
+        CourseTrackerDatabase.databaseWriteExecutor.execute(() -> {
+            notesDAO.update(note);
+        });
+    }
+
+    public void deleteNotes(Note note) {
+        CourseTrackerDatabase.databaseWriteExecutor.execute(() -> {
+            notesDAO.delete(note);
+        });
+    }
+
 
 }
