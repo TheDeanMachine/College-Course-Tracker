@@ -12,14 +12,21 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CollegeCourseTracker">
         <activity
+            android:name=".Controller.EditNote"
+            android:exported="false"
+            android:label="Update Note"/>
+        <activity
             android:name=".Controller.NewNote"
-            android:exported="false" />
+            android:exported="false"
+            android:label="Add Note" />
         <activity
             android:name=".Controller.DetailedNote"
-            android:exported="false" />
+            android:exported="false"
+            android:label="Class Note" />
         <activity
             android:name=".Controller.NoteList"
-            android:exported="false" />
+            android:exported="false"
+            android:label="List of Notes" />
 
         <receiver
             android:name=".Utility.DateReceiver"
@@ -28,13 +35,16 @@
 
         <activity
             android:name=".Controller.EditAssessment"
-            android:exported="false" />
+            android:exported="false"
+            android:label="Update Assessment" />
         <activity
             android:name=".Controller.EditCourse"
-            android:exported="false" />
+            android:exported="false"
+            android:label="Update Course" />
         <activity
             android:name=".Controller.EditTerm"
-            android:exported="false" />
+            android:exported="false"
+            android:label="Update Term" />
         <activity
             android:name=".Controller.DetailedAssessment"
             android:exported="false"

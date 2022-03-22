@@ -3,13 +3,15 @@ package com.VFeskin.collegecoursetracker.Controller;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModelProvider;
-
 import com.VFeskin.collegecoursetracker.Model.Note;
 import com.VFeskin.collegecoursetracker.Model.NotesViewModel;
 import com.VFeskin.collegecoursetracker.R;
 import android.os.Bundle;
 import android.widget.TextView;
 
+/**
+ *
+ */
 public class DetailedNote extends AppCompatActivity {
 
     // XML attributes

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Controller.NewNote">
+    tools:context=".Controller.EditNote">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -16,7 +16,7 @@
             android:orientation="vertical">
 
             <EditText
-                android:id="@+id/editTextNoteMultiLine"
+                android:id="@+id/editTextUpdateNoteMultiLine"
                 android:layout_width="match_parent"
                 android:layout_height="96dp"
                 android:layout_marginStart="16dp"
@@ -28,11 +28,11 @@
                 android:inputType="textMultiLine" />
 
             <Button
-                android:id="@+id/createNoteButton"
+                android:id="@+id/UpdateNoteButton"
                 style="@style/form_style"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/create_note" />
+                android:text="@string/update_note" />
         </LinearLayout>
     </ScrollView>
 

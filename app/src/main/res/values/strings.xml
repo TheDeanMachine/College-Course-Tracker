@@ -64,6 +64,7 @@
     <string name="note_to_set">Note to set</string>
     <string name="enter_course_note">Enter course note</string>
     <string name="create_note">CREATE NOTE</string>
+    <string name="update_note">UPDATE NOTE</string>
 
 
     <string-array name="course_status">

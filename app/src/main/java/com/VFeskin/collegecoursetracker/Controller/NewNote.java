@@ -1,17 +1,17 @@
 package com.VFeskin.collegecoursetracker.Controller;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.VFeskin.collegecoursetracker.Model.Note;
 import com.VFeskin.collegecoursetracker.Model.NotesViewModel;
 import com.VFeskin.collegecoursetracker.R;
 import com.google.android.material.snackbar.Snackbar;
-
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
 
-
+/**
+ *
+ */
 public class NewNote extends AppCompatActivity {
 
     // XML attribute
