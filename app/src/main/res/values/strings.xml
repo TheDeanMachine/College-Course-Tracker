@@ -61,6 +61,9 @@
     <string name="room_number_or_course_number">Room number or Course Number</string>
     <string name="end_time">End Time</string>
     <string name="room">Room #</string>
+    <string name="note_to_set">Note to set</string>
+    <string name="enter_course_note">Enter course note</string>
+    <string name="create_note">CREATE NOTE</string>
 
 
     <string-array name="course_status">

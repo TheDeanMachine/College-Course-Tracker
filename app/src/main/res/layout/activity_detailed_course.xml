@@ -76,16 +76,7 @@
             app:layout_constraintStart_toEndOf="@+id/textViewDetailCourseStartDateSet"
             app:layout_constraintTop_toBottomOf="@+id/textViewDetailCourseStatus" />
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/add_course_alarm"
-            style="?attr/borderlessButtonStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginBottom="16dp"
-            android:text="@string/set_reminder"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+
 
         <TextView
             android:id="@+id/textViewDetailCourseEndDateSet"
@@ -220,15 +211,27 @@
             app:layout_constraintStart_toEndOf="@+id/textView3"
             app:layout_constraintTop_toBottomOf="@+id/textViewDetailCourseEndDate" />
 
-        <!--        <com.google.android.material.button.MaterialButton-->
-        <!--            style="?attr/borderlessButtonStyle"-->
-        <!--            android:layout_width="wrap_content"-->
-        <!--            android:layout_height="wrap_content"-->
-        <!--            android:layout_marginStart="8dp"-->
-        <!--            android:layout_marginBottom="16dp"-->
-        <!--            android:text="@string/set_reminder"-->
-        <!--            app:layout_constraintBottom_toBottomOf="parent"-->
-        <!--            app:layout_constraintStart_toEndOf="@+id/materialButton" />-->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/add_course_alarm"
+            style="?attr/borderlessButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginBottom="16dp"
+            android:text="@string/set_reminder"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/ViewNotesButton"
+            style="?attr/borderlessButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginBottom="16dp"
+            android:text="View Notes"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/add_course_alarm" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -72,6 +72,7 @@ public class DetailedCourse extends AppCompatActivity implements AssessmentViewA
     private FloatingActionButton fab;
 //    private FloatingActionButton fabAlarm;
     private Button buttonAlarm;
+    private Button viewNotesButton;
 
 
     @Override
@@ -81,6 +82,7 @@ public class DetailedCourse extends AppCompatActivity implements AssessmentViewA
         fab = findViewById(R.id.detail_add_new_assessment);
 //        fabAlarm = findViewById(R.id.add_course_alarm);
         buttonAlarm = findViewById(R.id.add_course_alarm);
+        viewNotesButton = findViewById(R.id.ViewNotesButton);
         title = findViewById(R.id.textViewDetailCourseTitle);
         status = findViewById(R.id.textViewDetailCourseStatus);
         start = findViewById(R.id.textViewDetailCourseStartDate);
@@ -143,6 +145,13 @@ public class DetailedCourse extends AppCompatActivity implements AssessmentViewA
         // add alarm
 //        fabAlarm.setOnClickListener(this::addCourseAlarm);
         buttonAlarm.setOnClickListener(this::addCourseAlarm);
+        viewNotesButton.setOnClickListener(this::viewNotes);
+    }
+
+    private void viewNotes(View view) {
+        Intent intent = new Intent(this, NoteList.class);
+        intent.putExtra("ID", PK);
+        startActivity(intent);
     }
 
 

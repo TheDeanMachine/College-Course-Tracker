@@ -235,9 +235,9 @@ public class NewCourse extends AppCompatActivity {
                 return;
             }
 
-
-            startDate.setTime(startTime); // set with user time
-            endDate.setTime(endTime); // set with user time
+//
+//            startDate.setTime(startTime); // set with user time
+//            endDate.setTime(endTime); // set with user time
             id = getIntent().getIntExtra("ID", 0);
 
             CourseViewModel.insert(new Course(title, startDate, endDate, name, phone, email, status, room, id));

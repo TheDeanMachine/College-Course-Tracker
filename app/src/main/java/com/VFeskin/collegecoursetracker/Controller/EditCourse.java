@@ -3,7 +3,6 @@ package com.VFeskin.collegecoursetracker.Controller;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModelProvider;
-
 import com.VFeskin.collegecoursetracker.Model.Course;
 import com.VFeskin.collegecoursetracker.Model.CourseViewModel;
 import com.VFeskin.collegecoursetracker.R;
@@ -258,8 +257,10 @@ public class EditCourse extends AppCompatActivity {
                 return;
             }
 
-            startDate.setTime(startTime); // set with user time
-            endDate.setTime(endTime); // set with user time
+
+            // WHEN SETTING TIME, ITS ERASING THE DATE // UNLESS DONE AFTER ONE ANOTHER
+            startDate.setTime(startTime); // set time with user time
+            endDate.setTime(endTime); // set time with user time
 
             CourseViewModel.update(new Course(PK, title, startDate, endDate, name, phone, email, status, room, FK));
             finish();
