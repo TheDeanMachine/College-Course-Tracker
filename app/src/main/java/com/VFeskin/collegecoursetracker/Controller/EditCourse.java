@@ -1,8 +1,7 @@
 package com.VFeskin.collegecoursetracker.Controller;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.LiveData;
-import androidx.lifecycle.ViewModelProvider;
+
 import com.VFeskin.collegecoursetracker.Model.Course;
 import com.VFeskin.collegecoursetracker.Model.CourseViewModel;
 import com.VFeskin.collegecoursetracker.R;
@@ -11,7 +10,6 @@ import com.google.android.material.snackbar.Snackbar;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -42,10 +40,10 @@ public class EditCourse extends AppCompatActivity {
 
     // date related fields
     private final Calendar calendar = Calendar.getInstance();
-    DatePickerDialog.OnDateSetListener dateDialog;
-    DatePickerDialog.OnDateSetListener dateDialog2;
-    TimePickerDialog.OnTimeSetListener timeDialog;
-    TimePickerDialog.OnTimeSetListener timeDialog2;
+    DatePickerDialog.OnDateSetListener startDateDialog;
+    DatePickerDialog.OnDateSetListener endDateDialog;
+    TimePickerDialog.OnTimeSetListener startTimeDialog;
+    TimePickerDialog.OnTimeSetListener endTimeDialog;
     private Date startDate;
     private Date endDate;
     private Long startTime;
@@ -93,55 +91,59 @@ public class EditCourse extends AppCompatActivity {
         FK = extra.getInt("FK");
 
         // shows the time picker, onClick
-        startTimeTxt.setOnClickListener(view -> new TimePickerDialog(this, timeDialog,
+        startTimeTxt.setOnClickListener(view -> new TimePickerDialog(this, startTimeDialog,
                 calendar.get(Calendar.HOUR_OF_DAY),
                 calendar.get(Calendar.MINUTE),
                 false)
                 .show());
 
         // shows the time picker, onClick
-        endTimeTxt.setOnClickListener(view -> new TimePickerDialog(this, timeDialog2,
+        endTimeTxt.setOnClickListener(view -> new TimePickerDialog(this, endTimeDialog,
                 calendar.get(Calendar.HOUR_OF_DAY),
                 calendar.get(Calendar.MINUTE),
                 false)
                 .show());
 
         // gets the values from time picker, onTimeSet
-        timeDialog = (view, hour, minute) -> {
+        startTimeDialog = (view, hour, minute) -> {
             calendar.set(Calendar.HOUR_OF_DAY, hour);
             calendar.set(Calendar.MINUTE, minute);
             startTime = calendar.getTimeInMillis();
+//            startDate.setTime(startTime); // set time with user time
+
             // format the output the screen
             startTimeTxt.setError(null); // clears set error
             startTimeTxt.setText(DateFormat.getTimeInstance(DateFormat.SHORT).format(startTime));
         };
 
         // gets the values from time picker, onTimeSet
-        timeDialog2 = (view, hour, minute) -> {
+        endTimeDialog = (view, hour, minute) -> {
             calendar.set(Calendar.HOUR_OF_DAY, hour);
             calendar.set(Calendar.MINUTE, minute);
             endTime = calendar.getTimeInMillis();
+//            endDate.setTime(endTime); // set time with user time
+
             // format the output the screen
             endTimeTxt.setError(null); // clears set error
             endTimeTxt.setText(DateFormat.getTimeInstance(DateFormat.SHORT).format(endTime));
         };
 
         // shows the date picker, onClick
-        startDateTxt.setOnClickListener(view -> new DatePickerDialog(EditCourse.this, dateDialog,
+        startDateTxt.setOnClickListener(view -> new DatePickerDialog(EditCourse.this, startDateDialog,
                 calendar.get(Calendar.YEAR),
                 calendar.get(Calendar.MONTH),
                 calendar.get(Calendar.DAY_OF_MONTH))
                 .show());
 
         // shows the date picker, onClick
-        endDateTxt.setOnClickListener(view -> new DatePickerDialog(EditCourse.this, dateDialog2,
+        endDateTxt.setOnClickListener(view -> new DatePickerDialog(EditCourse.this, endDateDialog,
                 calendar.get(Calendar.YEAR),
                 calendar.get(Calendar.MONTH),
                 calendar.get(Calendar.DAY_OF_MONTH))
                 .show());
 
         // gets the values from date picker, onDataSet
-        dateDialog = (view, year, month, day) -> {
+        startDateDialog = (view, year, month, day) -> {
             calendar.set(year, month, day);
             startDate = calendar.getTime();
             // format the output the screen
@@ -150,7 +152,7 @@ public class EditCourse extends AppCompatActivity {
         };
 
         // gets the values from date picker, onDataSet
-        dateDialog2 = (view, year, month, day) -> {
+        endDateDialog = (view, year, month, day) -> {
             calendar.set(year, month, day);
             endDate = calendar.getTime();
             // format the output the screen
@@ -190,12 +192,16 @@ public class EditCourse extends AppCompatActivity {
                 startTimeTxt.setError("Time is required!");
                 Snackbar.make(view, "Please enter course start time", Snackbar.LENGTH_SHORT).show();
                 return;
+            } else {
+//                startDate.setTime(startTime); // set time with user time
             }
 
             if (endTime == null || endTimeTxt.getText().toString().isEmpty()) {
                 endTimeTxt.setError("Time is required!");
                 Snackbar.make(view, "Please enter course end time", Snackbar.LENGTH_SHORT).show();
                 return;
+            } else {
+//                endDate.setTime(endTime); // set time with user time
             }
 
             String room = null;
@@ -258,9 +264,11 @@ public class EditCourse extends AppCompatActivity {
             }
 
 
-            // WHEN SETTING TIME, ITS ERASING THE DATE // UNLESS DONE AFTER ONE ANOTHER
-            startDate.setTime(startTime); // set time with user time
-            endDate.setTime(endTime); // set time with user time
+//            // WHEN SETTING TIME, ITS ERASING THE DATE // UNLESS DONE AFTER ONE ANOTHER
+//            startDate.setTime(startTime); // set time with user time
+//            endDate.setTime(endTime); // set time with user time
+
+
 
             CourseViewModel.update(new Course(PK, title, startDate, endDate, name, phone, email, status, room, FK));
             finish();
