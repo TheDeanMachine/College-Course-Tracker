@@ -110,7 +110,7 @@ public class DetailedCourse extends AppCompatActivity implements AssessmentViewA
                 .getApplication())
                 .create(CourseViewModel.class);
 
-        // observers
+        // assessment list observers
         assessmentsByCourseId = assessmentViewModel.getByCourseId(PK);
         assessmentsByCourseId.observe(this, assessments -> {
             // set recycle view with assessments
@@ -118,6 +118,7 @@ public class DetailedCourse extends AppCompatActivity implements AssessmentViewA
             recyclerView.setAdapter(assessmentViewAdapter);
         });
 
+        // selected course observer
         courseById = courseViewModel.getByCoursePK(PK);
         courseById.observe(this, course -> {
             title.setText(course.getTitle());

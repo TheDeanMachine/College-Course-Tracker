@@ -1,6 +1,7 @@
 package com.VFeskin.collegecoursetracker.Controller;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -11,6 +12,7 @@ import com.VFeskin.collegecoursetracker.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import android.content.Intent;
 import android.os.Bundle;
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -30,7 +32,11 @@ public class NoteList extends AppCompatActivity implements NoteViewAdapter.OnNot
     // add button
     private FloatingActionButton fab;
 
+    // course PK
     private int PK;
+
+    // data
+    private LiveData<List<Note>> noteById;
 
 
     @Override
@@ -51,9 +57,16 @@ public class NoteList extends AppCompatActivity implements NoteViewAdapter.OnNot
                 .getApplication())
                 .create(NotesViewModel.class);
 
-        // observer
-        notesViewModel.getAllNotes().observe(this, notes -> {
-            // recycle view with notes
+        // observer all
+//        notesViewModel.getAllNotes().observe(this, notes -> {
+//            // recycle view with notes
+//            noteViewAdapter = new NoteViewAdapter(notes, this);
+//            recyclerView.setAdapter(noteViewAdapter);
+//        });
+
+        // observer by course
+        noteById = notesViewModel.getNotesByCourseId(PK);
+        noteById.observe(this, notes -> {
             noteViewAdapter = new NoteViewAdapter(notes, this);
             recyclerView.setAdapter(noteViewAdapter);
         });
