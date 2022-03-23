@@ -192,12 +192,6 @@ public class DetailedCourse extends AppCompatActivity implements AssessmentViewA
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu, menu);
-
-        // set share button if optional note is found
-//        if (Objects.requireNonNull(courseById.getValue()).getNote() != null) {
-//            MenuItem shareItem = menu.findItem(R.id.share);
-//            shareItem.setVisible(true);
-//        }
         return true;
     }
 
@@ -205,9 +199,6 @@ public class DetailedCourse extends AppCompatActivity implements AssessmentViewA
     public boolean onOptionsItemSelected(MenuItem item) {
         // Determine which app bar item was chosen
         switch (item.getItemId()) {
-//            case R.id.share:
-//                shareItem();
-//                return true;
             case R.id.edit:
                 editItem();
                 return true;
@@ -228,16 +219,6 @@ public class DetailedCourse extends AppCompatActivity implements AssessmentViewA
         }
     }
 
-//    private void shareItem() {
-//        Intent sendIntent = new Intent();
-//        sendIntent.setAction(Intent.ACTION_SEND);
-//        sendIntent.putExtra(Intent.EXTRA_TEXT, Objects.requireNonNull(courseById.getValue()).getNote());
-//        sendIntent.setType("text/plain");
-//
-//        Intent shareIntent = Intent.createChooser(sendIntent, null);
-//        startActivity(shareIntent);
-//    }
-
     private void editItem() {
         Intent intent = new Intent(this, EditCourse.class);
         intent.putExtra("ID", PK);
@@ -250,10 +231,6 @@ public class DetailedCourse extends AppCompatActivity implements AssessmentViewA
         intent.putExtra("PHONE", phone.getText());
         intent.putExtra("EMAIL", email.getText());
         intent.putExtra("FK", FK);
-//
-//        if (Objects.requireNonNull(courseById.getValue()).getNote() != null) {
-//            intent.putExtra("NOTE", note.getText());
-//        }
         startActivity(intent);
     }
 

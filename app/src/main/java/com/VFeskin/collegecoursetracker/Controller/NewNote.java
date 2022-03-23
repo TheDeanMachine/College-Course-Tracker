@@ -10,7 +10,9 @@ import android.widget.Button;
 import android.widget.EditText;
 
 /**
- *
+ * This class is used for adding a new note.
+ * Displays a form that the user can fill out, uses the information entered
+ * to create a new note object/entity and adds it into the database.
  */
 public class NewNote extends AppCompatActivity {
 

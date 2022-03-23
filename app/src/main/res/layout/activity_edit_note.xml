@@ -28,7 +28,7 @@
                 android:inputType="textMultiLine" />
 
             <Button
-                android:id="@+id/UpdateNoteButton"
+                android:id="@+id/updateNoteButton"
                 style="@style/form_style"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

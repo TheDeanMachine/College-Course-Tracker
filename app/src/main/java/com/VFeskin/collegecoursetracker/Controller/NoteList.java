@@ -88,7 +88,7 @@ public class NoteList extends AppCompatActivity implements NoteViewAdapter.OnNot
     public void onNoteClick(int position) {
         Intent intent = new Intent(this, DetailedNote.class);
         // pass data to the detail view
-        Note note = Objects.requireNonNull(notesViewModel.allNotes.getValue()).get(position);
+        Note note = Objects.requireNonNull(noteById.getValue()).get(position);
         intent.putExtra("ID", note.getId());
         startActivity(intent);
 
