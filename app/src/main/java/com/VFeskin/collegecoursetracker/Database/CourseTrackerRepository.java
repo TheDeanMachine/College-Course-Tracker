@@ -8,10 +8,13 @@ import com.VFeskin.collegecoursetracker.DAO.AssessmentDAO;
 import com.VFeskin.collegecoursetracker.DAO.CourseDAO;
 import com.VFeskin.collegecoursetracker.DAO.NotesDAO;
 import com.VFeskin.collegecoursetracker.DAO.TermDAO;
+import com.VFeskin.collegecoursetracker.DAO.UserDao;
 import com.VFeskin.collegecoursetracker.Model.Assessment;
 import com.VFeskin.collegecoursetracker.Model.Course;
 import com.VFeskin.collegecoursetracker.Model.Note;
 import com.VFeskin.collegecoursetracker.Model.Term;
+import com.VFeskin.collegecoursetracker.Model.User;
+
 import java.util.List;
 
 /**
@@ -25,12 +28,14 @@ public class CourseTrackerRepository {
     private CourseDAO courseDAO;
     private AssessmentDAO assessmentDAO;
     private NotesDAO notesDAO;
+    private UserDao userDao;
 
     // Observed LiveData will notify the observer when the data has changed.
     private LiveData<List<Term>> allTerms;
     private LiveData<List<Course>> allCourses;
     private LiveData<List<Assessment>> allAssessments;
     private LiveData<List<Note>> allNotes;
+    private LiveData<List<User>> allUsers;
 
 
     public CourseTrackerRepository(Application application) {
@@ -40,12 +45,14 @@ public class CourseTrackerRepository {
         courseDAO = db.courseDAO();
         assessmentDAO = db.assessmentDAO();
         notesDAO = db.notesDAO();
+        userDao = db.userDao();
 
         // get all
         allTerms = termDAO.getAllTerms();
         allCourses = courseDAO.getAllCourses();
         allAssessments = assessmentDAO.getAllAssessments();
         allNotes = notesDAO.getAllNotes();
+        allUsers = userDao.getAllUsers();
     }
 
     ////// Must call the following on a non-UI thread or it will throw an exception ////////
@@ -172,5 +179,19 @@ public class CourseTrackerRepository {
         });
     }
 
+    /// USER ///
+    public LiveData<List<User>> getAllUsers() {
+        return allUsers;
+    }
+
+    public LiveData<User> getUser(String user, String password) {
+        return userDao.getUser(user,password);
+    }
+
+    public void insertUser(User user) {
+        CourseTrackerDatabase.databaseWriteExecutor.execute(() -> {
+            userDao.insert(user);
+        });
+    }
 
 }

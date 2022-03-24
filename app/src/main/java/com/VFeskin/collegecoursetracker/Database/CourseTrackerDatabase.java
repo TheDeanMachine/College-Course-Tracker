@@ -10,10 +10,12 @@ import com.VFeskin.collegecoursetracker.DAO.AssessmentDAO;
 import com.VFeskin.collegecoursetracker.DAO.CourseDAO;
 import com.VFeskin.collegecoursetracker.DAO.NotesDAO;
 import com.VFeskin.collegecoursetracker.DAO.TermDAO;
+import com.VFeskin.collegecoursetracker.DAO.UserDao;
 import com.VFeskin.collegecoursetracker.Model.Assessment;
 import com.VFeskin.collegecoursetracker.Model.Course;
 import com.VFeskin.collegecoursetracker.Model.Note;
 import com.VFeskin.collegecoursetracker.Model.Term;
+import com.VFeskin.collegecoursetracker.Model.User;
 import com.VFeskin.collegecoursetracker.Utility.DateConverter;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -23,13 +25,14 @@ import java.util.concurrent.Executors;
  * Room executes all queries on a separate thread and ensures that
  * you're not doing any long running operations on the main thread, blocking the UI.
  */
-@Database(entities = { Term.class, Course.class, Assessment.class, Note.class}, version = 11, exportSchema = false)
+@Database(entities = { Term.class, Course.class, Assessment.class, Note.class, User.class }, version = 12, exportSchema = false)
 @TypeConverters({DateConverter.class})
 public abstract class CourseTrackerDatabase extends RoomDatabase {
     public abstract TermDAO termDAO();
     public abstract CourseDAO courseDAO();
     public abstract AssessmentDAO assessmentDAO();
     public abstract NotesDAO notesDAO();
+    public abstract UserDao userDao();
 
     private static volatile CourseTrackerDatabase INSTANCE;
 

@@ -12,9 +12,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CollegeCourseTracker">
         <activity
+            android:name=".CreateNewUser"
+            android:exported="false" />
+        <activity
             android:name=".Controller.EditNote"
             android:exported="false"
-            android:label="Update Note"/>
+            android:label="Update Note" />
         <activity
             android:name=".Controller.NewNote"
             android:exported="false"

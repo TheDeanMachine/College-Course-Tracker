@@ -65,6 +65,13 @@
     <string name="enter_course_note">Enter course note</string>
     <string name="create_note">CREATE NOTE</string>
     <string name="update_note">UPDATE NOTE</string>
+    <string name="welcome">Welcome,</string>
+    <string name="log_in">Log In</string>
+    <string name="user_name">User Name</string>
+    <string name="password">Password</string>
+    <string name="enter_user_name">Enter user name</string>
+    <string name="enter_password">Enter password</string>
+    <string name="sign_in_to_continue">Sign in to continue!</string>
 
 
     <string-array name="course_status">
