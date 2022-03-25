@@ -11,12 +11,17 @@ import com.VFeskin.collegecoursetracker.Model.TermViewModel;
 import com.VFeskin.collegecoursetracker.R;
 import com.VFeskin.collegecoursetracker.Utility.DateConverter;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
+import android.app.SearchManager;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.SearchView;
+
 import java.util.List;
 import java.util.Objects;
 
@@ -87,13 +92,54 @@ public class TermList extends AppCompatActivity implements TermViewAdapter.OnTer
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.simple_menu, menu);
+
+
+        // Get the SearchView and set the searchable configuration
+        SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+        SearchView searchView = (SearchView) menu.findItem(R.id.search).getActionView();
+        // Assumes current activity is the searchable activity
+        searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
+        searchView.setIconifiedByDefault(false); // Do not iconify the widget; expand it by default
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                if (query != null) {
+                    searchDataBase(query);
+                }
+                return true;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                if (newText != null) {
+                    searchDataBase(newText);
+                }
+                return true;
+            }
+
+        });
+
+
+
         return true;
+    }
+
+    private void searchDataBase(String query) {
+        String searchQuery = "%" + query + "%";
+        termViewModel.searchForTerms(searchQuery).observe( this, result -> {
+            termViewAdapter = new TermViewAdapter(result, this);
+            recyclerView.setAdapter(termViewAdapter);
+        });
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Determine which app bar item was chosen
         switch (item.getItemId()) {
+//            case R.id.search:
+//                searchForResults();
+//                return true;
             case R.id.AllCourses:
                 viewAllCourses();
                 return true;
@@ -103,6 +149,11 @@ public class TermList extends AppCompatActivity implements TermViewAdapter.OnTer
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    private void searchForResults() {
+
+
     }
 
     public void viewAllCourses() {

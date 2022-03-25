@@ -3,6 +3,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto" >
 
     <item
+        android:id="@+id/search"
+        android:title="@string/search"
+        android:icon="@drawable/ic_baseline_search_24"
+        app:actionViewClass="android.widget.SearchView"
+        app:showAsAction="ifRoom|collapseActionView">
+    </item>
+
+    <item
         android:id="@+id/AllTerms"
         android:title="@string/all_terms"
         app:showAsAction="never"/>

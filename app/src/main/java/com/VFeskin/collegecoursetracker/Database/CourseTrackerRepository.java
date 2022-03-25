@@ -66,6 +66,10 @@ public class CourseTrackerRepository {
         return termDAO.getByTermPK(id);
     }
 
+    public LiveData<List<Term>> searchForTerms(String query) {
+        return termDAO.searchForTerms(query);
+    }
+
     public void insertTerm(Term term) {
         CourseTrackerDatabase.databaseWriteExecutor.execute(() -> {
             termDAO.insert(term);
@@ -83,7 +87,6 @@ public class CourseTrackerRepository {
             termDAO.delete(term);
         });
     }
-
 
     /// COURSE CRUD///
     public LiveData<List<Course>> getAllCourses() {

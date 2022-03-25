@@ -30,6 +30,10 @@ public interface TermDAO {
 
     @Query("SELECT * FROM Terms WHERE id = :id")
     LiveData<Term> getByTermPK(int id);
+
+    @Query("SELECT * FROM Terms WHERE title LIKE :query")
+    LiveData<List<Term>> searchForTerms(String query);
+
 }
 
 

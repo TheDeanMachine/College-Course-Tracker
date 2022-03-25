@@ -32,6 +32,10 @@ public class TermViewModel extends AndroidViewModel {
         return repository.getByTermPK(id);
     }
 
+    public LiveData<List<Term>> searchForTerms(String query) {
+        return repository.searchForTerms(query);
+    }
+
     public static void insert(Term term) {
         repository.insertTerm(term);
     }
