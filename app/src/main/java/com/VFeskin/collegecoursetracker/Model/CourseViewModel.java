@@ -36,6 +36,10 @@ public class CourseViewModel extends AndroidViewModel {
         return repository.getByCoursePK(id);
     }
 
+    public LiveData<List<Course>> searchForCourses(String query) {
+        return repository.searchForCourses(query);
+    }
+
     public static void insert(Course course) {
         repository.insertCourse(course);
     }

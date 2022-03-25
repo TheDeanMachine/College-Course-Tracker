@@ -101,6 +101,10 @@ public class CourseTrackerRepository {
         return courseDAO.getByCoursePK(id);
     }
 
+    public LiveData<List<Course>> searchForCourses(String query) {
+        return courseDAO.searchForCourses(query);
+    }
+
     public void insertCourse(Course course) {
         CourseTrackerDatabase.databaseWriteExecutor.execute(() -> {
             courseDAO.insert(course);
@@ -131,6 +135,10 @@ public class CourseTrackerRepository {
 
     public LiveData<Assessment> getByAssessmentsPK(int id) {
         return assessmentDAO.getByAssessmentsPK(id);
+    }
+
+    public LiveData<List<Assessment>> searchForAssessments(String query) {
+        return assessmentDAO.searchForAssessments(query);
     }
 
     public void insertAssessments(Assessment assessment) {

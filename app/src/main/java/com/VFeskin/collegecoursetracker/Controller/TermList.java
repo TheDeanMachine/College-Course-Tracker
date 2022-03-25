@@ -93,7 +93,6 @@ public class TermList extends AppCompatActivity implements TermViewAdapter.OnTer
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.simple_menu, menu);
 
-
         // Get the SearchView and set the searchable configuration
         SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
         SearchView searchView = (SearchView) menu.findItem(R.id.search).getActionView();
@@ -117,11 +116,7 @@ public class TermList extends AppCompatActivity implements TermViewAdapter.OnTer
                 }
                 return true;
             }
-
         });
-
-
-
         return true;
     }
 
@@ -137,9 +132,6 @@ public class TermList extends AppCompatActivity implements TermViewAdapter.OnTer
     public boolean onOptionsItemSelected(MenuItem item) {
         // Determine which app bar item was chosen
         switch (item.getItemId()) {
-//            case R.id.search:
-//                searchForResults();
-//                return true;
             case R.id.AllCourses:
                 viewAllCourses();
                 return true;
@@ -149,11 +141,6 @@ public class TermList extends AppCompatActivity implements TermViewAdapter.OnTer
             default:
                 return super.onOptionsItemSelected(item);
         }
-    }
-
-    private void searchForResults() {
-
-
     }
 
     public void viewAllCourses() {

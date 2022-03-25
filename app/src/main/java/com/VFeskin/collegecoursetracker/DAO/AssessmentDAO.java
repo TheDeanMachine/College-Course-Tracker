@@ -34,4 +34,7 @@ public interface AssessmentDAO {
     @Query("SELECT * FROM Assessments WHERE id = :id ")
     LiveData<Assessment> getByAssessmentsPK(int id);
 
+    @Query("SELECT * FROM Assessments WHERE title LIKE :query")
+    LiveData<List<Assessment>> searchForAssessments(String query);
+
 }
