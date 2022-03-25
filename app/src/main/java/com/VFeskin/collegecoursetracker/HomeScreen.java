@@ -13,10 +13,13 @@ import android.widget.Toast;
 import com.VFeskin.collegecoursetracker.Controller.TermList;
 import com.VFeskin.collegecoursetracker.Model.User;
 import com.VFeskin.collegecoursetracker.Model.UserViewModel;
+import com.google.android.material.snackbar.Snackbar;
 
-import java.util.Objects;
-
-
+/**
+ * This class is used for authenticating the user.
+ * If the user has credentials they may enter them, this will search the DB for matching user.
+ * Else they make create a new account by clicking sign up.
+ */
 public class HomeScreen extends AppCompatActivity {
 
     // XML attribute
@@ -24,7 +27,12 @@ public class HomeScreen extends AppCompatActivity {
     private EditText passwordTxt;
     private Button logInButton;
     private Button signUpButton;
-    UserViewModel userViewModel;
+
+    // view model
+    private UserViewModel userViewModel;
+
+    // user
+    private LiveData<User> user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,13 +54,12 @@ public class HomeScreen extends AppCompatActivity {
 
             // checking if the user entered text is empty or not.
             if (TextUtils.isEmpty(userName) || TextUtils.isEmpty(password)) {
-                Toast.makeText(this, "Please enter user name and password", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Must enter a user name and a password", Toast.LENGTH_SHORT).show();
             } else {
                 loginUser(userName, password);
             }
         });
 
-        openApplication();
         signUpButton.setOnClickListener(this::createNewUser);
     }
 
@@ -62,49 +69,22 @@ public class HomeScreen extends AppCompatActivity {
     }
 
     private void loginUser(String userName, String password) {
+        // must use view model to check for user
+        user = userViewModel.getUser(userName, password);
+        user.observe(this, user -> {
+            // check for any results
+            if (user != null) {
+                String name = user.getUserName();
+                String pass = user.getPassword();
+                // verify credentials
+                if (userName.equals(name) && password.equals(pass)) {
+                    openApplication();
+                }
+            } else {
+                Toast.makeText(this, "Incorrect conditionals", Toast.LENGTH_LONG).show();
+            }
 
-        // use observer
-//
-//        // Create a background thread
-//        Thread thread = new Thread(new Runnable() {
-//            @Override
-//            public void run() {
-//                LiveData<User> user = userViewModel.getUser(userName, password);
-//                if (user != null) {
-//                    String name = user.getValue().getUserName();
-//                    String pass = user.getValue().getPassword();
-//
-//                    if (userName.equals(name) && password.equals(pass)) {
-//                        openApplication();
-//                    }
-//                }
-//
-//                // UI should only be updated by main thread
-//                HomeScreen.this.runOnUiThread(new Runnable() {
-//                    @Override
-//                    public void run() {
-//                        Toast.makeText(HomeScreen.this, "Incorrect conditionals", Toast.LENGTH_LONG).show();
-//                    }
-//                });
-//            }
-//        });
-//        thread.start();
-
-
-
-//        LiveData<User> user = userViewModel.getUser(userName, password);
-//
-//        if (user != null) {
-//            String name = user.getValue().getUserName();
-//            String pass = user.getValue().getPassword();
-//
-//            if (userName.equals(name) && password.equals(pass)) {
-//                openApplication();
-//            }
-//
-//        } else {
-//            Toast.makeText(this, "Incorrect conditionals", Toast.LENGTH_LONG).show();
-//        }
+        });
     }
 
     public void openApplication() {

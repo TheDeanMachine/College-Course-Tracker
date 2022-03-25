@@ -8,7 +8,12 @@ import android.widget.EditText;
 import android.widget.Toast;
 import com.VFeskin.collegecoursetracker.Model.User;
 import com.VFeskin.collegecoursetracker.Model.UserViewModel;
+import com.google.android.material.snackbar.Snackbar;
 
+/**
+ * This class is used to create a new user.
+ * There credentials will be stored in the DB.
+ */
 public class CreateNewUser extends AppCompatActivity {
 
     // XML attribute
@@ -30,13 +35,13 @@ public class CreateNewUser extends AppCompatActivity {
             String password = passwordTxt.getText().toString().trim();
 
             // checking if the user entered text is empty or not.
-            if (TextUtils.isEmpty(userName) && TextUtils.isEmpty(password)) {
-                Toast.makeText(this, "Please enter user name and password", Toast.LENGTH_SHORT).show();
+            if (TextUtils.isEmpty(userName) || TextUtils.isEmpty(password)) {
+                Toast.makeText(this, "Must enter a user name and a password", Toast.LENGTH_LONG).show();
             } else {
                 UserViewModel.insert(new User(userName, password));
                 Toast.makeText(this, "Welcome " + userName, Toast.LENGTH_LONG).show();
+                finish();
             }
-            finish();
         });
     }
 }

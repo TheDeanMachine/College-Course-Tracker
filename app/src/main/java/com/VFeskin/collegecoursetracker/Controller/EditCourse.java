@@ -198,16 +198,12 @@ public class EditCourse extends AppCompatActivity {
                 startTimeTxt.setError("Time is required!");
                 Snackbar.make(view, "Please enter course start time", Snackbar.LENGTH_SHORT).show();
                 return;
-            } else {
-//                startDate.setTime(startTime); // set time with user time
             }
 
             if (endTime == null || endTimeTxt.getText().toString().isEmpty()) {
                 endTimeTxt.setError("Time is required!");
                 Snackbar.make(view, "Please enter course end time", Snackbar.LENGTH_SHORT).show();
                 return;
-            } else {
-//                endDate.setTime(endTime); // set time with user time
             }
 
             String room = null;
