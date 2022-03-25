@@ -36,6 +36,10 @@ public class AssessmentViewModel extends AndroidViewModel {
         return repository.getByAssessmentsPK(id);
     }
 
+    public LiveData<List<Assessment>> searchForAssessments(String query) {
+        return repository.searchForAssessments(query);
+    }
+
     public static void insert(Assessment assessment) {
         repository.insertAssessments(assessment);
     }

@@ -183,9 +183,6 @@ public class DetailedCourse extends AppCompatActivity implements AssessmentViewA
         // pass data to the detail view
         Assessment assessment = Objects.requireNonNull(assessmentsByCourseId.getValue()).get(position);
         intent.putExtra("ID", assessment.getId());
-        intent.putExtra("TITLE", assessment.getTitle());
-        intent.putExtra("TEST", assessment.getAssessmentType());
-        intent.putExtra("START", DateConverter.ToTimestamp(assessment.getStartDateTime()));
         startActivity(intent);
     }
 

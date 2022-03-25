@@ -6,15 +6,19 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.VFeskin.collegecoursetracker.Adapter.AssessmentViewAdapter;
+import com.VFeskin.collegecoursetracker.Adapter.CourseViewAdapter;
 import com.VFeskin.collegecoursetracker.Model.Assessment;
 import com.VFeskin.collegecoursetracker.Model.AssessmentViewModel;
 import com.VFeskin.collegecoursetracker.R;
 import com.VFeskin.collegecoursetracker.Utility.DateConverter;
 
+import android.app.SearchManager;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.SearchView;
 
 import java.util.List;
 import java.util.Objects;
@@ -26,9 +30,6 @@ import java.util.Objects;
  */
 public class AssessmentList extends AppCompatActivity implements AssessmentViewAdapter.OnAssessmentClickListener {
 
-    // data
-    private LiveData<List<Assessment>> assessmentList;
-
     // recycle view
     private RecyclerView recyclerView;
     private AssessmentViewAdapter assessmentViewAdapter;
@@ -36,15 +37,10 @@ public class AssessmentList extends AppCompatActivity implements AssessmentViewA
     // assessment view model
     private AssessmentViewModel assessmentViewModel;
 
-//    // add button
-//    private FloatingActionButton fab;
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_assessment_list);
-//        fab = findViewById(R.id.add_new_Assessment);
 
         // configure recycle view
         recyclerView = findViewById(R.id.recycler_Assessment_view);
@@ -62,17 +58,7 @@ public class AssessmentList extends AppCompatActivity implements AssessmentViewA
             assessmentViewAdapter = new AssessmentViewAdapter(assessments, this);
             recyclerView.setAdapter(assessmentViewAdapter);
         });
-//
-//        // add new assessment
-//        fab.setOnClickListener(view -> {
-//            openNewAssessment();
-//        });
     }
-
-//    private void openNewAssessment() {
-//        Intent intent = new Intent(this, NewAssessment.class);
-//        startActivity(intent);
-//    }
 
     @Override
     public void onAssessmentClick(int position) {
@@ -80,17 +66,46 @@ public class AssessmentList extends AppCompatActivity implements AssessmentViewA
         // pass data to the detail view
         Assessment assessment = Objects.requireNonNull(assessmentViewModel.allAssessments.getValue()).get(position);
         intent.putExtra("ID", assessment.getId());
-        intent.putExtra("TITLE", assessment.getTitle());
-        intent.putExtra("TEST", assessment.getAssessmentType());
-        intent.putExtra("START", DateConverter.ToTimestamp(assessment.getStartDateTime()));
-//        intent.putExtra("END", DateConverter.ToTimestamp(assessment.getEndDate()));
         startActivity(intent);
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.simple_menu, menu);
+
+        // Get the SearchView and set the searchable configuration
+        SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+        SearchView searchView = (SearchView) menu.findItem(R.id.search).getActionView();
+        // Assumes current activity is the searchable activity
+        searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
+        searchView.setIconifiedByDefault(false); // Do not iconify the widget; expand it by default
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                if (query != null) {
+                    searchDataBase(query);
+                }
+                return true;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                if (newText != null) {
+                    searchDataBase(newText);
+                }
+                return true;
+            }
+        });
         return true;
+    }
+
+    private void searchDataBase(String query) {
+        String searchQuery = "%" + query + "%";
+        assessmentViewModel.searchForAssessments(searchQuery).observe( this, result -> {
+            assessmentViewAdapter = new AssessmentViewAdapter(result, this);
+            recyclerView.setAdapter(assessmentViewAdapter);
+        });
     }
 
     @Override

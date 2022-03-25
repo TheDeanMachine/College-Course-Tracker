@@ -10,12 +10,13 @@ import com.VFeskin.collegecoursetracker.Model.Course;
 import com.VFeskin.collegecoursetracker.Model.CourseViewModel;
 import com.VFeskin.collegecoursetracker.R;
 import com.VFeskin.collegecoursetracker.Utility.DateConverter;
-
+import android.app.SearchManager;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-
+import android.widget.SearchView;
 import java.util.List;
 import java.util.Objects;
 
@@ -26,9 +27,6 @@ import java.util.Objects;
  */
 public class CourseList extends AppCompatActivity implements CourseViewAdapter.OnCourseClickListener {
 
-    // data
-    private LiveData<List<Course>> courseList;
-
     // recycle view
     private RecyclerView recyclerView;
     private CourseViewAdapter courseViewAdapter;
@@ -36,15 +34,10 @@ public class CourseList extends AppCompatActivity implements CourseViewAdapter.O
     // course view model
     private CourseViewModel courseViewModel;
 
-    // add button
-//    private FloatingActionButton fab;
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_course_list);
-//        fab = findViewById(R.id.add_new_course);
 
         // configure recycle view
         recyclerView = findViewById(R.id.recycler_course_view);
@@ -62,17 +55,7 @@ public class CourseList extends AppCompatActivity implements CourseViewAdapter.O
             courseViewAdapter = new CourseViewAdapter(courses, this);
             recyclerView.setAdapter(courseViewAdapter);
         });
-
-//        // add new course
-//        fab.setOnClickListener(view -> {
-//            openNewCourse();
-//        });
     }
-
-//    public void openNewCourse() {
-//        Intent intent = new Intent(this, NewCourse.class);
-//        startActivity(intent);
-//    }
 
     @Override
     public void onCourseClick(int position) {
@@ -80,21 +63,46 @@ public class CourseList extends AppCompatActivity implements CourseViewAdapter.O
         // pass data to the detail view
         Course course = Objects.requireNonNull(courseViewModel.allCourses.getValue()).get(position);
         intent.putExtra("ID", course.getId());
-        intent.putExtra("TITLE", course.getTitle());
-        intent.putExtra("START", DateConverter.ToTimestamp(course.getStartDateTime()));
-        intent.putExtra("END", DateConverter.ToTimestamp(course.getEndDateTime()));
-        intent.putExtra("STATUS", course.getCourseStatus());
-        intent.putExtra("NAME", course.getInstructorName());
-        intent.putExtra("PHONE", course.getInstructorPhone());
-        intent.putExtra("EMAIL", course.getInstructorEmail());
-
         startActivity(intent);
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.simple_menu, menu);
+
+        // Get the SearchView and set the searchable configuration
+        SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+        SearchView searchView = (SearchView) menu.findItem(R.id.search).getActionView();
+        // Assumes current activity is the searchable activity
+        searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
+        searchView.setIconifiedByDefault(false); // Do not iconify the widget; expand it by default
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                if (query != null) {
+                    searchDataBase(query);
+                }
+                return true;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                if (newText != null) {
+                    searchDataBase(newText);
+                }
+                return true;
+            }
+        });
         return true;
+    }
+
+    private void searchDataBase(String query) {
+        String searchQuery = "%" + query + "%";
+        courseViewModel.searchForCourses(searchQuery).observe( this, result -> {
+            courseViewAdapter = new CourseViewAdapter(result, this);
+            recyclerView.setAdapter(courseViewAdapter);
+        });
     }
 
     @Override

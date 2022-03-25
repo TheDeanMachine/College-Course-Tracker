@@ -33,4 +33,7 @@ public interface CourseDAO {
 
     @Query("SELECT * FROM Courses WHERE id = :id")
     LiveData<Course> getByCoursePK(int id);
+
+    @Query("SELECT * FROM Courses WHERE title LIKE :query")
+    LiveData<List<Course>> searchForCourses(String query);
 }
