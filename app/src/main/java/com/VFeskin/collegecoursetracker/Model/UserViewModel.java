@@ -7,6 +7,8 @@ import androidx.lifecycle.LiveData;
 
 import com.VFeskin.collegecoursetracker.Database.CourseTrackerRepository;
 
+import java.util.List;
+
 /**
  * This class is the ViewModel for User.
  * The ViewModel's role is to provide data to the UI and survive configuration changes.
@@ -15,10 +17,16 @@ import com.VFeskin.collegecoursetracker.Database.CourseTrackerRepository;
 public class UserViewModel extends AndroidViewModel {
 
     public static CourseTrackerRepository repository;
+    public final LiveData<List<User>> allUsers;
 
     public UserViewModel(@NonNull Application application) {
         super(application);
         repository = new CourseTrackerRepository(application);
+        allUsers = repository.getAllUsers();
+    }
+
+    public LiveData<List<User>> getAllUsers() {
+        return allUsers;
     }
 
     public LiveData<User> getUser(String user, String password) {

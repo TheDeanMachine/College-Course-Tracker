@@ -3,6 +3,7 @@ package com.VFeskin.collegecoursetracker.Controller;
 import com.VFeskin.collegecoursetracker.Model.Course;
 import com.VFeskin.collegecoursetracker.Model.CourseViewModel;
 import com.VFeskin.collegecoursetracker.R;
+import com.VFeskin.collegecoursetracker.Utility.DateTimeParser;
 import com.google.android.material.snackbar.Snackbar;
 
 import androidx.annotation.NonNull;
@@ -15,6 +16,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -48,6 +51,8 @@ public class NewCourse extends AppCompatActivity {
     private Date endDate;
     private Long startTime;
     private Long endTime;
+    private Date startDateTime;
+    private Date endDateTime;
 
     // term PK
     private int id;
@@ -235,12 +240,11 @@ public class NewCourse extends AppCompatActivity {
                 return;
             }
 
-//
-//            startDate.setTime(startTime); // set with user time
-//            endDate.setTime(endTime); // set with user time
+            startDateTime = DateTimeParser.parseDateTime(startDate, startTime);
+            endDateTime = DateTimeParser.parseDateTime(endDate, endTime);
             id = getIntent().getIntExtra("ID", 0);
 
-            CourseViewModel.insert(new Course(title, startDate, endDate, name, phone, email, status, room, id));
+            CourseViewModel.insert(new Course(title, startDateTime, endDateTime, name, phone, email, status, room, id));
             finish();
         });
 

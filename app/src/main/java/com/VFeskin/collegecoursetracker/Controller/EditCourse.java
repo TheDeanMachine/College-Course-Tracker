@@ -6,15 +6,21 @@ import com.VFeskin.collegecoursetracker.Model.Course;
 import com.VFeskin.collegecoursetracker.Model.CourseViewModel;
 import com.VFeskin.collegecoursetracker.R;
 import com.VFeskin.collegecoursetracker.Utility.DateConverter;
+import com.VFeskin.collegecoursetracker.Utility.DateTimeParser;
 import com.google.android.material.snackbar.Snackbar;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -48,6 +54,8 @@ public class EditCourse extends AppCompatActivity {
     private Date endDate;
     private Long startTime;
     private Long endTime;
+    private Date startDateTime;
+    private Date endDateTime;
 
     // keys
     private int PK;
@@ -109,7 +117,6 @@ public class EditCourse extends AppCompatActivity {
             calendar.set(Calendar.HOUR_OF_DAY, hour);
             calendar.set(Calendar.MINUTE, minute);
             startTime = calendar.getTimeInMillis();
-//            startDate.setTime(startTime); // set time with user time
 
             // format the output the screen
             startTimeTxt.setError(null); // clears set error
@@ -121,7 +128,6 @@ public class EditCourse extends AppCompatActivity {
             calendar.set(Calendar.HOUR_OF_DAY, hour);
             calendar.set(Calendar.MINUTE, minute);
             endTime = calendar.getTimeInMillis();
-//            endDate.setTime(endTime); // set time with user time
 
             // format the output the screen
             endTimeTxt.setError(null); // clears set error
@@ -263,14 +269,10 @@ public class EditCourse extends AppCompatActivity {
                 return;
             }
 
+            startDateTime = DateTimeParser.parseDateTime(startDate, startTime);
+            endDateTime = DateTimeParser.parseDateTime(endDate, endTime);
 
-//            // WHEN SETTING TIME, ITS ERASING THE DATE // UNLESS DONE AFTER ONE ANOTHER
-//            startDate.setTime(startTime); // set time with user time
-//            endDate.setTime(endTime); // set time with user time
-
-
-
-            CourseViewModel.update(new Course(PK, title, startDate, endDate, name, phone, email, status, room, FK));
+            CourseViewModel.update(new Course(PK, title, startDateTime, endDateTime, name, phone, email, status, room, FK));
             finish();
         });
 

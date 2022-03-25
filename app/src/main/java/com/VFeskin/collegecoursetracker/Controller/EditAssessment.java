@@ -5,6 +5,7 @@ import com.VFeskin.collegecoursetracker.Model.Assessment;
 import com.VFeskin.collegecoursetracker.Model.AssessmentViewModel;
 import com.VFeskin.collegecoursetracker.R;
 import com.VFeskin.collegecoursetracker.Utility.DateConverter;
+import com.VFeskin.collegecoursetracker.Utility.DateTimeParser;
 import com.google.android.material.snackbar.Snackbar;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
@@ -37,6 +38,7 @@ public class EditAssessment extends AppCompatActivity {
     TimePickerDialog.OnTimeSetListener timeDialog;
     private Date startDate;
     private Long startTime;
+    private Date startDateTime;
 
     // keys
     private int PK;
@@ -138,9 +140,9 @@ public class EditAssessment extends AppCompatActivity {
                 return;
             }
 
-            startDate.setTime(startTime); // set with user time
+            startDateTime = DateTimeParser.parseDateTime(startDate, startTime);
 
-            AssessmentViewModel.update(new Assessment(PK, test, title, startDate, FK));
+            AssessmentViewModel.update(new Assessment(PK, test, title, startDateTime, FK));
             finish();
         });
 

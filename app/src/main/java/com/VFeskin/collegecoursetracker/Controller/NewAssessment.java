@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModelProvider;
 import com.VFeskin.collegecoursetracker.Model.Assessment;
 import com.VFeskin.collegecoursetracker.Model.AssessmentViewModel;
 import com.VFeskin.collegecoursetracker.R;
+import com.VFeskin.collegecoursetracker.Utility.DateTimeParser;
 import com.google.android.material.snackbar.Snackbar;
 
 import android.app.DatePickerDialog;
@@ -44,6 +45,7 @@ public class NewAssessment extends AppCompatActivity {
     TimePickerDialog.OnTimeSetListener timeDialog;
     private Date startDate;
     private Long startTime;
+    private Date startDateTime;
 
     // course PK
     private int id;
@@ -133,9 +135,9 @@ public class NewAssessment extends AppCompatActivity {
             }
 
             id = getIntent().getIntExtra("ID", 0); // FK
-            startDate.setTime(startTime); // set with user time
+            startDateTime = DateTimeParser.parseDateTime(startDate, startTime);
 
-            AssessmentViewModel.insert(new Assessment(test, title, startDate, id));
+            AssessmentViewModel.insert(new Assessment(test, title, startDateTime, id));
             finish();
         });
 
