@@ -21,6 +21,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import java.text.DateFormat;
 import java.util.Date;
 import java.util.Objects;
@@ -139,6 +141,7 @@ public class DetailedAssessment extends AppCompatActivity {
         if (assessmentByID.hasObservers()) {
             assessmentByID.removeObservers(DetailedAssessment.this);
             AssessmentViewModel.delete(new Assessment(PK, testType.toString(), title.toString(), startDateTime, FK));
+            Toast.makeText(this, "Assessment deleted!", Toast.LENGTH_LONG).show();
             finish();
         }
     }

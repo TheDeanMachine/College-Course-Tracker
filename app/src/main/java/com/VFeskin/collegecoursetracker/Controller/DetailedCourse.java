@@ -26,6 +26,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import java.text.DateFormat;
 import java.util.Date;
 import java.util.List;
@@ -236,6 +238,7 @@ public class DetailedCourse extends AppCompatActivity implements AssessmentViewA
             courseById.removeObservers(DetailedCourse.this);
             CourseViewModel.delete(new Course(PK, title.toString(), startDate, endDate,
                     status.toString(), name.toString(), phone.toString(), email.toString(), null, FK));
+            Toast.makeText(this, "Course deleted!", Toast.LENGTH_LONG).show();
             finish();
         }
     }

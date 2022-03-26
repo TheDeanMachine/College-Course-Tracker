@@ -20,6 +20,8 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import java.text.DateFormat;
 import java.util.Date;
 import java.util.List;
@@ -166,6 +168,7 @@ public class DetailedTerm extends AppCompatActivity implements CourseViewAdapter
             if (termById.hasObservers()) {
                 termById.removeObservers(DetailedTerm.this);
                 TermViewModel.delete(new Term(PK, title.toString(), startDate, endDate));
+                Toast.makeText(this, "Term deleted!", Toast.LENGTH_LONG).show();
                 finish();
             }
         } else {

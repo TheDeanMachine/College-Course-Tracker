@@ -77,6 +77,7 @@
     <string name="sign_up">SIGN UP</string>
     <string name="sing_up_to_get_started">Sing up to get started!</string>
     <string name="search">search</string>
+    <string name="view_notes">View Notes</string>
 
 
     <string-array name="course_status">

@@ -224,14 +224,15 @@
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/ViewNotesButton"
-            style="?attr/borderlessButtonStyle"
+            style="?attr/materialButtonOutlinedStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
+            android:layout_marginStart="96dp"
             android:layout_marginBottom="16dp"
-            android:text="View Notes"
+            android:text="@string/view_notes"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/add_course_alarm" />
+            app:layout_constraintStart_toEndOf="@+id/add_course_alarm"
+            app:strokeColor="@color/purple_500" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -264,6 +265,19 @@
 <!--        app:layout_constraintBottom_toBottomOf="parent"-->
 <!--        app:layout_constraintEnd_toEndOf="parent"-->
 <!--        app:srcCompat="@drawable/ic_baseline_add_alarm_24" />-->
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/ViewNotesButton1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="80dp"
+        android:clickable="true"
+        android:contentDescription="@string/add_button"
+        app:layout_anchorGravity="top|end"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/ic_baseline__note_24" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/detail_add_new_assessment"
