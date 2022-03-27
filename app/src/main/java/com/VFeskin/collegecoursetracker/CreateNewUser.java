@@ -36,7 +36,8 @@ public class CreateNewUser extends AppCompatActivity {
 
             // checking if the user entered text is empty or not.
             if (TextUtils.isEmpty(userName) || TextUtils.isEmpty(password)) {
-                Toast.makeText(this, "Must enter a user name and a password", Toast.LENGTH_LONG).show();
+//                Toast.makeText(this, "Must enter a user name and a password", Toast.LENGTH_LONG).show();
+                Snackbar.make(findViewById(R.id.scrollView2), "Must enter a user name and a password", Snackbar.LENGTH_SHORT).show();
             } else {
                 UserViewModel.insert(new User(userName, password));
                 Toast.makeText(this, "Welcome " + userName, Toast.LENGTH_LONG).show();

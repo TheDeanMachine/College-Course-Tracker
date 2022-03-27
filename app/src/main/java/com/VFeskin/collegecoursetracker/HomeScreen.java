@@ -54,7 +54,8 @@ public class HomeScreen extends AppCompatActivity {
 
             // checking if the user entered text is empty or not.
             if (TextUtils.isEmpty(userName) || TextUtils.isEmpty(password)) {
-                Toast.makeText(this, "Must enter a user name and a password", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(this, "Must enter a user name and a password", Toast.LENGTH_SHORT).show();
+                Snackbar.make(findViewById(R.id.homeScrollView), "Must enter a user name and a password", Snackbar.LENGTH_SHORT).show();
             } else {
                 loginUser(userName, password);
             }
@@ -81,7 +82,8 @@ public class HomeScreen extends AppCompatActivity {
                     openApplication();
                 }
             } else {
-                Toast.makeText(this, "Incorrect conditionals", Toast.LENGTH_LONG).show();
+//                Toast.makeText(this, "Incorrect conditionals!", Toast.LENGTH_LONG).show();
+                Snackbar.make(findViewById(R.id.homeScrollView), "Incorrect conditionals!", Snackbar.LENGTH_SHORT).show();
             }
 
         });

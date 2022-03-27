@@ -10,14 +10,14 @@
         android:id="@+id/scrollView2"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:fillViewport="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0"
-        tools:ignore="SpeakableTextPresentCheck"
-        android:fillViewport="true">
+        app:layout_constraintVertical_bias="0.0"
+        tools:ignore="SpeakableTextPresentCheck">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -47,12 +47,8 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/editTextSignUp"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:layout_marginStart="32dp"
+                style="@style/new_form_style"
                 android:layout_marginTop="118dp"
-                android:layout_marginEnd="32dp"
                 android:hint="@string/username"
                 app:errorEnabled="true"
                 app:layout_constraintEnd_toEndOf="parent"
