@@ -75,9 +75,12 @@
     <string name="log_in_caps">LOG IN</string>
     <string name="create_an_account">Create an account,</string>
     <string name="sign_up">SIGN UP</string>
-    <string name="sing_up_to_get_started">Sing up to get started!</string>
+    <string name="sing_up_to_get_started">Sign up to get started!</string>
     <string name="search">search</string>
     <string name="view_notes">View Notes</string>
+    <string name="need_an_account">Need an account,</string>
+    <string name="label">label</string>
+    <string name="username">UserName</string>
 
 
     <string-array name="course_status">
