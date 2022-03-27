@@ -21,6 +21,24 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
+
+<!--            <com.google.android.material.textfield.TextInputLayout-->
+<!--                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="60dp"-->
+<!--                android:layout_marginStart="32dp"-->
+<!--                android:layout_marginTop="16dp"-->
+<!--                android:layout_marginEnd="32dp"-->
+<!--                android:hint="@string/term_title"-->
+<!--                app:errorEnabled="true">-->
+
+<!--                <EditText-->
+<!--                    android:id="@+id/editTextTermTitle"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    tools:ignore="SpeakableTextPresentCheck" />-->
+<!--            </com.google.android.material.textfield.TextInputLayout>-->
+
             <EditText
                 android:id="@+id/editTextTermTitle"
                 style="@style/form_style"
