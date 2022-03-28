@@ -82,6 +82,7 @@
     <string name="label">label</string>
     <string name="username">UserName</string>
     <string name="error_string">Field must not be empty.</string>
+    <string name="sign_up_lowercase">Sign Up</string>
 
 
     <string-array name="course_status">

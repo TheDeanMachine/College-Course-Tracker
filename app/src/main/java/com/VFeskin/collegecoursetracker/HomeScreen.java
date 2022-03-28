@@ -13,7 +13,9 @@ import android.widget.Toast;
 import com.VFeskin.collegecoursetracker.Controller.TermList;
 import com.VFeskin.collegecoursetracker.Model.User;
 import com.VFeskin.collegecoursetracker.Model.UserViewModel;
+import com.VFeskin.collegecoursetracker.Utility.CustomTextWatcher;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.android.material.textfield.TextInputLayout;
 
 /**
  * This class is used for authenticating the user.
@@ -25,6 +27,8 @@ public class HomeScreen extends AppCompatActivity {
     // XML attribute
     private EditText userNameTxt;
     private EditText passwordTxt;
+    private TextInputLayout userLayout;
+    private TextInputLayout passwordLayout;
     private Button logInButton;
     private Button signUpButton;
 
@@ -40,12 +44,18 @@ public class HomeScreen extends AppCompatActivity {
         setContentView(R.layout.home_screen);
         userNameTxt = findViewById(R.id.editTextLogInUserName);
         passwordTxt = findViewById(R.id.editTextLogInPassword);
+        userLayout = findViewById(R.id.editTextLogIn);
+        passwordLayout = findViewById(R.id.editTextPassword);
         logInButton = findViewById(R.id.getStartedButton);
         signUpButton = findViewById(R.id.add_new_user);
 
-        ////////////////////////////
-        openApplication();
-        /////////////////////////////
+//        ////////////////////////////
+//        openApplication();
+//        /////////////////////////////
+
+        // text listener
+        userNameTxt.addTextChangedListener(new CustomTextWatcher(userLayout));
+        passwordTxt.addTextChangedListener(new CustomTextWatcher(passwordLayout));
 
         userViewModel = new ViewModelProvider.AndroidViewModelFactory(HomeScreen.this
                 .getApplication())
@@ -58,7 +68,15 @@ public class HomeScreen extends AppCompatActivity {
 
             // checking if the user entered text is empty or not.
             if (TextUtils.isEmpty(userName) || TextUtils.isEmpty(password)) {
-//                Toast.makeText(this, "Must enter a user name and a password", Toast.LENGTH_SHORT).show();
+
+                if (TextUtils.isEmpty(userName)){
+                    userLayout.setError("UserName required!");
+                }
+
+                if (TextUtils.isEmpty(password)) {
+                    passwordLayout.setError("Password required!");
+                }
+
                 Snackbar.make(findViewById(R.id.homeScrollView), "Must enter a user name and a password", Snackbar.LENGTH_SHORT).show();
             } else {
                 loginUser(userName, password);
@@ -77,6 +95,8 @@ public class HomeScreen extends AppCompatActivity {
         // must use view model to check for user
         user = userViewModel.getUser(userName, password);
         user.observe(this, user -> {
+
+
             // check for any results
             if (user != null) {
                 String name = user.getUserName();
@@ -85,11 +105,20 @@ public class HomeScreen extends AppCompatActivity {
                 if (userName.equals(name) && password.equals(pass)) {
                     openApplication();
                 }
+
             } else {
-//                Toast.makeText(this, "Incorrect conditionals!", Toast.LENGTH_LONG).show();
+//                if ( wrongUserName ) {
+//                    userLayout.setError("Incorrect user name!");
+//                    Snackbar.make(findViewById(R.id.homeScrollView), "wrong username!", Snackbar.LENGTH_SHORT).show();
+//                }
+//
+//                if ( wrongPassword ) {
+//                    passwordLayout.setError("Incorrect password!");
+//                    Snackbar.make(findViewById(R.id.homeScrollView), "wrong password!", Snackbar.LENGTH_SHORT).show();
+//                }
+
                 Snackbar.make(findViewById(R.id.homeScrollView), "Incorrect conditionals!", Snackbar.LENGTH_SHORT).show();
             }
-
         });
     }
 
