@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Controller.EditTerm">
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -23,15 +24,17 @@
                 android:id="@+id/updateTitleTextInputLayout"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
-                android:layout_height="60dp"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="32dp"
                 android:hint="@string/term_title"
                 app:errorEnabled="true"
+                app:helperText=""
+                app:helperTextTextColor="@color/red"
                 >
 
-                <EditText
+                <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/editTextUpdateTermTitle"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -43,15 +46,17 @@
                 android:id="@+id/updateStartTextInputLayout"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
-                android:layout_height="60dp"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="8dp"
                 android:layout_marginEnd="32dp"
                 android:hint="@string/start_date"
                 app:errorEnabled="true"
+                app:helperText=""
+                app:helperTextTextColor="@color/red"
                 >
 
-                <EditText
+                <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/editTextUpdateTermStartDate"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -65,15 +70,17 @@
                 android:id="@+id/updateEndTextInputLayout"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
-                android:layout_height="60dp"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="8dp"
                 android:layout_marginEnd="32dp"
                 android:hint="@string/end_date"
                 app:errorEnabled="true"
+                app:helperText=""
+                app:helperTextTextColor="@color/red"
                 >
 
-                <EditText
+                <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/editTextUpdateTermEndDate"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"

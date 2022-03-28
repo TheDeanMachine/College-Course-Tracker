@@ -108,14 +108,12 @@ public class NewTerm extends AppCompatActivity {
                     throw new Exception();
                 }
             } catch (Exception e) {
-//                termTitleTxt.setError("Title is required!");
                 titleLayout.setError("Title is required!");
                 Snackbar.make(view, "Please enter a title", Snackbar.LENGTH_SHORT).show();
                 return;
             }
 
             if (startDate == null || startDateTxt.getText().toString().isEmpty()) {
-//                startDateTxt.setError("Start date is required!");
                 startLayout.setError("Start date is required!");
 
                 Snackbar.make(view, "Please enter a date", Snackbar.LENGTH_SHORT).show();
@@ -123,7 +121,6 @@ public class NewTerm extends AppCompatActivity {
             }
 
             if (endDate == null || endDateTxt.getText().toString().isEmpty()) {
-//                endDateTxt.setError("End date is required!");
                 endLayout.setError("End date is required!");
                 Snackbar.make(view, "Please enter a date", Snackbar.LENGTH_SHORT).show();
                 return;
