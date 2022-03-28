@@ -6,7 +6,9 @@ import androidx.lifecycle.ViewModelProvider;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -15,6 +17,7 @@ import android.widget.Toast;
 import com.VFeskin.collegecoursetracker.Model.Term;
 import com.VFeskin.collegecoursetracker.Model.TermViewModel;
 import com.VFeskin.collegecoursetracker.R;
+import com.VFeskin.collegecoursetracker.Utility.CustomTextWatcher;
 import com.VFeskin.collegecoursetracker.Utility.DateConverter;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputLayout;
@@ -33,6 +36,9 @@ public class NewTerm extends AppCompatActivity {
     private EditText termTitleTxt;
     private EditText startDateTxt;
     private EditText endDateTxt;
+    private TextInputLayout titleLayout;
+    private TextInputLayout startLayout;
+    private TextInputLayout endLayout;
     private Button createTermButton;
 
     // date related fields
@@ -41,10 +47,6 @@ public class NewTerm extends AppCompatActivity {
     DatePickerDialog.OnDateSetListener dateDialog2;
     private Date startDate;
     private Date endDate;
-
-//    // view model reference, gives access to all terms
-//    private TermViewModel termViewModel;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,12 +57,13 @@ public class NewTerm extends AppCompatActivity {
         termTitleTxt = findViewById(R.id.editTextTermTitle);
         startDateTxt = findViewById(R.id.editTextStartDate);
         endDateTxt = findViewById(R.id.editTextEndDate);
+        titleLayout = findViewById(R.id.newTitleTextInputLayout);
+        startLayout = findViewById(R.id.newStartTextInputLayout);
+        endLayout = findViewById(R.id.newEndTextInputLayout);
         createTermButton = findViewById(R.id.createTermButton);
 
-//        // creates an instance of view model to use
-//        termViewModel = new ViewModelProvider.AndroidViewModelFactory(NewTerm.this
-//                .getApplication())
-//                .create(TermViewModel.class);
+        // title text listener
+        termTitleTxt.addTextChangedListener(new CustomTextWatcher(titleLayout));
 
         // shows the date picker, onClick
         startDateTxt.setOnClickListener(view -> new DatePickerDialog(NewTerm.this, dateDialog,
@@ -81,7 +84,7 @@ public class NewTerm extends AppCompatActivity {
             calendar.set(year, month, day);
             startDate = calendar.getTime();
             // format the output the screen
-            startDateTxt.setError(null); // clears set error
+            startLayout.setError(null); // clears set error
             startDateTxt.setText(DateFormat.getDateInstance(DateFormat.MEDIUM).format(startDate));
         };
 
@@ -90,7 +93,7 @@ public class NewTerm extends AppCompatActivity {
             calendar.set(year, month, day);
             endDate = calendar.getTime();
             // format the output the screen
-            endDateTxt.setError(null); // clears set error
+            endLayout.setError(null); // clears set error
             endDateTxt.setText(DateFormat.getDateInstance(DateFormat.MEDIUM).format(endDate));
         };
 
@@ -105,20 +108,23 @@ public class NewTerm extends AppCompatActivity {
                     throw new Exception();
                 }
             } catch (Exception e) {
-                termTitleTxt.setError("Title is required!");
+//                termTitleTxt.setError("Title is required!");
+                titleLayout.setError("Title is required!");
                 Snackbar.make(view, "Please enter a title", Snackbar.LENGTH_SHORT).show();
                 return;
             }
 
             if (startDate == null || startDateTxt.getText().toString().isEmpty()) {
-                startDateTxt.setError("Start date is required!");
-//                Toast.makeText(this, "Please enter a date", Toast.LENGTH_SHORT).show();
+//                startDateTxt.setError("Start date is required!");
+                startLayout.setError("Start date is required!");
+
                 Snackbar.make(view, "Please enter a date", Snackbar.LENGTH_SHORT).show();
                 return;
             }
 
             if (endDate == null || endDateTxt.getText().toString().isEmpty()) {
-                endDateTxt.setError("End date is required!");
+//                endDateTxt.setError("End date is required!");
+                endLayout.setError("End date is required!");
                 Snackbar.make(view, "Please enter a date", Snackbar.LENGTH_SHORT).show();
                 return;
             }

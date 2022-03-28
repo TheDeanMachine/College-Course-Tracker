@@ -4,10 +4,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.VFeskin.collegecoursetracker.Model.Term;
 import com.VFeskin.collegecoursetracker.Model.TermViewModel;
 import com.VFeskin.collegecoursetracker.R;
+import com.VFeskin.collegecoursetracker.Utility.CustomTextWatcher;
 import com.VFeskin.collegecoursetracker.Utility.DateConverter;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.android.material.textfield.TextInputLayout;
 import android.app.DatePickerDialog;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.widget.Button;
 import android.widget.EditText;
 import java.text.DateFormat;
@@ -25,7 +29,10 @@ public class EditTerm extends AppCompatActivity {
     private EditText termTitleTxt;
     private EditText startDateTxt;
     private EditText endDateTxt;
-    private Button updateTerm;
+    private TextInputLayout titleLayout;
+    private TextInputLayout startLayout;
+    private TextInputLayout endLayout;
+    private Button updateTermButton;
 
     // date related fields
     private final Calendar calendar = Calendar.getInstance();
@@ -46,7 +53,13 @@ public class EditTerm extends AppCompatActivity {
         termTitleTxt = findViewById(R.id.editTextUpdateTermTitle);
         startDateTxt = findViewById(R.id.editTextUpdateTermStartDate);
         endDateTxt = findViewById(R.id.editTextUpdateTermEndDate);
-        updateTerm = findViewById(R.id.UpdateTermTermButton);
+        titleLayout = findViewById(R.id.updateTitleTextInputLayout);
+        startLayout = findViewById(R.id.updateStartTextInputLayout);
+        endLayout = findViewById(R.id.updateEndTextInputLayout);
+        updateTermButton = findViewById(R.id.UpdateTermTermButton);
+
+        // title text listener
+        termTitleTxt.addTextChangedListener(new CustomTextWatcher(titleLayout));
 
         // get values from term card and set text
         Bundle extra = getIntent().getExtras();
@@ -76,7 +89,7 @@ public class EditTerm extends AppCompatActivity {
             calendar.set(year, month, day);
             startDate = calendar.getTime();
             // format the output the screen
-            startDateTxt.setError(null); // clears set error
+            startLayout.setError(null); // clears set error
             startDateTxt.setText(DateFormat.getDateInstance(DateFormat.MEDIUM).format(startDate));
         };
 
@@ -85,12 +98,12 @@ public class EditTerm extends AppCompatActivity {
             calendar.set(year, month, day);
             endDate = calendar.getTime();
             // format the output the screen
-            endDateTxt.setError(null); // clears set error
+            endLayout.setError(null); // clears set error
             endDateTxt.setText(DateFormat.getDateInstance(DateFormat.MEDIUM).format(endDate));
         };
 
         // collect the input and update the term
-        updateTerm.setOnClickListener(view -> {
+        updateTermButton.setOnClickListener(view -> {
             // Input validation
             String title = null;
             try {
@@ -99,19 +112,22 @@ public class EditTerm extends AppCompatActivity {
                     throw new Exception();
                 }
             } catch (Exception e) {
-                termTitleTxt.setError("Title is required!");
+//                termTitleTxt.setError("Title is required!");
+                titleLayout.setError("Title is required!");
                 Snackbar.make(view, "Please enter a title", Snackbar.LENGTH_SHORT).show();
                 return;
             }
 
             if (startDate == null || startDateTxt.getText().toString().isEmpty()) {
-                startDateTxt.setError("Start date is required!");
+//                startDateTxt.setError("Start date is required!");
+                startLayout.setError("Start date is required!");
                 Snackbar.make(view, "Please enter a date", Snackbar.LENGTH_SHORT).show();
                 return;
             }
 
             if (endDate == null || endDateTxt.getText().toString().isEmpty()) {
-                endDateTxt.setError("End date is required!");
+//                endDateTxt.setError("End date is required!");
+                endLayout.setError("End date is required!");
                 Snackbar.make(view, "Please enter a date", Snackbar.LENGTH_SHORT).show();
                 return;
             }

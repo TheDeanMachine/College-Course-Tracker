@@ -43,6 +43,10 @@ public class HomeScreen extends AppCompatActivity {
         logInButton = findViewById(R.id.getStartedButton);
         signUpButton = findViewById(R.id.add_new_user);
 
+        ////////////////////////////
+        openApplication();
+        /////////////////////////////
+
         userViewModel = new ViewModelProvider.AndroidViewModelFactory(HomeScreen.this
                 .getApplication())
                 .create(UserViewModel.class);
