@@ -106,6 +106,11 @@ public class HomeScreen extends AppCompatActivity {
                     openApplication();
                 }
 
+
+                /////////////////////
+                /// CREATE TWO SEPARATE SEARCH QUERIES/METHODS ONE FOR NAME AND ONE FOR PASS.
+                ////////
+
             } else {
 //                if ( wrongUserName ) {
 //                    userLayout.setError("Incorrect user name!");

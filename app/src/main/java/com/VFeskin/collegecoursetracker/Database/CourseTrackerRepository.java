@@ -199,10 +199,19 @@ public class CourseTrackerRepository {
         return userDao.getUser(user,password);
     }
 
+    public LiveData<User> getUserName(String user) {
+        return userDao.getUserName(user);
+    }
+
+    public LiveData<User> getUserPassword(String password) {
+        return userDao.getUserPassword(password);
+    }
+
     public void insertUser(User user) {
         CourseTrackerDatabase.databaseWriteExecutor.execute(() -> {
             userDao.insert(user);
         });
     }
+
 
 }
