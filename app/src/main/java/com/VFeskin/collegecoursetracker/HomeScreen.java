@@ -37,6 +37,8 @@ public class HomeScreen extends AppCompatActivity {
 
     // user
     private LiveData<User> user;
+    private LiveData<User> getUserName;
+    private LiveData<User> getUserPassword;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,7 +52,7 @@ public class HomeScreen extends AppCompatActivity {
         signUpButton = findViewById(R.id.add_new_user);
 
 //        ////////////////////////////
-//        openApplication();
+//        openApplication(); // bypass login screen for testing purposes
 //        /////////////////////////////
 
         // text listener
@@ -92,11 +94,11 @@ public class HomeScreen extends AppCompatActivity {
     }
 
     private void loginUser(String userName, String password) {
-        // must use view model to check for user
+        // must use view model to check for user //
+
+        // check for correct credentials
         user = userViewModel.getUser(userName, password);
         user.observe(this, user -> {
-
-
             // check for any results
             if (user != null) {
                 String name = user.getUserName();
@@ -105,26 +107,31 @@ public class HomeScreen extends AppCompatActivity {
                 if (userName.equals(name) && password.equals(pass)) {
                     openApplication();
                 }
-
-
-                /////////////////////
-                /// CREATE TWO SEPARATE SEARCH QUERIES/METHODS ONE FOR NAME AND ONE FOR PASS.
-                ////////
-
-            } else {
-//                if ( wrongUserName ) {
-//                    userLayout.setError("Incorrect user name!");
-//                    Snackbar.make(findViewById(R.id.homeScrollView), "wrong username!", Snackbar.LENGTH_SHORT).show();
-//                }
-//
-//                if ( wrongPassword ) {
-//                    passwordLayout.setError("Incorrect password!");
-//                    Snackbar.make(findViewById(R.id.homeScrollView), "wrong password!", Snackbar.LENGTH_SHORT).show();
-//                }
-
-                Snackbar.make(findViewById(R.id.homeScrollView), "Incorrect conditionals!", Snackbar.LENGTH_SHORT).show();
             }
         });
+
+        // check if user name is wrong
+        getUserName = userViewModel.getUserName(userName);
+        getUserName.observe(this, user1 -> {
+            try {
+              user1.getUserName();
+            } catch (Exception e) {
+                userLayout.setError("Incorrect user name!");
+                Snackbar.make(findViewById(R.id.homeScrollView), "Incorrect credentials!", Snackbar.LENGTH_SHORT).show();
+            }
+        });
+
+        // check if password is wrong
+        getUserPassword = userViewModel.getUserPassword(password);
+        getUserPassword.observe(this, user2 -> {
+            try {
+              user2.getPassword();
+            } catch (Exception e) {
+                passwordLayout.setError("Incorrect password!");
+                Snackbar.make(findViewById(R.id.homeScrollView), "Incorrect credentials!", Snackbar.LENGTH_SHORT).show();
+            }
+        });
+
     }
 
     public void openApplication() {
