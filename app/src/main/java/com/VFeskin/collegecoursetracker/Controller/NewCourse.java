@@ -12,12 +12,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.os.Bundle;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -62,9 +65,15 @@ public class NewCourse extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_course);
 
+
+        String[] courseStatus = getResources().getStringArray(R.array.course_status);
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(this, R.layout.dropdown_item, courseStatus);
+        AutoCompleteTextView autoCompleteTextView = findViewById(R.id.dropdownText);
+        autoCompleteTextView.setAdapter(arrayAdapter);
+
         // set the field values to the xml ids
         courseTitleTxt = findViewById(R.id.editTextCourseTitle);
-        courseStatusSpinner = findViewById(R.id.spinner);
+//        courseStatusSpinner = findViewById(R.id.spinner);
         startDateTxt = findViewById(R.id.editTextCourseStartDate);
         endDateTxt = findViewById(R.id.editTextCourseEndDate);
         startTimeTxt = findViewById(R.id.editTextCourseStartTime);

@@ -83,10 +83,12 @@
     <string name="username">UserName</string>
     <string name="error_string">Field must not be empty.</string>
     <string name="sign_up_lowercase">Sign Up</string>
+    <string name="room_course_number">Room/Course number</string>
+    <string name="room_number">Room number</string>
+    <string name="select_course_status">Select course status</string>
 
 
     <string-array name="course_status">
-        <item>Select status</item>
         <item>In progress</item>
         <item>Completed</item>
         <item>Dropped</item>
