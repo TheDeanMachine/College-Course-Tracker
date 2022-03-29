@@ -14,12 +14,14 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:fillViewport="true" >
+        android:fillViewport="true"
+        >
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" >
+            android:orientation="vertical"
+            >
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/newCourseTitleTextInputLayout"
@@ -60,6 +62,9 @@
                 android:layout_marginStart="32dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="32dp"
+                app:errorEnabled="true"
+                app:helperText=""
+                app:helperTextTextColor="@color/red"
                 >
 
                 <AutoCompleteTextView
@@ -324,7 +329,7 @@
                 android:layout_marginStart="32dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="32dp"
-                android:hint="@string/instructor_phone"
+                android:hint="@string/instructor_email"
                 app:errorEnabled="true"
                 app:helperText=""
                 app:helperTextTextColor="@color/red"
