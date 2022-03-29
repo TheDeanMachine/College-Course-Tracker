@@ -88,7 +88,7 @@
         <activity
             android:name=".HomeScreen"
             android:exported="true"
-            android:label="Please Log In ">
+            android:label="College Course Tracker Application">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

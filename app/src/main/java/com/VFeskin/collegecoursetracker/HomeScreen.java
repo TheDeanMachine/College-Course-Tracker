@@ -52,7 +52,7 @@ public class HomeScreen extends AppCompatActivity {
         signUpButton = findViewById(R.id.add_new_user);
 
 //        ////////////////////////////
-//        openApplication(); // bypass login screen for testing purposes
+//        openApplication();
 //        /////////////////////////////
 
         // text listener
