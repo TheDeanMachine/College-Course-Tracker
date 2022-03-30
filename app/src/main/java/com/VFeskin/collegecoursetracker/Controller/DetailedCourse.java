@@ -72,7 +72,8 @@ public class DetailedCourse extends AppCompatActivity implements AssessmentViewA
 
     // add button
     private FloatingActionButton fab;
-//    private FloatingActionButton fabAlarm;
+    private FloatingActionButton fabAlarm;
+    private FloatingActionButton fabNotes;
     private Button buttonAlarm;
     private Button viewNotesButton;
 
@@ -82,7 +83,8 @@ public class DetailedCourse extends AppCompatActivity implements AssessmentViewA
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detailed_course);
         fab = findViewById(R.id.detail_add_new_assessment);
-//        fabAlarm = findViewById(R.id.add_course_alarm);
+        fabAlarm = findViewById(R.id.add_course_alarm_fab);
+        fabNotes = findViewById(R.id.view_notes_fab);
         buttonAlarm = findViewById(R.id.add_course_alarm);
         viewNotesButton = findViewById(R.id.ViewNotesButton);
         title = findViewById(R.id.textViewDetailCourseTitle);
@@ -140,13 +142,12 @@ public class DetailedCourse extends AppCompatActivity implements AssessmentViewA
             FK = course.getTermId();
         });
 
-        // add new assessment
-        fab.setOnClickListener(view -> {
-            openNewAssessment();
-        });
+        // navigation changes on button click
+        fab.setOnClickListener(view -> openNewAssessment());
 
-        // add alarm
 //        fabAlarm.setOnClickListener(this::addCourseAlarm);
+        fabNotes.setOnClickListener(this::viewNotes);
+
         buttonAlarm.setOnClickListener(this::addCourseAlarm);
         viewNotesButton.setOnClickListener(this::viewNotes);
     }
