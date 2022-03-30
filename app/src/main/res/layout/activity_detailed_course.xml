@@ -5,7 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:elevation="8dp"
-
     tools:context=".Controller.DetailedCourse">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -147,49 +146,49 @@
             app:layout_constraintTop_toBottomOf="@+id/textViewDetailCourseTime"
             tools:ignore="SpeakableTextPresentCheck" />
 
-        <TextView
-            android:id="@+id/textView7"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="64dp"
-            android:layout_marginTop="16dp"
-            android:text="Instructor"
-            android:textAppearance="?attr/textAppearanceHeadline6"
-            app:layout_constraintStart_toEndOf="@+id/textViewDetailCourseTitle"
-            app:layout_constraintTop_toTopOf="parent" />
+<!--        <TextView-->
+<!--            android:id="@+id/textView7"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginStart="64dp"-->
+<!--            android:layout_marginTop="16dp"-->
+<!--            android:text="Instructor"-->
+<!--            android:textAppearance="?attr/textAppearanceHeadline6"-->
+<!--            app:layout_constraintStart_toEndOf="@+id/textViewDetailCourseTitle"-->
+<!--            app:layout_constraintTop_toTopOf="parent" />-->
 
-        <TextView
-            android:id="@+id/textViewDetailCourseInstructorName"
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="64dp"
-            android:layout_marginTop="16dp"
+<!--        -->
+<!--        <TextView-->
+<!--            android:id="@+id/textViewDetailCourseInstructorName"-->
+<!--            android:layout_width="150dp"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginStart="64dp"-->
+<!--            android:layout_marginTop="16dp"-->
+<!--            android:text="TextView"-->
+<!--            app:layout_constraintStart_toEndOf="@+id/textViewDetailCourseTitle"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/textView7" />-->
 
-            android:text="TextView"
-            app:layout_constraintStart_toEndOf="@+id/textViewDetailCourseTitle"
-            app:layout_constraintTop_toBottomOf="@+id/textView7" />
+<!--        <TextView-->
+<!--            android:id="@+id/textViewDetailCourseInstructorPhone"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginStart="64dp"-->
+<!--            android:layout_marginTop="8dp"-->
 
-        <TextView
-            android:id="@+id/textViewDetailCourseInstructorPhone"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="64dp"
-            android:layout_marginTop="8dp"
+<!--            android:text="TextView"-->
+<!--            app:layout_constraintStart_toEndOf="@+id/textViewDetailCourseTitle"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/textViewDetailCourseInstructorName" />-->
 
-            android:text="TextView"
-            app:layout_constraintStart_toEndOf="@+id/textViewDetailCourseTitle"
-            app:layout_constraintTop_toBottomOf="@+id/textViewDetailCourseInstructorName" />
+<!--        <TextView-->
+<!--            android:id="@+id/textViewDetailCourseInstructorEmail"-->
+<!--            android:layout_width="150dp"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginStart="64dp"-->
+<!--            android:layout_marginTop="8dp"-->
 
-        <TextView
-            android:id="@+id/textViewDetailCourseInstructorEmail"
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="64dp"
-            android:layout_marginTop="8dp"
-
-            android:text="TextView"
-            app:layout_constraintStart_toEndOf="@+id/textViewDetailCourseTitle"
-            app:layout_constraintTop_toBottomOf="@+id/textViewDetailCourseInstructorPhone" />
+<!--            android:text="TextView"-->
+<!--            app:layout_constraintStart_toEndOf="@+id/textViewDetailCourseTitle"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/textViewDetailCourseInstructorPhone" />-->
 
         <TextView
             android:id="@+id/textView3"
@@ -230,12 +229,12 @@
             style="?attr/materialButtonOutlinedStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="64dp"
+            android:layout_marginEnd="16dp"
             android:layout_marginBottom="16dp"
-            android:text="@string/view_notes"
+            android:text="@string/view_instructor"
             android:textColor="@color/medium_green"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/add_course_alarm"
+            app:layout_constraintEnd_toEndOf="parent"
             app:strokeColor="@color/medium_green" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

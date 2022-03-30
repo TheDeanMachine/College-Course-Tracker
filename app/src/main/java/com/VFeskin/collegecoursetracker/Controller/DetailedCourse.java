@@ -51,6 +51,9 @@ public class DetailedCourse extends AppCompatActivity implements AssessmentViewA
     private TextView name;
     private TextView phone;
     private TextView email;
+    private String nameString;
+    private String phoneString;
+    private String emailString;
 
     // data
     private int PK;
@@ -76,7 +79,7 @@ public class DetailedCourse extends AppCompatActivity implements AssessmentViewA
     private FloatingActionButton fabAlarm;
     private FloatingActionButton fabNotes;
     private Button buttonAlarm;
-    private Button viewNotesButton;
+    private Button viewInstructorButton;
 
 
     @Override
@@ -87,7 +90,7 @@ public class DetailedCourse extends AppCompatActivity implements AssessmentViewA
         fabAlarm = findViewById(R.id.add_course_alarm_fab);
         fabNotes = findViewById(R.id.view_notes_fab);
         buttonAlarm = findViewById(R.id.add_course_alarm);
-        viewNotesButton = findViewById(R.id.ViewNotesButton);
+        viewInstructorButton = findViewById(R.id.ViewNotesButton);
         title = findViewById(R.id.textViewDetailCourseTitle);
         status = findViewById(R.id.textViewDetailCourseStatus);
         start = findViewById(R.id.textViewDetailCourseStartDate);
@@ -98,7 +101,6 @@ public class DetailedCourse extends AppCompatActivity implements AssessmentViewA
         name = findViewById(R.id.textViewDetailCourseInstructorName);
         phone = findViewById(R.id.textViewDetailCourseInstructorPhone);
         email = findViewById(R.id.textViewDetailCourseInstructorEmail);
-
         PK = getIntent().getIntExtra("ID", 0);
 
         // configure recycle view
@@ -137,9 +139,12 @@ public class DetailedCourse extends AppCompatActivity implements AssessmentViewA
             endTime = endDate.getTime();
             endTimeTxt.setText(DateFormat.getTimeInstance(DateFormat.SHORT).format(endTime));
             roomNum.setText(course.getRoomNumber());
-            name.setText(course.getInstructorName());
-            phone.setText(course.getInstructorPhone());
-            email.setText(course.getInstructorEmail());
+//            name.setText(course.getInstructorName());
+//            phone.setText(course.getInstructorPhone());
+//            email.setText(course.getInstructorEmail());
+            nameString = course.getInstructorName();
+            phoneString = course.getInstructorPhone();
+            emailString = course.getInstructorEmail();
             FK = course.getTermId();
         });
 
@@ -149,15 +154,20 @@ public class DetailedCourse extends AppCompatActivity implements AssessmentViewA
         fabAlarm.setOnClickListener(this::addCourseAlarm);
         fabAlarm.setVisibility((getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) ? View.GONE : View.VISIBLE);
 
-        fabNotes.setOnClickListener(this::viewNotes);
-//        fabNotes.setVisibility((getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) ? View.GONE : View.VISIBLE);
-
         buttonAlarm.setOnClickListener(this::addCourseAlarm);
         buttonAlarm.setVisibility((getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) ? View.GONE : View.VISIBLE);
 
-        viewNotesButton.setOnClickListener(this::viewNotes);
-        viewNotesButton.setVisibility((getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) ? View.GONE : View.VISIBLE);
+        fabNotes.setOnClickListener(this::viewNotes);
 
+        viewInstructorButton.setOnClickListener(this::viewInstructor);
+    }
+
+    private void viewInstructor(View view) {
+        Intent intent = new Intent(this, InstructorInfo.class);
+        intent.putExtra("NAME", nameString);
+        intent.putExtra("PHONE", phoneString);
+        intent.putExtra("EMAIL", emailString);
+        startActivity(intent);
     }
 
     private void viewNotes(View view) {
@@ -235,9 +245,9 @@ public class DetailedCourse extends AppCompatActivity implements AssessmentViewA
         intent.putExtra("START", DateConverter.ToTimestamp(startDate));
         intent.putExtra("END", DateConverter.ToTimestamp(endDate));
         intent.putExtra("ROOM", roomNum.getText());
-        intent.putExtra("NAME", name.getText());
-        intent.putExtra("PHONE", phone.getText());
-        intent.putExtra("EMAIL", email.getText());
+        intent.putExtra("NAME", nameString);
+        intent.putExtra("PHONE", phoneString);
+        intent.putExtra("EMAIL", emailString);
         intent.putExtra("FK", FK);
         startActivity(intent);
     }
@@ -246,7 +256,7 @@ public class DetailedCourse extends AppCompatActivity implements AssessmentViewA
         if (courseById.hasObservers()) {
             courseById.removeObservers(DetailedCourse.this);
             CourseViewModel.delete(new Course(PK, title.toString(), startDate, endDate,
-                    status.toString(), name.toString(), phone.toString(), email.toString(), null, FK));
+                    status.toString(), nameString, phoneString, emailString, roomNum.toString(), FK));
             Toast.makeText(this, "Course deleted!", Toast.LENGTH_LONG).show();
             finish();
         }

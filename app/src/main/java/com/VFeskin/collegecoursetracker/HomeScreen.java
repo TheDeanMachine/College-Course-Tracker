@@ -51,9 +51,9 @@ public class HomeScreen extends AppCompatActivity {
         logInButton = findViewById(R.id.getStartedButton);
         signUpButton = findViewById(R.id.add_new_user);
 
-//        ////////////////////////////
-//        openApplication();
-//        /////////////////////////////
+        ////////////////////////////
+        openApplication();
+        /////////////////////////////
 
         // text listener
         userNameTxt.addTextChangedListener(new CustomTextWatcher(userLayout));

@@ -90,6 +90,11 @@
     <string name="select_assessment_type">Select assessment type</string>
     <string name="term_name">Term name</string>
     <string name="assessment_name">Assessment name</string>
+    <string name="name">Name:</string>
+    <string name="phone">Phone:</string>
+    <string name="email">Email:</string>
+    <string name="instructor_information">Instructor Information</string>
+    <string name="view_instructor">view instructor</string>
 
 
     <string-array name="course_status">
