@@ -2,26 +2,24 @@ package com.VFeskin.collegecoursetracker.Controller;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.ViewModelProvider;
 
 import com.VFeskin.collegecoursetracker.Model.Assessment;
 import com.VFeskin.collegecoursetracker.Model.AssessmentViewModel;
 import com.VFeskin.collegecoursetracker.R;
+import com.VFeskin.collegecoursetracker.Utility.CustomTextWatcher;
 import com.VFeskin.collegecoursetracker.Utility.DateTimeParser;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.android.material.textfield.TextInputLayout;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.os.Bundle;
-import android.text.Editable;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
-import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.Spinner;
-import android.widget.TimePicker;
 
 import java.text.DateFormat;
-import java.time.LocalTime;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -36,19 +34,28 @@ public class NewAssessment extends AppCompatActivity {
     private EditText assessmentTitleTxt;
     private EditText startDateTxt;
     private EditText startTimeTxt;
-    private Spinner testTypeSpinner;
+    private TextInputLayout titleLayout;
+    private AutoCompleteTextView autoCompleteTextView;
+    private ArrayAdapter<String> arrayAdapter;
+    private TextInputLayout dropdownLayout;
+    private TextInputLayout startDateLayout;
+    private TextInputLayout startTimeLayout;
     private Button createAssessmentButton;
 
     // date related fields
     private final Calendar calendar = Calendar.getInstance();
-    DatePickerDialog.OnDateSetListener dateDialog;
-    TimePickerDialog.OnTimeSetListener timeDialog;
+    private DatePickerDialog.OnDateSetListener dateDialog;
+    private TimePickerDialog.OnTimeSetListener timeDialog;
     private Date startDate;
     private Long startTime;
     private Date startDateTime;
 
     // course PK
     private int id;
+
+    // check dropdown selection
+    private boolean isSelect = false;
+    private String testType = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,10 +64,30 @@ public class NewAssessment extends AppCompatActivity {
 
         // set the field values to the xml ids
         assessmentTitleTxt = findViewById(R.id.editTextAssessmentTitle);
+        autoCompleteTextView = findViewById(R.id.newAssessmentDropdownText);
         startDateTxt = findViewById(R.id.editTextAssessmentStartDate);
         startTimeTxt = findViewById(R.id.editTextAssessmentStarTime);
-        testTypeSpinner = findViewById(R.id.testSpinner);
+        titleLayout = findViewById(R.id.newAssessmentTitleTextInputLayout);
+        dropdownLayout = findViewById(R.id.newAssessmentDropdownLayout);
+        startDateLayout = findViewById(R.id.newAssessmentStartDateTextInputLayout);
+        startTimeLayout = findViewById(R.id.newStartTimeTextInputLayout);
         createAssessmentButton = findViewById(R.id.createAssessmentButton);
+
+        // custom text listener for clearing set errors
+        assessmentTitleTxt.addTextChangedListener(new CustomTextWatcher(titleLayout));
+        startDateTxt.addTextChangedListener(new CustomTextWatcher(startDateLayout));
+        startTimeTxt.addTextChangedListener(new CustomTextWatcher(startTimeLayout));
+        autoCompleteTextView.addTextChangedListener(new CustomTextWatcher(dropdownLayout));
+
+        // set exposed dropdown with items
+        arrayAdapter = new ArrayAdapter<>(this, R.layout.dropdown_item, getResources().getStringArray(R.array.test_type));
+        autoCompleteTextView.setAdapter(arrayAdapter);
+
+        // collect the item selected, onItemClick
+        autoCompleteTextView.setOnItemClickListener((parent, view, position, id) -> {
+            testType = (String) parent.getAdapter().getItem(position);
+            isSelect = true;
+        });
 
         // shows the date picker, onClick
         startDateTxt.setOnClickListener(view -> new DatePickerDialog(NewAssessment.this, dateDialog,
@@ -82,7 +109,7 @@ public class NewAssessment extends AppCompatActivity {
             calendar.set(Calendar.MINUTE, minute);
             startTime = calendar.getTimeInMillis();
             // format the output the screen
-            startTimeTxt.setError(null); // clears set error
+
             startTimeTxt.setText(DateFormat.getTimeInstance(DateFormat.SHORT).format(startTime));
         };
 
@@ -91,7 +118,7 @@ public class NewAssessment extends AppCompatActivity {
             calendar.set(year, month, day);
             startDate = calendar.getTime();
             // format the output the screen
-            startDateTxt.setError(null); // clears set error
+
             startDateTxt.setText(DateFormat.getDateInstance(DateFormat.MEDIUM).format(startDate));
         };
 
@@ -106,30 +133,30 @@ public class NewAssessment extends AppCompatActivity {
                     throw new Exception();
                 }
             } catch (Exception e) {
-                assessmentTitleTxt.setError("Title is required!");
+                titleLayout.setError("Title is required!");
                 Snackbar.make(view, "Please enter assessment title", Snackbar.LENGTH_SHORT).show();
                 return;
             }
 
             if (startDate == null || startDateTxt.getText().toString().isEmpty()) {
-                startDateTxt.setError("Start date is required!");
+                startDateLayout.setError("Start date is required!");
                 Snackbar.make(view, "Please enter assessment date", Snackbar.LENGTH_SHORT).show();
                 return;
             }
 
             if (startTime == null || startTimeTxt.getText().toString().isEmpty()) {
-                startTimeTxt.setError("Time is required!");
+                startTimeLayout.setError("Time is required!");
                 Snackbar.make(view, "Please enter assessment time", Snackbar.LENGTH_SHORT).show();
                 return;
             }
 
-            String test = null;
+
             try {
-                test = testTypeSpinner.getSelectedItem().toString();
-                if (test == null || testTypeSpinner.getSelectedItem().equals("Select assessment type")) {
+                if (!isSelect) {
                     throw new Exception();
                 }
             } catch (Exception e) {
+                dropdownLayout.setError("Status is required!");
                 Snackbar.make(view, "Please select assessment type", Snackbar.LENGTH_SHORT).show();
                 return;
             }
@@ -137,7 +164,7 @@ public class NewAssessment extends AppCompatActivity {
             id = getIntent().getIntExtra("ID", 0); // FK
             startDateTime = DateTimeParser.parseDateTime(startDate, startTime);
 
-            AssessmentViewModel.insert(new Assessment(test, title, startDateTime, id));
+            AssessmentViewModel.insert(new Assessment(testType, title, startDateTime, id));
             finish();
         });
 

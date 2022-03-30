@@ -86,6 +86,10 @@
     <string name="room_course_number">Room/Course number</string>
     <string name="room_number">Room number</string>
     <string name="select_course_status">Select course status</string>
+    <string name="select_test_type">Select test type</string>
+    <string name="select_assessment_type">Select assessment type</string>
+    <string name="term_name">Term name</string>
+    <string name="assessment_name">Assessment name</string>
 
 
     <string-array name="course_status">
@@ -95,9 +99,16 @@
         <item>Plan to take</item>
     </string-array>
 
-    <string-array name="test_type">
+    <string-array name="assessment_type">
         <item>Select assessment type</item>
         <item>Performance</item>
         <item>Objective</item>
+    </string-array>
+
+    <string-array name="test_type">
+        <item>Quiz</item>
+        <item>Prerequisite</item>
+        <item>Midterm</item>
+        <item>Final</item>
     </string-array>
 </resources>

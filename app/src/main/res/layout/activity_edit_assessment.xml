@@ -16,53 +16,146 @@
             android:layout_height="wrap_content"
             android:orientation="vertical" >
 
-            <EditText
-                android:id="@+id/editTextUpdateAssessmentTitle"
-                style="@style/form_style"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/updateAssessmentTitleTextInputLayout"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:ems="10"
-                android:hint="@string/assessment_title"
-                android:inputType="textPersonName"
-                android:minHeight="48dp" />
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="32dp"
+                android:hint="@string/assessment_name"
+                app:errorEnabled="true"
+                app:helperText=""
+                app:helperTextTextColor="@color/red"
+                >
 
-            <EditText
-                android:id="@+id/editTextUpdateAssessmentStartDate"
-                style="@style/form_style"
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/editTextUpdateAssessmentTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    tools:ignore="SpeakableTextPresentCheck" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+<!--            <EditText-->
+<!--                android:id="@+id/editTextUpdateAssessmentTitle"-->
+<!--                style="@style/form_style"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:ems="10"-->
+<!--                android:hint="@string/assessment_title"-->
+<!--                android:inputType="textPersonName"-->
+<!--                android:minHeight="48dp" />-->
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/updateAssessmentDropdownLayout"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:ems="10"
-                android:focusable="false"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="32dp"
+                app:errorEnabled="true"
+                app:helperText=""
+                app:helperTextTextColor="@color/red"
+                >
+
+                <AutoCompleteTextView
+                    android:id="@+id/updateAssessmentDropdownText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="none"
+                    android:text="@string/select_assessment_type"
+                    />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/updateAssessmentStartDateTextInputLayout"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="32dp"
                 android:hint="@string/date"
-                android:inputType="date"
-                android:minHeight="48dp" />
+                app:errorEnabled="true"
+                app:helperText=""
+                app:helperTextTextColor="@color/red"
+                >
 
-            <EditText
-                android:id="@+id/editTextUpdateAssessmentStartTime"
-                style="@style/form_style"
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/editTextUpdateAssessmentStartDate"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:focusable="false"
+                    android:inputType="date"
+                    tools:ignore="SpeakableTextPresentCheck" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+<!--            <EditText-->
+<!--                android:id="@+id/editTextUpdateAssessmentStartDate"-->
+<!--                style="@style/form_style"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:ems="10"-->
+<!--                android:focusable="false"-->
+<!--                android:hint="@string/date"-->
+<!--                android:inputType="date"-->
+<!--                android:minHeight="48dp" />-->
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/updateStartTimeTextInputLayout"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:ems="10"
-                android:focusable="false"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="32dp"
                 android:hint="@string/time"
-                android:inputType="date"
-                android:minHeight="48dp" />
+                app:errorEnabled="true"
+                app:helperText=""
+                app:helperTextTextColor="@color/red"
+                >
 
-            <Spinner
-                android:id="@+id/updateAssessmentSpinner"
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginTop="24dp"
-                android:layout_marginRight="16dp"
-                android:entries="@array/test_type"
-                tools:ignore="SpeakableTextPresentCheck" />
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/editTextUpdateAssessmentStartTime"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:focusable="false"
+                    android:inputType="date"
+                    tools:ignore="SpeakableTextPresentCheck" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+<!--            <EditText-->
+<!--                android:id="@+id/editTextUpdateAssessmentStartTime"-->
+<!--                style="@style/form_style"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:ems="10"-->
+<!--                android:focusable="false"-->
+<!--                android:hint="@string/time"-->
+<!--                android:inputType="date"-->
+<!--                android:minHeight="48dp" />-->
+
+<!--            <Spinner-->
+<!--                android:id="@+id/updateAssessmentSpinner"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="48dp"-->
+<!--                android:layout_marginLeft="16dp"-->
+<!--                android:layout_marginTop="24dp"-->
+<!--                android:layout_marginRight="16dp"-->
+<!--                android:entries="@array/assessment_type"-->
+<!--                tools:ignore="SpeakableTextPresentCheck" />-->
 
             <Button
                 android:id="@+id/updateAssessmentButton"
                 style="@style/form_style"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="60dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="32dp"
+                android:layout_marginBottom="16dp"
                 android:text="@string/update_assessment" />
         </LinearLayout>
     </ScrollView>

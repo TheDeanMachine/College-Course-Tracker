@@ -28,7 +28,7 @@
                 android:layout_marginStart="32dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="32dp"
-                android:hint="@string/term_title"
+                android:hint="@string/term_name"
                 app:errorEnabled="true"
                 app:helperText=""
                 app:helperTextTextColor="@color/red"
