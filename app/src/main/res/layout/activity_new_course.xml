@@ -44,16 +44,6 @@
                     tools:ignore="SpeakableTextPresentCheck" />
             </com.google.android.material.textfield.TextInputLayout>
 
-<!--            <EditText-->
-<!--                android:id="@+id/editTextCourseTitle"-->
-<!--                style="@style/form_style"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:ems="10"-->
-<!--                android:hint="@string/course_name"-->
-<!--                android:inputType="textPersonName"-->
-<!--                android:minHeight="48dp" />-->
-
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/dropdownLayout"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
@@ -74,18 +64,7 @@
                     android:inputType="none"
                     android:text="@string/select_course_status"
                     />
-
             </com.google.android.material.textfield.TextInputLayout>
-
-<!--            <Spinner-->
-<!--                android:id="@+id/spinner"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="48dp"-->
-<!--                android:layout_marginLeft="16dp"-->
-<!--                android:layout_marginTop="24dp"-->
-<!--                android:layout_marginRight="16dp"-->
-<!--                android:entries="@array/course_status"-->
-<!--                tools:ignore="SpeakableTextPresentCheck" />-->
 
 
             <com.google.android.material.textfield.TextInputLayout
@@ -111,18 +90,6 @@
                     tools:ignore="SpeakableTextPresentCheck" />
             </com.google.android.material.textfield.TextInputLayout>
 
-<!--            -->
-<!--            <EditText-->
-<!--                android:id="@+id/editTextCourseStartDate"-->
-<!--                style="@style/form_style"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:ems="10"-->
-<!--                android:focusable="false"-->
-<!--                android:hint="@string/start_date"-->
-<!--                android:inputType="date"-->
-<!--                android:minHeight="48dp" />-->
-
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/newEndDateTextInputLayout"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
@@ -145,17 +112,6 @@
                     android:inputType="date"
                     tools:ignore="SpeakableTextPresentCheck" />
             </com.google.android.material.textfield.TextInputLayout>
-
-<!--            <EditText-->
-<!--                android:id="@+id/editTextCourseEndDate"-->
-<!--                style="@style/form_style"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:ems="10"-->
-<!--                android:focusable="false"-->
-<!--                android:hint="@string/end_date"-->
-<!--                android:inputType="date"-->
-<!--                android:minHeight="48dp" />-->
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/newStartTimeTextInputLayout"
@@ -180,16 +136,6 @@
                     tools:ignore="SpeakableTextPresentCheck" />
             </com.google.android.material.textfield.TextInputLayout>
 
-<!--            <EditText-->
-<!--                android:id="@+id/editTextCourseStartTime"-->
-<!--                style="@style/form_style"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:ems="10"-->
-<!--                android:focusable="false"-->
-<!--                android:hint="@string/start_time"-->
-<!--                android:inputType="date"-->
-<!--                android:minHeight="48dp" />-->
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/newEndTimeTextInputLayout"
@@ -214,17 +160,6 @@
                     tools:ignore="SpeakableTextPresentCheck" />
             </com.google.android.material.textfield.TextInputLayout>
 
-<!--            <EditText-->
-<!--                android:id="@+id/editTextCourseEndTime"-->
-<!--                style="@style/form_style"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:ems="10"-->
-<!--                android:focusable="false"-->
-<!--                android:hint="@string/end_time"-->
-<!--                android:inputType="date"-->
-<!--                android:minHeight="48dp" />-->
-
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/newCourseRoomTextInputLayout"
@@ -246,17 +181,7 @@
                     android:layout_height="match_parent"
                     tools:ignore="SpeakableTextPresentCheck" />
             </com.google.android.material.textfield.TextInputLayout>
-<!--            -->
-<!--            <EditText-->
-<!--                android:id="@+id/editTextCourseRoomNumber"-->
-<!--                style="@style/form_style"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:ems="10"-->
-<!--                android:hint="@string/room_number_or_course_number"-->
-<!--                android:inputType="textPersonName"-->
-<!--                android:minHeight="48dp"-->
-<!--                tools:ignore="TextFields" />-->
+
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/newInstructorNameTextInputLayout"
@@ -278,16 +203,6 @@
                     android:layout_height="match_parent"
                     tools:ignore="SpeakableTextPresentCheck" />
             </com.google.android.material.textfield.TextInputLayout>
-
-<!--            <EditText-->
-<!--                android:id="@+id/editTextInstructorName"-->
-<!--                style="@style/form_style"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:ems="10"-->
-<!--                android:hint="@string/instructor_name"-->
-<!--                android:inputType="textPersonName"-->
-<!--                android:minHeight="48dp" />-->
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/newInstructorPhoneTextInputLayout"
@@ -311,15 +226,6 @@
                     tools:ignore="SpeakableTextPresentCheck" />
             </com.google.android.material.textfield.TextInputLayout>
 
-<!--            <EditText-->
-<!--                android:id="@+id/editTextInstructorPhone"-->
-<!--                style="@style/form_style"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:ems="10"-->
-<!--                android:hint="@string/instructor_phone"-->
-<!--                android:inputType="phone"-->
-<!--                android:minHeight="48dp" />-->
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/newInstructorEmailTextInputLayout"
@@ -342,16 +248,6 @@
                     android:inputType="textEmailAddress"
                     tools:ignore="SpeakableTextPresentCheck" />
             </com.google.android.material.textfield.TextInputLayout>
-
-<!--            <EditText-->
-<!--                android:id="@+id/editTextInstructorEmailAddress"-->
-<!--                style="@style/form_style"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:ems="10"-->
-<!--                android:hint="@string/instructor_email"-->
-<!--                android:inputType="textEmailAddress"-->
-<!--                android:minHeight="48dp" />-->
 
             <Button
                 android:id="@+id/createCourseButton"

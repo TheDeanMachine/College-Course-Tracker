@@ -1,18 +1,20 @@
 package com.VFeskin.collegecoursetracker.Controller;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.VFeskin.collegecoursetracker.Model.Course;
 import com.VFeskin.collegecoursetracker.Model.CourseViewModel;
 import com.VFeskin.collegecoursetracker.R;
+import com.VFeskin.collegecoursetracker.Utility.CustomTextWatcher;
 import com.VFeskin.collegecoursetracker.Utility.DateConverter;
 import com.VFeskin.collegecoursetracker.Utility.DateTimeParser;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.android.material.textfield.TextInputLayout;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -33,7 +35,6 @@ public class EditCourse extends AppCompatActivity {
 
     // XML attributes
     private EditText courseTitleTxt;
-    private Spinner courseStatusSpinner;
     private EditText startDateTxt;
     private EditText endDateTxt;
     private EditText startTimeTxt;
@@ -42,14 +43,26 @@ public class EditCourse extends AppCompatActivity {
     private EditText instructorNameTxt;
     private EditText instructorPhoneTxt;
     private EditText instructorEmailTxt;
+    private TextInputLayout titleLayout;
+    private AutoCompleteTextView autoCompleteTextView;
+    private ArrayAdapter<String> arrayAdapter;
+    private TextInputLayout dropdownLayout;
+    private TextInputLayout startDateLayout;
+    private TextInputLayout endDateLayout;
+    private TextInputLayout startTimeLayout;
+    private TextInputLayout endTimeLayout;
+    private TextInputLayout roomNumLayout;
+    private TextInputLayout instructorNameLayout;
+    private TextInputLayout instructorPhoneLayout;
+    private TextInputLayout instructorEmailLayout;
     private Button updateCourseButton;
 
     // date related fields
     private final Calendar calendar = Calendar.getInstance();
-    DatePickerDialog.OnDateSetListener startDateDialog;
-    DatePickerDialog.OnDateSetListener endDateDialog;
-    TimePickerDialog.OnTimeSetListener startTimeDialog;
-    TimePickerDialog.OnTimeSetListener endTimeDialog;
+    private DatePickerDialog.OnDateSetListener startDateDialog;
+    private DatePickerDialog.OnDateSetListener endDateDialog;
+    private TimePickerDialog.OnTimeSetListener startTimeDialog;
+    private TimePickerDialog.OnTimeSetListener endTimeDialog;
     private Date startDate;
     private Date endDate;
     private Long startTime;
@@ -61,6 +74,11 @@ public class EditCourse extends AppCompatActivity {
     private int PK;
     private int FK;
 
+    // check dropdown selection
+    private boolean isSelect = false;
+    private String status = null;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,7 +86,7 @@ public class EditCourse extends AppCompatActivity {
 
         // set the field values to the xml ids
         courseTitleTxt = findViewById(R.id.editTextUpdateCourseTitle);
-        courseStatusSpinner = findViewById(R.id.courseUpdateSpinner);
+        autoCompleteTextView = findViewById(R.id.updateDropdownText);
         startDateTxt = findViewById(R.id.editTextUpdateCourseStartDate);
         endDateTxt = findViewById(R.id.editTextUpdateCourseEndDate);
         startTimeTxt = findViewById(R.id.editTextUpdateCourseStartTime);
@@ -77,13 +95,36 @@ public class EditCourse extends AppCompatActivity {
         instructorNameTxt = findViewById(R.id.editTextUpdateInstructorName);
         instructorPhoneTxt = findViewById(R.id.editTextUpdateInstructorPhone);
         instructorEmailTxt = findViewById(R.id.editTextUpdateInstructorEmailAddress);
+        titleLayout = findViewById(R.id.updateCourseTitleTextInputLayout);
+        dropdownLayout = findViewById(R.id.updateDropdownLayout);
+        startDateLayout = findViewById(R.id.updateStartDateTextInputLayout);
+        endDateLayout = findViewById(R.id.updateEndDateTextInputLayout);
+        startTimeLayout = findViewById(R.id.updateStartTimeTextInputLayout);
+        endTimeLayout = findViewById(R.id.updateEndTimeTextInputLayout);
+        roomNumLayout = findViewById(R.id.updateCourseRoomTextInputLayout);
+        instructorNameLayout = findViewById(R.id.updateInstructorNameTextInputLayout);
+        instructorPhoneLayout = findViewById(R.id.updateInstructorPhoneTextInputLayout);
+        instructorEmailLayout = findViewById(R.id.updateInstructorEmailTextInputLayout);
         updateCourseButton = findViewById(R.id.updateCourseButton);
+
+        // custom text listener for clearing set errors
+        courseTitleTxt.addTextChangedListener(new CustomTextWatcher(titleLayout));
+        startDateTxt.addTextChangedListener(new CustomTextWatcher(startDateLayout));
+        endDateTxt.addTextChangedListener(new CustomTextWatcher(endDateLayout));
+        startTimeTxt.addTextChangedListener(new CustomTextWatcher(startTimeLayout));
+        endTimeTxt.addTextChangedListener(new CustomTextWatcher(endTimeLayout));
+        roomNumberTxt.addTextChangedListener(new CustomTextWatcher(roomNumLayout));
+        instructorNameTxt.addTextChangedListener(new CustomTextWatcher(instructorNameLayout));
+        instructorPhoneTxt.addTextChangedListener(new CustomTextWatcher(instructorPhoneLayout));
+        instructorEmailTxt.addTextChangedListener(new CustomTextWatcher(instructorEmailLayout));
+        autoCompleteTextView.addTextChangedListener(new CustomTextWatcher(dropdownLayout));
 
         // get values and set text
         Bundle extra = getIntent().getExtras();
         PK = extra.getInt("ID");
         courseTitleTxt.setText(extra.getString("TITLE"));
-        courseStatusSpinner.setSelection(((ArrayAdapter<String>)courseStatusSpinner.getAdapter()).getPosition(extra.getString("STATUS")));
+        autoCompleteTextView.setText(extra.getString("STATUS"));
+//        courseStatusSpinner.setSelection(((ArrayAdapter<String>)courseStatusSpinner.getAdapter()).getPosition(extra.getString("STATUS")));
         startDate = DateConverter.fromTimestamp(extra.getLong("START"));
         startDateTxt.setText(DateFormat.getDateInstance(DateFormat.MEDIUM).format(startDate));
         endDate = DateConverter.fromTimestamp(extra.getLong("END"));
@@ -97,6 +138,16 @@ public class EditCourse extends AppCompatActivity {
         instructorPhoneTxt.setText(extra.getString("PHONE"));
         instructorEmailTxt.setText(extra.getString("EMAIL"));
         FK = extra.getInt("FK");
+
+        // set exposed dropdown with items
+        arrayAdapter = new ArrayAdapter<>(this, R.layout.dropdown_item, getResources().getStringArray(R.array.course_status));
+        autoCompleteTextView.setAdapter(arrayAdapter);
+
+        // collect the item selected, onItemClick
+        autoCompleteTextView.setOnItemClickListener((parent, view, position, id) -> {
+            status = (String) parent.getAdapter().getItem(position);
+            isSelect = true;
+        });
 
         // shows the time picker, onClick
         startTimeTxt.setOnClickListener(view -> new TimePickerDialog(this, startTimeDialog,
@@ -119,7 +170,6 @@ public class EditCourse extends AppCompatActivity {
             startTime = calendar.getTimeInMillis();
 
             // format the output the screen
-            startTimeTxt.setError(null); // clears set error
             startTimeTxt.setText(DateFormat.getTimeInstance(DateFormat.SHORT).format(startTime));
         };
 
@@ -130,7 +180,6 @@ public class EditCourse extends AppCompatActivity {
             endTime = calendar.getTimeInMillis();
 
             // format the output the screen
-            endTimeTxt.setError(null); // clears set error
             endTimeTxt.setText(DateFormat.getTimeInstance(DateFormat.SHORT).format(endTime));
         };
 
@@ -153,7 +202,6 @@ public class EditCourse extends AppCompatActivity {
             calendar.set(year, month, day);
             startDate = calendar.getTime();
             // format the output the screen
-            startDateTxt.setError(null); // clears set error
             startDateTxt.setText(DateFormat.getDateInstance(DateFormat.MEDIUM).format(startDate));
         };
 
@@ -162,7 +210,6 @@ public class EditCourse extends AppCompatActivity {
             calendar.set(year, month, day);
             endDate = calendar.getTime();
             // format the output the screen
-            endDateTxt.setError(null); // clears set error
             endDateTxt.setText(DateFormat.getDateInstance(DateFormat.MEDIUM).format(endDate));
         };
 
@@ -177,31 +224,31 @@ public class EditCourse extends AppCompatActivity {
                     throw new Exception();
                 }
             } catch (Exception e) {
-                courseTitleTxt.setError("Title is required!");
+                titleLayout.setError("Title is required!");
                 Snackbar.make(view, "Please enter a title", Snackbar.LENGTH_SHORT).show();
                 return;
             }
 
             if (startDate == null || startDateTxt.getText().toString().isEmpty()) {
-                startDateTxt.setError("Start date is required!");
+                startDateLayout.setError("Start date is required!");
                 Snackbar.make(view, "Please enter a date", Snackbar.LENGTH_SHORT).show();
                 return;
             }
 
             if (endDate == null || endDateTxt.getText().toString().isEmpty()) {
-                endDateTxt.setError("End date is required!");
+                endDateLayout.setError("End date is required!");
                 Snackbar.make(view, "Please enter a date", Snackbar.LENGTH_SHORT).show();
                 return;
             }
 
             if (startTime == null || startTimeTxt.getText().toString().isEmpty()) {
-                startTimeTxt.setError("Time is required!");
+                startTimeLayout.setError("Time is required!");
                 Snackbar.make(view, "Please enter course start time", Snackbar.LENGTH_SHORT).show();
                 return;
             }
 
             if (endTime == null || endTimeTxt.getText().toString().isEmpty()) {
-                endTimeTxt.setError("Time is required!");
+                endTimeLayout.setError("Time is required!");
                 Snackbar.make(view, "Please enter course end time", Snackbar.LENGTH_SHORT).show();
                 return;
             }
@@ -213,7 +260,7 @@ public class EditCourse extends AppCompatActivity {
                     throw new Exception();
                 }
             } catch (Exception e) {
-                roomNumberTxt.setError("Room number is required!");
+                roomNumLayout.setError("Room number is required!");
                 Snackbar.make(view, "Please enter the room number or course number", Snackbar.LENGTH_SHORT).show();
                 return;
             }
@@ -225,7 +272,7 @@ public class EditCourse extends AppCompatActivity {
                     throw new Exception();
                 }
             } catch (Exception e) {
-                instructorNameTxt.setError("Name is required!");
+                instructorNameLayout.setError("Name is required!");
                 Snackbar.make(view, "Please enter the instructor name", Snackbar.LENGTH_SHORT).show();
                 return;
             }
@@ -237,7 +284,7 @@ public class EditCourse extends AppCompatActivity {
                     throw new Exception();
                 }
             } catch (Exception e) {
-                instructorPhoneTxt.setError("Phone is required!");
+                instructorPhoneLayout.setError("Phone is required!");
                 Snackbar.make(view, "Please enter the instructor phone", Snackbar.LENGTH_SHORT).show();
                 return;
             }
@@ -249,18 +296,17 @@ public class EditCourse extends AppCompatActivity {
                     throw new Exception();
                 }
             } catch (Exception e) {
-                instructorEmailTxt.setError("Email is required!");
+                instructorEmailLayout.setError("Email is required!");
                 Snackbar.make(view, "Please enter the instructor email", Snackbar.LENGTH_SHORT).show();
                 return;
             }
 
-            String status = null;
             try {
-                status = courseStatusSpinner.getSelectedItem().toString();
-                if (status == null || courseStatusSpinner.getSelectedItem().equals("Select status")) {
+                if (!isSelect) {
                     throw new Exception();
                 }
             } catch (Exception e) {
+                dropdownLayout.setError("Status is required!");
                 Snackbar.make(view, "Please select course status", Snackbar.LENGTH_SHORT).show();
                 return;
             }
