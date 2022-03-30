@@ -13,7 +13,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="8dp"
-        android:background="@color/purple_200"
+        android:background="@color/white"
         android:elevation="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -39,7 +39,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:text="@string/starts_on"
-            android:textColor="#311B92"
+
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textViewDetailTitle" />
 
@@ -50,7 +50,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="16dp"
             android:text="TextView"
-            android:textColor="#311B92"
+
             app:layout_constraintStart_toEndOf="@+id/textViewDetailStartDateSet"
             app:layout_constraintTop_toBottomOf="@+id/textViewDetailTitle" />
 
@@ -61,7 +61,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:text="@string/ends_on"
-            android:textColor="#311B92"
+
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textViewDetailStartDateSet" />
 
@@ -72,7 +72,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:text="TextView"
-            android:textColor="#311B92"
+
             app:layout_constraintStart_toEndOf="@+id/textViewDetailEndDateSet"
             app:layout_constraintTop_toBottomOf="@+id/textViewDetailStartDate" />
 

@@ -15,7 +15,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="8dp"
-        android:background="@color/purple_200"
+        android:background="@color/white"
         android:elevation="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -41,7 +41,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:text="@string/assessment_type_txt"
-            android:textColor="#311B92"
+
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textViewDetailAssessmentTitle" />
 
@@ -52,7 +52,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="16dp"
             android:text="TextView"
-            android:textColor="#311B92"
+
             app:layout_constraintStart_toEndOf="@+id/textViewDetailAssessmentTypeSet"
             app:layout_constraintTop_toBottomOf="@+id/textViewDetailAssessmentTitle" />
 
@@ -63,7 +63,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:text="@string/starts_at"
-            android:textColor="#311B92"
+
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textViewDetailAssessmentTypeSet" />
 
@@ -74,7 +74,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:text="TextView"
-            android:textColor="#311B92"
+
             app:layout_constraintStart_toEndOf="@+id/textViewDetailAssessmentStartDateSet"
             app:layout_constraintTop_toBottomOf="@+id/textViewDetailAssessmentType" />
 
@@ -87,6 +87,7 @@
             android:layout_marginTop="16dp"
             android:layout_marginBottom="16dp"
             android:text="@string/set_reminder"
+            android:textColor="@color/medium_green"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textViewDetailAssessmentStartDateSet" />

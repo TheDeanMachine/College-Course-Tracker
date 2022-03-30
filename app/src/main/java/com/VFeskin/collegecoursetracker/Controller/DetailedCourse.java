@@ -150,7 +150,7 @@ public class DetailedCourse extends AppCompatActivity implements AssessmentViewA
         fabAlarm.setVisibility((getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) ? View.GONE : View.VISIBLE);
 
         fabNotes.setOnClickListener(this::viewNotes);
-        fabNotes.setVisibility((getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) ? View.GONE : View.VISIBLE);
+//        fabNotes.setVisibility((getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) ? View.GONE : View.VISIBLE);
 
         buttonAlarm.setOnClickListener(this::addCourseAlarm);
         buttonAlarm.setVisibility((getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) ? View.GONE : View.VISIBLE);
