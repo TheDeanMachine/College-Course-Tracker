@@ -7,10 +7,8 @@ import com.VFeskin.collegecoursetracker.Utility.CustomTextWatcher;
 import com.VFeskin.collegecoursetracker.Utility.DateTimeParser;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputLayout;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.os.Bundle;
@@ -49,6 +47,7 @@ public class NewCourse extends AppCompatActivity {
     private TextInputLayout titleLayout;
     private AutoCompleteTextView autoCompleteTextView;
     private ArrayAdapter<String> arrayAdapter;
+    private TextInputLayout dropdownLayout;
     private TextInputLayout startDateLayout;
     private TextInputLayout endDateLayout;
     private TextInputLayout startTimeLayout;
@@ -61,10 +60,10 @@ public class NewCourse extends AppCompatActivity {
 
     // date related fields
     private final Calendar calendar = Calendar.getInstance();
-    DatePickerDialog.OnDateSetListener dateDialog;
-    DatePickerDialog.OnDateSetListener dateDialog2;
-    TimePickerDialog.OnTimeSetListener timeDialog;
-    TimePickerDialog.OnTimeSetListener timeDialog2;
+    private DatePickerDialog.OnDateSetListener dateDialog;
+    private DatePickerDialog.OnDateSetListener dateDialog2;
+    private TimePickerDialog.OnTimeSetListener timeDialog;
+    private TimePickerDialog.OnTimeSetListener timeDialog2;
     private Date startDate;
     private Date endDate;
     private Long startTime;
@@ -75,18 +74,14 @@ public class NewCourse extends AppCompatActivity {
     // term PK
     private int id;
 
-    // check selection
-    boolean isSelect = false;
+    // check dropdown selection
+    private boolean isSelect = false;
+    private String status = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_course);
-
-//        String[] courseStatus = getResources().getStringArray(R.array.course_status);
-//        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(this, R.layout.dropdown_item, courseStatus);
-//        AutoCompleteTextView autoCompleteTextView = findViewById(R.id.dropdownText);
-//        autoCompleteTextView.setAdapter(arrayAdapter);
 
         // set the field values to the xml ids
         courseTitleTxt = findViewById(R.id.editTextCourseTitle);
@@ -100,6 +95,7 @@ public class NewCourse extends AppCompatActivity {
         instructorPhoneTxt = findViewById(R.id.editTextInstructorPhone);
         instructorEmailTxt = findViewById(R.id.editTextInstructorEmailAddress);
         titleLayout = findViewById(R.id.newCourseTitleTextInputLayout);
+        dropdownLayout = findViewById(R.id.dropdownLayout);
         startDateLayout = findViewById(R.id.newStartDateTextInputLayout);
         endDateLayout = findViewById(R.id.newEndDateTextInputLayout);
         startTimeLayout = findViewById(R.id.newStartTimeTextInputLayout);
@@ -120,10 +116,22 @@ public class NewCourse extends AppCompatActivity {
         instructorNameTxt.addTextChangedListener(new CustomTextWatcher(instructorNameLayout));
         instructorPhoneTxt.addTextChangedListener(new CustomTextWatcher(instructorPhoneLayout));
         instructorEmailTxt.addTextChangedListener(new CustomTextWatcher(instructorEmailLayout));
+        autoCompleteTextView.addTextChangedListener(new CustomTextWatcher(dropdownLayout));
+
+//        String[] courseStatus = getResources().getStringArray(R.array.course_status);
+//        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(this, R.layout.dropdown_item, courseStatus);
+//        AutoCompleteTextView autoCompleteTextView = findViewById(R.id.dropdownText);
+//        autoCompleteTextView.setAdapter(arrayAdapter);
 
         // set exposed dropdown with items
         arrayAdapter = new ArrayAdapter<>(this, R.layout.dropdown_item, getResources().getStringArray(R.array.course_status));
         autoCompleteTextView.setAdapter(arrayAdapter);
+
+        // collect the item selected, onItemClick
+        autoCompleteTextView.setOnItemClickListener((parent, view, position, id) -> {
+            status = (String) parent.getAdapter().getItem(position);
+            isSelect = true;
+        });
 
         // shows the time picker, onClick
         startTimeTxt.setOnClickListener(view -> new TimePickerDialog(this, timeDialog,
@@ -144,8 +152,8 @@ public class NewCourse extends AppCompatActivity {
             calendar.set(Calendar.HOUR_OF_DAY, hour);
             calendar.set(Calendar.MINUTE, minute);
             startTime = calendar.getTimeInMillis();
+
             // format the output the screen
-            startTimeTxt.setError(null); // clears set error
             startTimeTxt.setText(DateFormat.getTimeInstance(DateFormat.SHORT).format(startTime));
         };
 
@@ -154,8 +162,8 @@ public class NewCourse extends AppCompatActivity {
             calendar.set(Calendar.HOUR_OF_DAY, hour);
             calendar.set(Calendar.MINUTE, minute);
             endTime = calendar.getTimeInMillis();
+
             // format the output the screen
-            endTimeTxt.setError(null); // clears set error
             endTimeTxt.setText(DateFormat.getTimeInstance(DateFormat.SHORT).format(endTime));
         };
 
@@ -177,8 +185,8 @@ public class NewCourse extends AppCompatActivity {
         dateDialog = (view, year, month, day) -> {
             calendar.set(year, month, day);
             startDate = calendar.getTime();
+
             // format the output the screen
-//            startDateTxt.setError(null); // clears set error
             startDateTxt.setText(DateFormat.getDateInstance(DateFormat.MEDIUM).format(startDate));
         };
 
@@ -186,31 +194,10 @@ public class NewCourse extends AppCompatActivity {
         dateDialog2 = (view, year, month, day) -> {
             calendar.set(year, month, day);
             endDate = calendar.getTime();
+
             // format the output the screen
-//            endDateTxt.setError(null); // clears set error
             endDateTxt.setText(DateFormat.getDateInstance(DateFormat.MEDIUM).format(endDate));
         };
-
-
-        autoCompleteTextView.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                String item = (String) parent.getAdapter().getItem(position);
-                isSelect = true;
-
-               if ( autoCompleteTextView.getAdapter().getItem(position).toString().isEmpty()) {
-                   autoCompleteTextView.setError("Status is required!");
-                   Snackbar.make(parent, "Please select course status", Snackbar.LENGTH_SHORT).show();
-               }
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-                autoCompleteTextView.setError("Status is required!");
-                Snackbar.make(parent, "Please select course status", Snackbar.LENGTH_SHORT).show();
-            }
-        });
-
 
         // collect input and create new course
         createCourseButton.setOnClickListener(view -> {
@@ -300,14 +287,13 @@ public class NewCourse extends AppCompatActivity {
                 return;
             }
 
-            String status = null;
             try {
-                status = autoCompleteTextView.getText().toString();
+//                status = autoCompleteTextView.getText().toString();
                 if (!isSelect) {
                     throw new Exception();
                 }
             } catch (Exception e) {
-                autoCompleteTextView.setError("Status is required!");
+                dropdownLayout.setError("Status is required!");
                 Snackbar.make(view, "Please select course status", Snackbar.LENGTH_SHORT).show();
                 return;
             }
