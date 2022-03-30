@@ -20,6 +20,7 @@ import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -142,14 +143,21 @@ public class DetailedCourse extends AppCompatActivity implements AssessmentViewA
             FK = course.getTermId();
         });
 
-        // navigation changes on button click
+        // button listeners
         fab.setOnClickListener(view -> openNewAssessment());
 
-//        fabAlarm.setOnClickListener(this::addCourseAlarm);
+        fabAlarm.setOnClickListener(this::addCourseAlarm);
+        fabAlarm.setVisibility((getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) ? View.GONE : View.VISIBLE);
+
         fabNotes.setOnClickListener(this::viewNotes);
+        fabNotes.setVisibility((getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) ? View.GONE : View.VISIBLE);
 
         buttonAlarm.setOnClickListener(this::addCourseAlarm);
+        buttonAlarm.setVisibility((getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) ? View.GONE : View.VISIBLE);
+
         viewNotesButton.setOnClickListener(this::viewNotes);
+        viewNotesButton.setVisibility((getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) ? View.GONE : View.VISIBLE);
+
     }
 
     private void viewNotes(View view) {
