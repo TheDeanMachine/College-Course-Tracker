@@ -6,18 +6,55 @@
     android:layout_height="match_parent"
     tools:context=".Controller.AssessmentList">
 
+<!--    <TextView-->
+<!--        android:id="@+id/textView10"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginStart="24dp"-->
+<!--        android:layout_marginTop="16dp"-->
+<!--        android:text="@string/view_assessments_by_type_or_search_by_title_above"-->
+<!--        android:textAppearance="?attr/textAppearanceSubtitle1"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent" />-->
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/reportsDropdownLayout"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="24dp"
+        app:errorEnabled="true"
+        app:helperText="Click to view assessments by type*"
+        app:helperTextTextColor="@color/secondary_text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        >
+
+        <AutoCompleteTextView
+            android:id="@+id/reportsDropdownText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="none"
+            android:hint="@string/reports"
+            android:text="@string/select_assessment_type" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_Assessment_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/reportsDropdownLayout" />
 
 <!--    <com.google.android.material.floatingactionbutton.FloatingActionButton-->
 <!--        android:id="@+id/add_new_Assessment"-->

@@ -11,6 +11,7 @@ import com.VFeskin.collegecoursetracker.Model.Assessment;
 import com.VFeskin.collegecoursetracker.Model.AssessmentViewModel;
 import com.VFeskin.collegecoursetracker.R;
 import com.VFeskin.collegecoursetracker.Utility.DateConverter;
+import com.google.android.material.textfield.TextInputLayout;
 
 import android.app.SearchManager;
 import android.content.Context;
@@ -18,6 +19,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.SearchView;
 
 import java.util.List;
@@ -37,10 +40,34 @@ public class AssessmentList extends AppCompatActivity implements AssessmentViewA
     // assessment view model
     private AssessmentViewModel assessmentViewModel;
 
+    // dropdown
+    private AutoCompleteTextView autoCompleteTextView;
+    private ArrayAdapter<String> arrayAdapter;
+    private TextInputLayout dropdownLayout;
+
+    // check dropdown selection
+    private String testType = null;
+
+    // holds results list
+    private LiveData<List<Assessment>> viewAllByType;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_assessment_list);
+
+        autoCompleteTextView = findViewById(R.id.reportsDropdownText);
+        dropdownLayout = findViewById(R.id.reportsDropdownLayout);
+
+        // set exposed dropdown with items
+        arrayAdapter = new ArrayAdapter<>(this, R.layout.dropdown_item, getResources().getStringArray(R.array.test_type));
+        autoCompleteTextView.setAdapter(arrayAdapter);
+
+        // collect the item selected, onItemClick
+        autoCompleteTextView.setOnItemClickListener((parent, view, position, id) -> {
+            testType = (String) parent.getAdapter().getItem(position);
+            results(testType);
+        });
 
         // configure recycle view
         recyclerView = findViewById(R.id.recycler_Assessment_view);
@@ -55,6 +82,15 @@ public class AssessmentList extends AppCompatActivity implements AssessmentViewA
         // observer
         assessmentViewModel.getAllAssessment().observe(this, assessments -> {
             // set recycle view with assessments
+            assessmentViewAdapter = new AssessmentViewAdapter(assessments, this);
+            recyclerView.setAdapter(assessmentViewAdapter);
+        });
+    }
+
+    // sets recycler view with results of dropdown selection
+    public void results(String type) {
+        viewAllByType = assessmentViewModel.resultsByType(type);
+        viewAllByType.observe(this, assessments -> {
             assessmentViewAdapter = new AssessmentViewAdapter(assessments, this);
             recyclerView.setAdapter(assessmentViewAdapter);
         });
@@ -110,6 +146,8 @@ public class AssessmentList extends AppCompatActivity implements AssessmentViewA
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        autoCompleteTextView.setText(""); // clear your TextView prior to search
+
         // Determine which app bar item was chosen
         switch (item.getItemId()) {
             case R.id.AllTerms:
@@ -117,6 +155,9 @@ public class AssessmentList extends AppCompatActivity implements AssessmentViewA
                 return true;
             case R.id.AllCourses:
                 viewAllCourses();
+                return true;
+            case R.id.AllAssessments:
+                viewAllAssessments();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -131,6 +172,12 @@ public class AssessmentList extends AppCompatActivity implements AssessmentViewA
 
     public void viewAllCourses() {
         Intent intent = new Intent(this, CourseList.class);
+        startActivity(intent);
+        finish();
+    }
+
+    public void viewAllAssessments() {
+        Intent intent = new Intent(this, AssessmentList.class);
         startActivity(intent);
         finish();
     }

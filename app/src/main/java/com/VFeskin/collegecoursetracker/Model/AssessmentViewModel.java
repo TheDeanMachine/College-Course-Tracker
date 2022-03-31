@@ -40,6 +40,10 @@ public class AssessmentViewModel extends AndroidViewModel {
         return repository.searchForAssessments(query);
     }
 
+    public LiveData<List<Assessment>> resultsByType(String type) {
+        return repository.resultsByType(type);
+    }
+
     public static void insert(Assessment assessment) {
         repository.insertAssessments(assessment);
     }

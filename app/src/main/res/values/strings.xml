@@ -96,6 +96,8 @@
     <string name="instructor_information">Instructor Information</string>
     <string name="view_instructor">view instructor</string>
     <string name="view_assessments_by_type">View assessments by type</string>
+    <string name="view_assessments_by_type_or_search_by_title_above">View assessments by type, or search by title above</string>
+    <string name="reports">Reports</string>
 
 
     <string-array name="course_status">
@@ -117,4 +119,14 @@
         <item>Midterm</item>
         <item>Final</item>
     </string-array>
+
+    <string-array name="test_type_reports">
+        <item>View All</item>
+        <item>Quiz</item>
+        <item>Prerequisite</item>
+        <item>Midterm</item>
+        <item>Final</item>
+    </string-array>
+
+
 </resources>

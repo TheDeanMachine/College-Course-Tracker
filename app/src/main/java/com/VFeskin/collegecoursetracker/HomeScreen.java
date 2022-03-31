@@ -10,8 +10,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-
-import com.VFeskin.collegecoursetracker.Controller.Reports;
 import com.VFeskin.collegecoursetracker.Controller.TermList;
 import com.VFeskin.collegecoursetracker.Model.User;
 import com.VFeskin.collegecoursetracker.Model.UserViewModel;
@@ -137,8 +135,7 @@ public class HomeScreen extends AppCompatActivity {
     }
 
     public void openApplication() {
-//        Intent intent = new Intent(this, TermList.class);
-        Intent intent = new Intent(this, Reports.class);
+        Intent intent = new Intent(this, TermList.class);
         startActivity(intent);
     }
 

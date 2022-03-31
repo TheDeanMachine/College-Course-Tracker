@@ -141,6 +141,10 @@ public class CourseTrackerRepository {
         return assessmentDAO.searchForAssessments(query);
     }
 
+    public LiveData<List<Assessment>> resultsByType(String type) {
+        return assessmentDAO.resultsByType(type);
+    }
+
     public void insertAssessments(Assessment assessment) {
         CourseTrackerDatabase.databaseWriteExecutor.execute(() -> {
             assessmentDAO.insert(assessment);

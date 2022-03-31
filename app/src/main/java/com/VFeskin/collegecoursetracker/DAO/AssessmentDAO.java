@@ -37,4 +37,7 @@ public interface AssessmentDAO {
     @Query("SELECT * FROM Assessments WHERE title LIKE :query")
     LiveData<List<Assessment>> searchForAssessments(String query);
 
+    @Query("SELECT * FROM Assessments WHERE assessment = :type")
+    LiveData<List<Assessment>> resultsByType(String type);
+
 }
