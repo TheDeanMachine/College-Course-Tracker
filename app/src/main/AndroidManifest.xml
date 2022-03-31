@@ -12,9 +12,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CollegeCourseTracker">
         <activity
+            android:name=".Controller.Reports"
+            android:exported="false" />
+        <activity
             android:name=".Controller.InstructorInfo"
             android:exported="false"
-            android:label="Instructor Quick View"/>
+            android:label="Instructor Quick View" />
         <activity
             android:name=".CreateNewUser"
             android:exported="false"

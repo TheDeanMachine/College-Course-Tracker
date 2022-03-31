@@ -95,6 +95,7 @@
     <string name="email">Email:</string>
     <string name="instructor_information">Instructor Information</string>
     <string name="view_instructor">view instructor</string>
+    <string name="view_assessments_by_type">View assessments by type</string>
 
 
     <string-array name="course_status">
