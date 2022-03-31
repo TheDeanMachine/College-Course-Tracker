@@ -40,6 +40,10 @@ public class CourseViewModel extends AndroidViewModel {
         return repository.searchForCourses(query);
     }
 
+    public LiveData<List<Course>> resultsByCourseStatus(String status){
+        return repository.resultsByCourseStatus(status);
+    }
+
     public static void insert(Course course) {
         repository.insertCourse(course);
     }

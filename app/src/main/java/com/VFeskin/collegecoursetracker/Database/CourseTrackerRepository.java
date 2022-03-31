@@ -105,6 +105,10 @@ public class CourseTrackerRepository {
         return courseDAO.searchForCourses(query);
     }
 
+    public LiveData<List<Course>> resultsByCourseStatus(String status){
+        return courseDAO.resultsByCourseStatus(status);
+    }
+
     public void insertCourse(Course course) {
         CourseTrackerDatabase.databaseWriteExecutor.execute(() -> {
             courseDAO.insert(course);

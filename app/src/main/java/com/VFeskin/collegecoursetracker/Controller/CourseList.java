@@ -6,16 +6,21 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.VFeskin.collegecoursetracker.Adapter.CourseViewAdapter;
+import com.VFeskin.collegecoursetracker.Model.Assessment;
 import com.VFeskin.collegecoursetracker.Model.Course;
 import com.VFeskin.collegecoursetracker.Model.CourseViewModel;
 import com.VFeskin.collegecoursetracker.R;
 import com.VFeskin.collegecoursetracker.Utility.DateConverter;
+import com.google.android.material.textfield.TextInputLayout;
+
 import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.SearchView;
 import java.util.List;
 import java.util.Objects;
@@ -34,10 +39,34 @@ public class CourseList extends AppCompatActivity implements CourseViewAdapter.O
     // course view model
     private CourseViewModel courseViewModel;
 
+    // dropdown
+    private AutoCompleteTextView autoCompleteTextView;
+    private ArrayAdapter<String> arrayAdapter;
+    private TextInputLayout dropdownLayout;
+
+    // check dropdown selection
+    private String courseType = null;
+
+    // holds results list
+    private LiveData<List<Course>> viewAllByType;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_course_list);
+
+        autoCompleteTextView = findViewById(R.id.courseReportsDropdownText);
+        dropdownLayout = findViewById(R.id.courseReportsDropdownLayout);
+
+        // set exposed dropdown with items
+        arrayAdapter = new ArrayAdapter<>(this, R.layout.dropdown_item, getResources().getStringArray(R.array.course_status));
+        autoCompleteTextView.setAdapter(arrayAdapter);
+
+        // collect the item selected, onItemClick
+        autoCompleteTextView.setOnItemClickListener((parent, view, position, id) -> {
+            courseType = (String) parent.getAdapter().getItem(position);
+            results(courseType);
+        });
 
         // configure recycle view
         recyclerView = findViewById(R.id.recycler_course_view);
@@ -55,6 +84,16 @@ public class CourseList extends AppCompatActivity implements CourseViewAdapter.O
             courseViewAdapter = new CourseViewAdapter(courses, this);
             recyclerView.setAdapter(courseViewAdapter);
         });
+    }
+
+    private void results(String status) {
+        viewAllByType = courseViewModel.resultsByCourseStatus(status);
+        viewAllByType.observe(this, courses -> {
+            // set recycle view with courses
+            courseViewAdapter = new CourseViewAdapter(courses, this);
+            recyclerView.setAdapter(courseViewAdapter);
+        });
+
     }
 
     @Override
@@ -107,10 +146,15 @@ public class CourseList extends AppCompatActivity implements CourseViewAdapter.O
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        autoCompleteTextView.setText(""); // clear your TextView prior to search
+
         // Determine which app bar item was chosen
         switch (item.getItemId()) {
             case R.id.AllTerms:
                 viewAllTerms();
+                return true;
+            case R.id.AllCourses:
+                viewAllCourses();
                 return true;
             case R.id.AllAssessments:
                 viewAllAssessments();
@@ -122,6 +166,12 @@ public class CourseList extends AppCompatActivity implements CourseViewAdapter.O
 
     public void viewAllTerms() {
         Intent intent = new Intent(this, TermList.class);
+        startActivity(intent);
+        finish();
+    }
+
+    public void viewAllCourses() {
+        Intent intent = new Intent(this, CourseList.class);
         startActivity(intent);
         finish();
     }
