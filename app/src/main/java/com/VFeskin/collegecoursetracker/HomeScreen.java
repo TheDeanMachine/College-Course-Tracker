@@ -112,9 +112,9 @@ public class HomeScreen extends AppCompatActivity {
 
         // check if user name is wrong
         getUserName = userViewModel.getUserName(userName);
-        getUserName.observe(this, user1 -> {
+        getUserName.observe(this, userN -> {
             try {
-              user1.getUserName();
+              userN.getUserName(); // if null/not found
             } catch (Exception e) {
                 userLayout.setError("Incorrect user name!");
                 Snackbar.make(findViewById(R.id.homeScrollView), "Incorrect credentials!", Snackbar.LENGTH_SHORT).show();
@@ -123,9 +123,9 @@ public class HomeScreen extends AppCompatActivity {
 
         // check if password is wrong
         getUserPassword = userViewModel.getUserPassword(password);
-        getUserPassword.observe(this, user2 -> {
+        getUserPassword.observe(this, userP -> {
             try {
-              user2.getPassword();
+              userP.getPassword(); // if null/not found
             } catch (Exception e) {
                 passwordLayout.setError("Incorrect password!");
                 Snackbar.make(findViewById(R.id.homeScrollView), "Incorrect credentials!", Snackbar.LENGTH_SHORT).show();
