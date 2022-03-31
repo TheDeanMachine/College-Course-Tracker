@@ -54,7 +54,6 @@ public class EditAssessment extends AppCompatActivity {
     private int FK;
 
     // check dropdown selection
-    private boolean isSelect = false;
     private String testType = null;
 
     @Override
@@ -97,7 +96,6 @@ public class EditAssessment extends AppCompatActivity {
         // collect the item selected, onItemClick
         autoCompleteTextView.setOnItemClickListener((parent, view, position, id) -> {
             testType = (String) parent.getAdapter().getItem(position);
-            isSelect = true;
         });
 
         // shows the date picker, onClick
@@ -161,17 +159,7 @@ public class EditAssessment extends AppCompatActivity {
                 return;
             }
 
-
-            try {
-                if (!isSelect) {
-                    throw new Exception();
-                }
-            } catch (Exception e) {
-                dropdownLayout.setError("Status is required!");
-                Snackbar.make(view, "Please select assessment type", Snackbar.LENGTH_SHORT).show();
-                return;
-            }
-
+            testType = autoCompleteTextView.getText().toString();
             startDateTime = DateTimeParser.parseDateTime(startDate, startTime);
 
             AssessmentViewModel.update(new Assessment(PK, testType, title, startDateTime, FK));

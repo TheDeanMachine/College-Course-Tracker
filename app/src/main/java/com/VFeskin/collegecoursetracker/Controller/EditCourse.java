@@ -75,7 +75,6 @@ public class EditCourse extends AppCompatActivity {
     private int FK;
 
     // check dropdown selection
-    private boolean isSelect = false;
     private String status = null;
 
 
@@ -146,7 +145,6 @@ public class EditCourse extends AppCompatActivity {
         // collect the item selected, onItemClick
         autoCompleteTextView.setOnItemClickListener((parent, view, position, id) -> {
             status = (String) parent.getAdapter().getItem(position);
-            isSelect = true;
         });
 
         // shows the time picker, onClick
@@ -301,16 +299,7 @@ public class EditCourse extends AppCompatActivity {
                 return;
             }
 
-            try {
-                if (!isSelect) {
-                    throw new Exception();
-                }
-            } catch (Exception e) {
-                dropdownLayout.setError("Status is required!");
-                Snackbar.make(view, "Please select course status", Snackbar.LENGTH_SHORT).show();
-                return;
-            }
-
+            status = autoCompleteTextView.getText().toString();
             startDateTime = DateTimeParser.parseDateTime(startDate, startTime);
             endDateTime = DateTimeParser.parseDateTime(endDate, endTime);
 
