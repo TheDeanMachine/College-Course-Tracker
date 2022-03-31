@@ -150,16 +150,14 @@ public class DetailedCourse extends AppCompatActivity implements AssessmentViewA
 
         // button listeners
         fab.setOnClickListener(view -> openNewAssessment());
+        fabNotes.setOnClickListener(this::viewNotes);
+        viewInstructorButton.setOnClickListener(this::viewInstructor);
 
+        //  changes from card button to a fab on rotation change to landscape mode
         fabAlarm.setOnClickListener(this::addCourseAlarm);
         fabAlarm.setVisibility((getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) ? View.GONE : View.VISIBLE);
-
         buttonAlarm.setOnClickListener(this::addCourseAlarm);
         buttonAlarm.setVisibility((getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) ? View.GONE : View.VISIBLE);
-
-        fabNotes.setOnClickListener(this::viewNotes);
-
-        viewInstructorButton.setOnClickListener(this::viewInstructor);
     }
 
     private void viewInstructor(View view) {

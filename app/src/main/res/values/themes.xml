@@ -17,7 +17,6 @@
         <!-- Primary brand color. -->
         <item name="colorPrimary">#607D8B</item>
         <item name="colorPrimaryVariant">#455A64</item>
-<!--        <item name="colorOnPrimary">#CFD8DC</item>-->
         <item name="colorOnPrimary">@color/white</item>
 
         <!-- Secondary brand color. -->

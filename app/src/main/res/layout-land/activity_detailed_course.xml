@@ -6,266 +6,237 @@
     android:layout_height="match_parent"
     tools:context=".Controller.DetailedCourse">
 
-
-    <ScrollView
-        android:id="@+id/homeScrollView"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:fillViewport="true"
-        android:paddingLeft="8dp"
-        android:paddingTop="16dp"
-        android:paddingRight="8dp"
-        android:paddingBottom="16dp"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cardView"
+        android:layout_width="300dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        android:background="@color/white"
+        android:elevation="8dp"
+        android:fadingEdgeLength="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="SpeakableTextPresentCheck">
+        app:layout_constraintTop_toTopOf="parent">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/cardView"
-            android:layout_width="300dp"
-            android:layout_height="0dp"
-
-            android:background="@color/purple_200"
-            android:elevation="8dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/detail_course_recycler_view"
+        <TextView
+            android:id="@+id/textViewDetailCourseTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:text="@string/course_title"
+            android:textAppearance="?attr/textAppearanceHeadline6"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textViewDetailCourseStatusSet"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:text="@string/course_status"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textViewDetailCourseTitle" />
+
+        <TextView
+            android:id="@+id/textViewDetailCourseStatus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:text="TextView"
+            app:layout_constraintStart_toEndOf="@+id/textViewDetailCourseStatusSet"
+            app:layout_constraintTop_toBottomOf="@+id/textViewDetailCourseTitle" />
+
+        <TextView
+            android:id="@+id/textViewDetailCourseStartDateSet"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/starts_on"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textViewDetailCourseStatusSet" />
+
+        <TextView
+            android:id="@+id/textViewDetailCourseStartDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:text="TextView"
+            app:layout_constraintStart_toEndOf="@+id/textViewDetailCourseStartDateSet"
+            app:layout_constraintTop_toBottomOf="@+id/textViewDetailCourseStatus" />
 
 
-            <TextView
-                android:id="@+id/textViewDetailCourseTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:text="@string/course_title"
-                android:textAppearance="?attr/textAppearanceHeadline6"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:id="@+id/textViewDetailCourseEndDateSet"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/ends_on"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textViewDetailCourseStartDateSet" />
 
-            <TextView
-                android:id="@+id/textViewDetailCourseStatusSet"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:text="@string/course_status"
-                android:textColor="#311B92"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textViewDetailCourseTitle" />
+        <TextView
+            android:id="@+id/textViewDetailCourseEndDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:text="TextView"
+            app:layout_constraintStart_toEndOf="@+id/textViewDetailCourseEndDateSet"
+            app:layout_constraintTop_toBottomOf="@+id/textViewDetailCourseStartDate" />
 
-            <TextView
-                android:id="@+id/textViewDetailCourseStatus"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="16dp"
-                android:text="TextView"
-                android:textColor="#311B92"
-                app:layout_constraintStart_toEndOf="@+id/textViewDetailCourseStatusSet"
-                app:layout_constraintTop_toBottomOf="@+id/textViewDetailCourseTitle" />
+        <TextView
+            android:id="@+id/textViewDetailCourseTimeSet"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/time_"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textViewDetailCourseEndDateSet" />
 
-            <TextView
-                android:id="@+id/textViewDetailCourseStartDateSet"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
-                android:text="@string/starts_on"
-                android:textColor="#311B92"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textViewDetailCourseStatusSet" />
+        <TextView
+            android:id="@+id/textViewDetailCourseTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:text="TextView"
+            app:layout_constraintStart_toEndOf="@+id/textViewDetailCourseTimeSet"
+            app:layout_constraintTop_toBottomOf="@+id/textViewDetailCourseEndDate" />
 
-            <TextView
-                android:id="@+id/textViewDetailCourseStartDate"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                android:text="TextView"
-                android:textColor="#311B92"
-                app:layout_constraintStart_toEndOf="@+id/textViewDetailCourseStartDateSet"
-                app:layout_constraintTop_toBottomOf="@+id/textViewDetailCourseStatus" />
+        <TextView
+            android:id="@+id/textViewDetailCourseRoomSet"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/room"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textViewDetailCourseTimeSet" />
 
+        <TextView
+            android:id="@+id/textViewDetailCourseRoom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:text="    "
+            app:layout_constraintStart_toEndOf="@+id/textViewDetailCourseRoomSet"
+            app:layout_constraintTop_toBottomOf="@+id/textViewDetailCourseTime"
+            tools:ignore="SpeakableTextPresentCheck" />
 
-            <TextView
-                android:id="@+id/textViewDetailCourseEndDateSet"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
-                android:text="@string/ends_on"
-                android:textColor="#311B92"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textViewDetailCourseStartDateSet" />
+<!--            <TextView-->
+<!--                android:id="@+id/textView7"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginStart="16dp"-->
+<!--                android:layout_marginTop="16dp"-->
+<!--                android:text="Instructor"-->
+<!--                android:textAppearance="?attr/textAppearanceHeadline6"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/textViewDetailCourseRoomSet" />-->
 
-            <TextView
-                android:id="@+id/textViewDetailCourseEndDate"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                android:text="TextView"
-                android:textColor="#311B92"
-                app:layout_constraintStart_toEndOf="@+id/textViewDetailCourseEndDateSet"
-                app:layout_constraintTop_toBottomOf="@+id/textViewDetailCourseStartDate" />
+<!--            <TextView-->
+<!--                android:id="@+id/textViewDetailCourseInstructorName"-->
+<!--                android:layout_width="0dp"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginStart="16dp"-->
+<!--                android:layout_marginTop="16dp"-->
+<!--                android:text="TextView"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/textView7" />-->
 
-            <TextView
-                android:id="@+id/textViewDetailCourseTimeSet"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
-                android:text="@string/time_"
-                android:textColor="#311B92"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textViewDetailCourseEndDateSet" />
+<!--            <TextView-->
+<!--                android:id="@+id/textViewDetailCourseInstructorPhone"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginStart="16dp"-->
+<!--                android:layout_marginTop="8dp"-->
+<!--                android:text="TextView"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/textViewDetailCourseInstructorName" />-->
 
-            <TextView
-                android:id="@+id/textViewDetailCourseTime"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                android:text="TextView"
-                android:textColor="#311B92"
-                app:layout_constraintStart_toEndOf="@+id/textViewDetailCourseTimeSet"
-                app:layout_constraintTop_toBottomOf="@+id/textViewDetailCourseEndDate" />
+<!--            <TextView-->
+<!--                android:id="@+id/textViewDetailCourseInstructorEmail"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginStart="16dp"-->
+<!--                android:layout_marginTop="8dp"-->
+<!--                android:text="TextView"-->
+<!--                app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/textViewDetailCourseInstructorPhone"-->
+<!--                app:layout_constraintVertical_bias="0.0" />-->
 
-            <TextView
-                android:id="@+id/textViewDetailCourseRoomSet"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
-                android:text="@string/room"
-                android:textColor="#311B92"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textViewDetailCourseTimeSet" />
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/to"
+            app:layout_constraintStart_toEndOf="@+id/textViewDetailCourseTime"
+            app:layout_constraintTop_toBottomOf="@+id/textViewDetailCourseEndDate" />
 
-            <TextView
-                android:id="@+id/textViewDetailCourseRoom"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                android:text="    "
-                android:textColor="#311B92"
-                app:layout_constraintStart_toEndOf="@+id/textViewDetailCourseRoomSet"
-                app:layout_constraintTop_toBottomOf="@+id/textViewDetailCourseTime"
-                tools:ignore="SpeakableTextPresentCheck" />
+        <TextView
+            android:id="@+id/textViewDetailCourseEndTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="8dp"
+            android:text="TextView"
+            app:layout_constraintStart_toEndOf="@+id/textView3"
+            app:layout_constraintTop_toBottomOf="@+id/textViewDetailCourseEndDate" />
 
-            <TextView
-                android:id="@+id/textView7"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:text="Instructor"
-                android:textAppearance="?attr/textAppearanceHeadline6"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textViewDetailCourseRoomSet" />
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/add_course_alarm"
+            style="?attr/borderlessButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="30dp"
+            android:layout_marginBottom="124dp"
+            android:text="@string/set_reminder"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
 
-            <TextView
-                android:id="@+id/textViewDetailCourseInstructorName"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:text="TextView"
-                android:textColor="#311B92"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView7" />
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/ViewNotesButton"
+            style="?attr/materialButtonOutlinedStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginBottom="16dp"
+            android:text="@string/view_instructor"
+            android:textColor="@color/dark_green"
+            app:strokeColor="@color/dark_green"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            />
 
-            <TextView
-                android:id="@+id/textViewDetailCourseInstructorPhone"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
-                android:text="TextView"
-                android:textColor="#311B92"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textViewDetailCourseInstructorName" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <TextView
-                android:id="@+id/textViewDetailCourseInstructorEmail"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="58dp"
-                android:text="TextView"
-                android:textColor="#311B92"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textViewDetailCourseInstructorPhone" />
-
-            <TextView
-                android:id="@+id/textView3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="4dp"
-                android:layout_marginTop="8dp"
-                android:text="@string/to"
-                android:textColor="#311B92"
-                app:layout_constraintStart_toEndOf="@+id/textViewDetailCourseTime"
-                app:layout_constraintTop_toBottomOf="@+id/textViewDetailCourseEndDate" />
-
-            <TextView
-                android:id="@+id/textViewDetailCourseEndTime"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="4dp"
-                android:layout_marginTop="8dp"
-                android:text="TextView"
-                android:textColor="#311B92"
-                app:layout_constraintStart_toEndOf="@+id/textView3"
-                app:layout_constraintTop_toBottomOf="@+id/textViewDetailCourseEndDate" />
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/add_course_alarm"
-                style="?attr/borderlessButtonStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginBottom="8dp"
-                android:text="@string/set_reminder"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/ViewNotesButton"
-                style="?attr/materialButtonOutlinedStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="96dp"
-                android:layout_marginBottom="16dp"
-                android:text="@string/view_notes"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/add_course_alarm"
-                app:strokeColor="@color/purple_500" />
-
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </ScrollView>
 
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/detail_course_recycler_view"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/homeScrollView"
+        app:layout_constraintStart_toEndOf="@+id/cardView"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0" />
 

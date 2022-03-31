@@ -13,7 +13,8 @@
         android:theme="@style/Theme.CollegeCourseTracker">
         <activity
             android:name=".Controller.InstructorInfo"
-            android:exported="false" />
+            android:exported="false"
+            android:label="Instructor Quick View"/>
         <activity
             android:name=".CreateNewUser"
             android:exported="false"
