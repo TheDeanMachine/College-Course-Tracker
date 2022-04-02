@@ -74,7 +74,7 @@ public class DetailedCourse extends AppCompatActivity implements AssessmentViewA
     private CourseViewModel courseViewModel;
     private AssessmentViewModel assessmentViewModel;
 
-    // add button
+    // buttons
     private FloatingActionButton fab;
     private FloatingActionButton fabAlarm;
     private FloatingActionButton fabNotes;
@@ -139,9 +139,9 @@ public class DetailedCourse extends AppCompatActivity implements AssessmentViewA
             endTime = endDate.getTime();
             endTimeTxt.setText(DateFormat.getTimeInstance(DateFormat.SHORT).format(endTime));
             roomNum.setText(course.getRoomNumber());
-//            name.setText(course.getInstructorName());
-//            phone.setText(course.getInstructorPhone());
-//            email.setText(course.getInstructorEmail());
+//            name.setText(course.getInstructorName()); // no longer displayed in detail course
+//            phone.setText(course.getInstructorPhone()); // no longer displayed in detail course
+//            email.setText(course.getInstructorEmail()); // no longer displayed in detail course
             nameString = course.getInstructorName();
             phoneString = course.getInstructorPhone();
             emailString = course.getInstructorEmail();
@@ -153,7 +153,7 @@ public class DetailedCourse extends AppCompatActivity implements AssessmentViewA
         fabNotes.setOnClickListener(this::viewNotes);
         viewInstructorButton.setOnClickListener(this::viewInstructor);
 
-        //  changes from card button to a fab on rotation change to landscape mode
+        // changes from card button to a fab on rotation change to landscape mode
         fabAlarm.setOnClickListener(this::addCourseAlarm);
         fabAlarm.setVisibility((getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) ? View.GONE : View.VISIBLE);
         buttonAlarm.setOnClickListener(this::addCourseAlarm);

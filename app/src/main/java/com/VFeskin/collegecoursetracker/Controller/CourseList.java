@@ -146,7 +146,7 @@ public class CourseList extends AppCompatActivity implements CourseViewAdapter.O
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        autoCompleteTextView.setText(""); // clear your TextView prior to search
+        autoCompleteTextView.setText(""); // clear dropdown prior to search
 
         // Determine which app bar item was chosen
         switch (item.getItemId()) {

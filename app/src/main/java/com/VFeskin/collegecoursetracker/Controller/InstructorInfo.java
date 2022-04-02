@@ -6,8 +6,8 @@ import android.os.Bundle;
 import android.widget.TextView;
 
 /**
- * This class is used for view information on instructor.
- * This was previously in DetailedCourse, but I felt the layout was to crammed.
+ * This class is used to view information on instructor.
+ * This was previously in DetailedCourse, but layout was to crammed.
  */
 public class InstructorInfo extends AppCompatActivity {
 
