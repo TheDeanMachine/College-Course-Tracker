@@ -181,4 +181,5 @@ public class CourseList extends AppCompatActivity implements CourseViewAdapter.O
         startActivity(intent);
         finish();
     }
+
 }
