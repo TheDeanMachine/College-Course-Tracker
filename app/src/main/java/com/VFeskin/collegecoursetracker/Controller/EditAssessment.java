@@ -17,7 +17,7 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Spinner;
+
 import java.text.DateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -83,7 +83,7 @@ public class EditAssessment extends AppCompatActivity {
         PK = extra.getInt("ID");
         assessmentTitleTxt.setText(extra.getString("TITLE"));
         autoCompleteTextView.setText(extra.getString("TEST"));
-        startDate = DateConverter.fromTimestamp(extra.getLong("START"));
+        startDate = DateConverter.fromLongToDate(extra.getLong("START"));
         startTime = extra.getLong("START");
         startDateTxt.setText(DateFormat.getDateInstance(DateFormat.MEDIUM).format(startDate));
         startTimeTxt.setText(DateFormat.getTimeInstance(DateFormat.SHORT).format(startTime));

@@ -240,8 +240,8 @@ public class DetailedCourse extends AppCompatActivity implements AssessmentViewA
         intent.putExtra("ID", PK);
         intent.putExtra("TITLE", title.getText());
         intent.putExtra("STATUS", status.getText());
-        intent.putExtra("START", DateConverter.ToTimestamp(startDate));
-        intent.putExtra("END", DateConverter.ToTimestamp(endDate));
+        intent.putExtra("START", DateConverter.fromDateToLong(startDate));
+        intent.putExtra("END", DateConverter.fromDateToLong(endDate));
         intent.putExtra("ROOM", roomNum.getText());
         intent.putExtra("NAME", nameString);
         intent.putExtra("PHONE", phoneString);

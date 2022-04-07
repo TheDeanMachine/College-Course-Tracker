@@ -131,7 +131,7 @@ public class DetailedAssessment extends AppCompatActivity {
         Intent intent = new Intent(this, EditAssessment.class);
         intent.putExtra("ID", PK);
         intent.putExtra("TITLE", title.getText());
-        intent.putExtra("START", DateConverter.ToTimestamp(startDateTime));
+        intent.putExtra("START", DateConverter.fromDateToLong(startDateTime));
         intent.putExtra("TEST", testType.getText());
         intent.putExtra("FK", FK);
         startActivity(intent);

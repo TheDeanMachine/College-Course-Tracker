@@ -12,17 +12,12 @@ import com.google.android.material.textfield.TextInputLayout;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Spinner;
+
 import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -124,9 +119,9 @@ public class EditCourse extends AppCompatActivity {
         courseTitleTxt.setText(extra.getString("TITLE"));
         autoCompleteTextView.setText(extra.getString("STATUS"));
 //        courseStatusSpinner.setSelection(((ArrayAdapter<String>)courseStatusSpinner.getAdapter()).getPosition(extra.getString("STATUS")));
-        startDate = DateConverter.fromTimestamp(extra.getLong("START"));
+        startDate = DateConverter.fromLongToDate(extra.getLong("START"));
         startDateTxt.setText(DateFormat.getDateInstance(DateFormat.MEDIUM).format(startDate));
-        endDate = DateConverter.fromTimestamp(extra.getLong("END"));
+        endDate = DateConverter.fromLongToDate(extra.getLong("END"));
         endDateTxt.setText(DateFormat.getDateInstance(DateFormat.MEDIUM).format(endDate));
         startTime = startDate.getTime();
         startTimeTxt.setText(DateFormat.getTimeInstance(DateFormat.SHORT).format(startTime));

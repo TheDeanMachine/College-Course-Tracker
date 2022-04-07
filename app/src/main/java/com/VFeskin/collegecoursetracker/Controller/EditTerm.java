@@ -10,8 +10,6 @@ import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputLayout;
 import android.app.DatePickerDialog;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.widget.Button;
 import android.widget.EditText;
 import java.text.DateFormat;
@@ -65,9 +63,9 @@ public class EditTerm extends AppCompatActivity {
         Bundle extra = getIntent().getExtras();
         PK = extra.getInt("ID");
         termTitleTxt.setText(extra.getString("TITLE"));
-        startDate = DateConverter.fromTimestamp(extra.getLong("START"));
+        startDate = DateConverter.fromLongToDate(extra.getLong("START"));
         startDateTxt.setText(DateFormat.getDateInstance(DateFormat.MEDIUM).format(startDate));
-        endDate = DateConverter.fromTimestamp(extra.getLong("END"));
+        endDate = DateConverter.fromLongToDate(extra.getLong("END"));
         endDateTxt.setText(DateFormat.getDateInstance(DateFormat.MEDIUM).format(endDate));
 
         // shows the date picker, onClick
