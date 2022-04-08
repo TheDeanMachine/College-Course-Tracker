@@ -26,6 +26,9 @@ public interface UserDao {
     @Query("SELECT * FROM Users WHERE user_name = :user")
     LiveData<User> getUserName(String user);
 
+    @Query("SELECT * FROM Users WHERE user_name = :user")
+    User getUserNameTest(String user);
+
     @Query("SELECT * FROM Users WHERE password = :password")
     LiveData<User> getUserPassword(String password);
 }
