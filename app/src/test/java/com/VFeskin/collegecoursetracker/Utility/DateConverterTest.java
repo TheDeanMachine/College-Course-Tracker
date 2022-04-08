@@ -8,28 +8,28 @@ import java.util.Calendar;
 import java.util.Date;
 
 public class DateConverterTest {
-    Date testDate;
-    Long testLong;
-    Calendar calendar = Calendar.getInstance();;
-
+    private Date calenderDate;
+    private Date testDate;
+    private Long calenderLong;
+    private Long testLong;
+    private Calendar calendar = Calendar.getInstance();
 
     @Before
     public void setUp() throws Exception {
         calendar.set(2022, 0, 1, 10, 30);
-        testDate = calendar.getTime();
+        calenderDate = calendar.getTime();
+        calenderLong = calendar.getTimeInMillis();
     }
 
     @Test
-    public void fromTimestamp() {
-
+    public void fromLongToDateTest() {
+        testDate = DateConverter.fromLongToDate(calenderLong);
+        assertEquals(calenderDate, testDate);
     }
 
     @Test
-    public void toTimestamp() {
-
-        testLong = DateConverter.fromDateToLong(testDate);
-
-        assertEquals(DateConverter.fromLongToDate(testLong), testDate);
-
+    public void fromDateToLongTest() {
+        testLong = DateConverter.fromDateToLong(calenderDate);
+        assertEquals(calenderLong, testLong);
     }
 }

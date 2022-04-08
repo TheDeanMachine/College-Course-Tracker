@@ -13,25 +13,22 @@ public class DateTimeParserTest {
     private Date startDateTime;
     private final Calendar calendar = Calendar.getInstance();
 
-
     @Before
     public void setUp() throws Exception {
         calendar.set(2022, 0, 1, 10, 30);
-
         // assign value
         startDate = calendar.getTime();
         startTime = calendar.getTimeInMillis();
-
-        // convert to single value
-        startDateTime = DateTimeParser.parseDateTime(startDate, startTime);
     }
 
     @Test
-    public void parseDateTime() {
+    public void parseDateTimeTest() {
+        // convert to single value
+        startDateTime = DateTimeParser.parseDateTime(startDate, startTime); // returns null due to .parse() method
 
         // test values to see if they still match original values after conversion
-        assertEquals(calendar.getTime(), startDateTime);
-        assertEquals(calendar.getTimeInMillis(), startDateTime.getTime());
+        assertEquals(startDate, startDateTime);
+        assertEquals(startTime, DateConverter.fromDateToLong(startDateTime));
 
     }
 }
